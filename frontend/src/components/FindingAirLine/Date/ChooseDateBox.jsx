@@ -1,6 +1,6 @@
 import React from "react";
-function ChooseDateBox({title, name, formData, handleFormDataChange}){
-    
+function ChooseDateBox({title, name, value, handleFormDataChange}){
+
     return (
         
             <div className="flex flex-col h-[50%] ">
@@ -8,7 +8,7 @@ function ChooseDateBox({title, name, formData, handleFormDataChange}){
               <input
                 name={name}
                 type="date"
-                value={formData.departDate}
+                value={value}
                 className="outline-none text-[20px] w-full text-gray-400"
                 onChange={handleFormDataChange}
               />

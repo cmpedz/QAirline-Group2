@@ -8,9 +8,9 @@ class DepartureAndReturnDate extends React.Component{
             
             <div className="md:w-2/5 border-b-[2px] md:border-b-[0px] md:border-r-[2px] border-gray-300 px-5 pb-5 md:pt-5 flex flex-col justify-center">
 
-            <ChooseDateBox title="Departure Date" name="departureDate" formData={formData} handleFormDataChange={handleFormDataChange}/>
+            <ChooseDateBox title="Departure Date" name="departureDate" value={formData.departureDate} handleFormDataChange={handleFormDataChange}/>
 
-            <ChooseDateBox title="Return Date" name="returnDate" formData={formData} handleFormDataChange={handleFormDataChange}/>
+            <ChooseDateBox title="Return Date" name="returnDate" value={formData.returnDate} handleFormDataChange={handleFormDataChange}/>
                 
             </div>
            

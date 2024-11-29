@@ -3,9 +3,13 @@ import FindingAirLineBar from "./FindingAirLine/FindingAirLineBar";
 
 const BookTicketBox = ({
   formData,
-  handleFormDataChange
+  handleFormDataChange,
+  handleFlightSearch
 }) => {
+
   return (
+
+
 
     <div className="py-[50px] mx-auto px-5 border-[2px] rounded-[10px] border-black-700 h-[42rem] md:h-[20rem] flex md:flex flex-col ">
 
@@ -21,12 +25,13 @@ const BookTicketBox = ({
           </div>
         </div>
 
+        
         <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} />
         
       </div>
       <button
         className="hover:bg-[#1E293B] bg-[#bebebe] text-black hover:text-white px-5 py-2 mt-5 rounded-lg transition duration-100 w-[200px] self-center md:self-end "
-      
+        onClick={handleFlightSearch}
       >
         Search Flights
       </button>
