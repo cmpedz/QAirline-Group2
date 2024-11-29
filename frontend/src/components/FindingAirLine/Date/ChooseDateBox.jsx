@@ -3,7 +3,7 @@ function ChooseDateBox({title, name, value, handleFormDataChange}){
 
     return (
         
-            <div className="flex flex-col h-[50%] ">
+            <div className="h-[50%]">
               <h1>{title}</h1>
               <input
                 name={name}

@@ -1,0 +1,27 @@
+
+const SuitableFlights = (props) => {
+
+  const {searchedFlights, searchStatus} = props;
+
+    console.log("check flights length : " + searchedFlights.length);
+    return(
+      <>
+      <p className="py-5">
+      <p>{searchStatus}</p>
+    </p>
+    {searchedFlights.length > 0 ? (
+      <div className="flex justify-center items-center gap-5 flex-wrap w-full">
+        {searchedFlights.map((flight, index) => {
+          console.log(flight);
+        }
+          
+        )}
+      </div>
+    ) : null}
+      </>
+      
+    )
+}
+
+
+export default SuitableFlights;

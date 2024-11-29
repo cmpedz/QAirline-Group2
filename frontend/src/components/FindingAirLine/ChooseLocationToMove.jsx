@@ -1,13 +1,16 @@
 import React from "react";
+import SuggestLocation from "../ChooseLocation/ChooseLocationSuggest";
 
 class ChooseLocationToMove extends React.Component{
+
+    suggestLocations = ["Ha Noi", "Hai Phong", "Dong Van", "Ha Giang"];
 
     render(){
 
         const {formData, handleFormDataChange} = this.props;
         return( 
 
-        <div className="flex gap-5 xl:max-w-fit flex-col md:flex-row md:w-2/5 border-gray-300 border-b-[2px] md:border-r-[2px] md:border-b-[0px] md:items-center">
+        <div className="flex gap-5 xl:max-w-fit flex-col md:flex-row md:w-[40%] border-gray-300 border-b-[2px] md:border-r-[2px] md:border-b-[0px] md:items-center">
 
             <div className="flex flex-col p-5  w-[40%]">
               <h1>From</h1>
@@ -17,7 +20,7 @@ class ChooseLocationToMove extends React.Component{
                 placeholder="Delhi"
                 value={formData.from}
                 className="outline-none text-[20px] md:text-[30px]"
-                onChange={handleFormDataChange}
+                onChange={(e) => {handleFormDataChange(e); SuggestLocation(e, this.suggestLocations)}}
               />
             </div>
 
@@ -34,7 +37,7 @@ class ChooseLocationToMove extends React.Component{
                 value={formData.to}
                 placeholder="Mumbai"
                 className="outline-none text-[20px] md:text-[30px]"
-                onChange={handleFormDataChange}
+                onChange={(e) => {handleFormDataChange(e); SuggestLocation(e, this.suggestLocations)}}
               />
             </div>
 

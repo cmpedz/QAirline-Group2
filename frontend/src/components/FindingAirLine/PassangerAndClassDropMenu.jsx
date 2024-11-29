@@ -7,6 +7,19 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
   const dropDownRef = useRef();
   const bgDropDownRef = useRef();
 
+  const [passangerAnClassInfors, setPassangerAnClassInfors] = useState({
+      Adults : 0,
+      Child : 0,
+      Class_type : "Economy"
+  })
+
+  const handlePassangerAndClassInforsChange = (name , value) => {
+    setPassangerAnClassInfors((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
 
   useEffect(() => {
     if (props.isDropdownVisible) {
@@ -33,6 +46,7 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
     }
   }, [props.isDropdownVisible]);
 
+
   return (
     <>
       <div
@@ -41,12 +55,12 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
       ></div>
 
       <div ref={dropDownRef}
-        className={`absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-50 hidden`}
+        className={`fixed md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-50 hidden`}
       >
         <div className="w-[100%] flex flex-row items-center justify-between">
           <h1 className="font-bold">Passenger</h1>
           <i
-            className="fa-solid fa-x cursor-pointer"
+            className="fa-solid fa-x cursor-pointer hover:text-red-500"
             onClick={() => props.setIsDropdownVisible(false)}
           ></i>
         </div>
@@ -54,8 +68,10 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
         <hr className="border-1 border-black" />
         <br />
         <div>
-          <PassangerTypeChoice passengerType="Adults" age="12+ years" />
-          <PassangerTypeChoice passengerType="Child" age="2-11 years" />
+          <PassangerTypeChoice passengerType="Adults" age="12+ years" isDropdownVisible = {props.isDropdownVisible} 
+          handlePassangerAndClassInforsChange = {handlePassangerAndClassInforsChange}/>
+          <PassangerTypeChoice passengerType="Child" age="2-11 years" isDropdownVisible = {props.isDropdownVisible}
+          handlePassangerAndClassInforsChange = {handlePassangerAndClassInforsChange}/>
         </div>
         <br />
         <h1 className="font-bold">Class</h1>
@@ -63,10 +79,16 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
         <hr className="border-1 border-black" />
         <br />
         <div>
-          <ClassTypeChoice label_name="Economy" />
-          <ClassTypeChoice label_name="Business" />
+          <ClassTypeChoice label_name="Economy" handlePassangerAndClassInforsChange = {handlePassangerAndClassInforsChange}/>
+          <ClassTypeChoice label_name="Business" handlePassangerAndClassInforsChange = {handlePassangerAndClassInforsChange}/>
           <br />
-          <button className="border-1 rounded-[10px] w-[100%] bg-purple-500 py-1 text-white">
+          <button 
+          onClick={ ()=>{
+            let passangerInfors = passangerAnClassInfors.Adults + " Adults, " + passangerAnClassInfors.Child + " Child - " + passangerAnClassInfors.Class_type;
+            props.setPassangersInfors(passangerInfors);
+            props.setIsDropdownVisible(false);
+          }}
+          className="border-1 rounded-[10px] w-[100%] bg-purple-500 py-1 text-white hover:bg-purple-300">
             Confirm
           </button>
         </div>

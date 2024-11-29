@@ -4,18 +4,18 @@ import PassangerAndClassChoiceDropMenu from "./PassangerAndClassDropMenu";
 function PassengerAndClassChoice() {
   const dropDownRef = useRef();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
+  const [passangersInfors, setPassangersInfors] = useState("");
 
   const onClickHandle = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
 
   return (
-    <div className="flex gap-5 md:w-1/5 flex-row px-5 relative pb-5 md:py-5 cursor-pointer justify-between">
+    <div className="flex gap-5 md:w-[30%] flex-row px-5 relative py-5 cursor-pointer justify-between">
       <div>
         <div>
           <h1>Passengers/Class</h1>
-          <p className="outline-none text-[20px] w-full text-gray-400"> sth here</p>
+          <p className="outline-none text-[20px] w-full text-gray-400"> {passangersInfors}</p>
         </div>
       </div>
 
@@ -34,7 +34,8 @@ function PassengerAndClassChoice() {
         </svg>
       </div>
 
-      <PassangerAndClassChoiceDropMenu ref={dropDownRef} setIsDropdownVisible = {setIsDropdownVisible} isDropdownVisible = {isDropdownVisible}/>
+      <PassangerAndClassChoiceDropMenu ref={dropDownRef} setIsDropdownVisible = {setIsDropdownVisible} isDropdownVisible = {isDropdownVisible} 
+      setPassangersInfors = {setPassangersInfors}/>
     </div>
   );
 }
