@@ -19,4 +19,23 @@
   .seatsHover {
     @apply md:hover:bg-blue-400 md:hover:text-white;
   }
+  .navbar {
+    @apply flex justify-between items-center w-full px-6 py-4 bg-white shadow-md;
+  }
+
+  .nav-links {
+    @apply flex items-center gap-8;
+  }
+
+  .nav-link {
+    @apply text-gray-700 hover:text-gray-900 transition duration-200;
+  }
+
+  .nav-button {
+    @apply bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-400 transition duration-200;
+  }
+
+  .profile-image {
+    @apply w-8 h-8 rounded-full;
+  }
 }
