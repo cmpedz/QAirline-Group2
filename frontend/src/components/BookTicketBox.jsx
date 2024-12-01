@@ -1,11 +1,37 @@
 import React from "react";
 import FindingAirLineBar from "./FindingAirLine/FindingAirLineBar";
+import { useState, useEffect } from "react";
 
 const BookTicketBox = ({
   formData,
   handleFormDataChange,
   handleFlightSearch
 }) => {
+
+    const [isInSmallScreen, setIsInSmallScreen] = useState(window.innerWidth < 768 ? true : false);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            console.log("window is resized");
+        if(window.innerWidth < 768){
+            setIsInSmallScreen(true);
+            console.log("apporoach small screen, isSmallScreen : " + isInSmallScreen);
+            
+        } else{
+            setIsInSmallScreen(false);
+            
+        }
+        
+
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      console.log("remove resize listener")
+    };
+  }, []);
 
   return (
 
@@ -26,7 +52,7 @@ const BookTicketBox = ({
         </div>
 
         
-        <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} />
+        <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}/>
         
       </div>
       <button

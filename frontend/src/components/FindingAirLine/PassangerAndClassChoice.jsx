@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import PassangerAndClassChoiceDropMenu from "./PassangerAndClassDropMenu";
 
-function PassengerAndClassChoice() {
+function PassengerAndClassChoice(props) {
   const dropDownRef = useRef();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [passangersInfors, setPassangersInfors] = useState("");
@@ -35,7 +35,7 @@ function PassengerAndClassChoice() {
       </div>
 
       <PassangerAndClassChoiceDropMenu ref={dropDownRef} setIsDropdownVisible = {setIsDropdownVisible} isDropdownVisible = {isDropdownVisible} 
-      setPassangersInfors = {setPassangersInfors}/>
+      setPassangersInfors = {setPassangersInfors} isInSmallScreen = {props.isInSmallScreen}/>
     </div>
   );
 }

@@ -10,13 +10,13 @@ class ChooseLocationToMove extends React.Component{
 
         const suggestLocations = ["Ha Noi", "Hai Phong", "Dong Van", "Ha Giang"];
 
-        const {formData, handleFormDataChange} = this.props;
+        const {formData, handleFormDataChange, isInSmallScreen} = this.props;
         return( 
 
         <div className="flex gap-5 xl:max-w-fit flex-col md:flex-row md:w-[40%] border-gray-300 border-b-[2px] md:border-r-[2px] md:border-b-[0px] md:items-center">
 
             <LocationInput title = "From" name = "from" placeHolder = "from" formData = {formData} value = {formData.from}
-            handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}></LocationInput>
+            handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations} isInSmallScreen={isInSmallScreen}></LocationInput>
             
             
 
@@ -26,7 +26,8 @@ class ChooseLocationToMove extends React.Component{
             </div>
 
             <LocationInput title = "To" name = "to" placeHolder = "to" formData = {formData} value = {formData.to}
-            handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}></LocationInput>
+            handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}
+            isInSmallScreen={isInSmallScreen}></LocationInput>
 
         </div>
 

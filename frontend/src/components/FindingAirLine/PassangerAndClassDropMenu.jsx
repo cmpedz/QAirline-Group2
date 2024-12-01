@@ -20,42 +20,51 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
     }));
   };
 
+  const disableScrollbarOfWindow = () => {
 
-  useEffect(() => {
-    if (props.isDropdownVisible) {
-
-      dropDownRef.current.classList.remove("hidden");
-      dropDownRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      if(window.innerWidth < 768){
-        bgDropDownRef.current.classList.remove("hidden")
-        document.body.classList.add("overflow-hidden");
+    if(props.isInSmallScreen && props.isDropdownVisible){
+          
+      if(!document.body.classList.contains("overflow-hidden")){
+        document.body.classList.add("overflow-hidden")
       }
-    } else {
 
-      dropDownRef.current.classList.add("hidden");
-      
-      if(!bgDropDownRef.current.classList.contains("hidden")){
-        bgDropDownRef.current.classList.add("hidden")
-      }
+    }else{
 
       if(document.body.classList.contains("overflow-hidden")){
         document.body.classList.remove("overflow-hidden")
       }
-
     }
+  }
+
+  useEffect(() => {
+    if (props.isDropdownVisible) {
+      dropDownRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    } 
+
+    disableScrollbarOfWindow();
+   
   }, [props.isDropdownVisible]);
+
+  useEffect(()=>{
+    disableScrollbarOfWindow();
+  }, [props.isInSmallScreen])
 
 
   return (
     <>
       <div
         ref={bgDropDownRef}
-        className="fixed md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-49 hidden"
+        
+       
+        className= {`fixed md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-49
+          ${ props.isDropdownVisible &&  props.isInSmallScreen? "" : "hidden "} `}
       ></div>
 
       <div ref={dropDownRef}
-        className={`fixed md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-50 hidden`}
+
+        className={`fixed md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-50
+          ${props.isDropdownVisible? "" : "hidden"} `}
       >
         <div className="w-[100%] flex flex-row items-center justify-between">
           <h1 className="font-bold">Passenger</h1>
