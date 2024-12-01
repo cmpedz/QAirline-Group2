@@ -21,9 +21,9 @@ function Navbar() {
   return (
     <header className="bg-white px-6 py-4 shadow-md">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
-        {/* Logo */}
+        {/* Logo thêm ảnh logo sau*/}
         <Link to={"/"} className="font-bold text-3xl">
-          ABVS
+          MCM
         </Link>
 
         {/* Links */}
