@@ -14,7 +14,7 @@ const SmallScreenSuggestLocation = (props) => {
             ${ props.isFocused ? "" : "hidden"} `}
       ></div>
 
-        <div className={`fixed w-[100%] h-[100%]  left-[0px] bg-white z-50 rounded-[10px]
+        <div className={`fixed w-[100%] h-[80%]  left-[0px] bottom-[0px] bg-white z-50 rounded-[10px]
             ${ props.isFocused ? "" : "hidden"} `}>
             <div className="flex flex-row h-[10%] justify-between items-center px-3">
                 <h1 className="text-2xl font-bold mx-auto">{props.inputData.title}</h1>
@@ -34,7 +34,7 @@ const SmallScreenSuggestLocation = (props) => {
           className="border-[2px] rounded-[10px] text-[20px] w-[96%] h-[10%] mx-auto block"
           onChange={(e) => {
             props.inputData.handleFormDataChange(e);
-            props.inputData.handleSuggestLocation(e, props.inputData.suggestions);
+            props.handleSuggestLocation(e, props.inputData.suggestions);
         }}
         />
 
@@ -42,7 +42,8 @@ const SmallScreenSuggestLocation = (props) => {
 
         <div className={`z-50 px-4 py-1 w-[100%] h-[80%] bg-white overflow-y-scroll`} >
             {props.satisfiedLocation.map((location, index) => (
-                <SuggestLocationForm departLocation = {location} code={"code"} airportName = "airportName" key={index}></SuggestLocationForm>
+                <SuggestLocationForm departLocation = {location} code={"code"} airportName = "airportName" key={index}
+                inputLocation = {props.inputLocation}  setIsFocused={props.setIsFocused}  ></SuggestLocationForm>
             ))}
         </div>
 

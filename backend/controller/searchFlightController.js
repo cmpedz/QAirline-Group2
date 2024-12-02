@@ -8,7 +8,6 @@ export const getFlights = async (req, res) => {
     // Find flights based on the provided criteria
 
     console.log("check infors from req : " + JSON.stringify(req.body));
-    console.log("this is airline" + " from : " + from + " to " + to + ", depart at : " + departureDate );
     
 
     const flights = await Flight.find({

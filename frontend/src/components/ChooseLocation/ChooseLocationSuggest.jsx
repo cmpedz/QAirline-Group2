@@ -1,7 +1,8 @@
 
 import SuggestLocationForm from "./SuggestLocationForm";
+import { forwardRef } from "react";
 
-const SuggestLocation = (props) => {
+const SuggestLocation = forwardRef((props) => {
 
     return (
 
@@ -10,14 +11,15 @@ const SuggestLocation = (props) => {
             props.isFocused ? "" : "hidden"
           } shadow-md`} >
             {props.satisfiedLocation.map((location, index) => (
-                <SuggestLocationForm departLocation = {location} code={"code"} airportName = "airportName" key={index}></SuggestLocationForm>
+                <SuggestLocationForm departLocation = {location} code={"code"} airportName = "airportName" key={index}
+                inputLocation = {props.inputLocation}  setIsFocused = {props.setIsFocused} ></SuggestLocationForm>
             ))}
         </div>
     );
 
     
     
-}
+})
 
 export default SuggestLocation;
 
