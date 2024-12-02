@@ -42,6 +42,7 @@ const TicketSearchPage = () => {
 
     <BookTicketBox
       formData={formData}
+      setFormData= {setFormData}
       handleFormDataChange={handleFormDataChange}
       handleFlightSearch={handleFlightSearch}
     />

@@ -3,14 +3,14 @@ import ChooseDateBox from "./ChooseDateBox";
 class DepartureAndReturnDate extends React.Component{
     render(){
 
-        const {formData, handleFormDataChange} = this.props;
+        const {formData, handleFormDataChange, isOneWayChosen} = this.props;
         return (
             
             <div className="md:w-[30%] border-b-[2px] md:border-b-[0px] md:border-r-[2px] border-gray-300 px-5 py-5">
 
             <ChooseDateBox title="Departure Date" name="departureDate" value={formData.departureDate} handleFormDataChange={handleFormDataChange}/>
 
-            <ChooseDateBox title="Return Date" name="returnDate" value={formData.returnDate} handleFormDataChange={handleFormDataChange}/>
+            { !isOneWayChosen && <ChooseDateBox title="Return Date" name="returnDate" value={formData.returnDate} handleFormDataChange={handleFormDataChange}/>}
                 
             </div>
            

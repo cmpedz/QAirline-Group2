@@ -4,13 +4,22 @@ import SmallScreenSuggestLocation from "./SmallScreenSuggestLocation";
 
 const LocationInput = (props) => {
 
-    const {title, name, placeHolder, formData, handleFormDataChange, suggestions, isInSmallScreen} = props;
+    const {title, name, placeHolder, formData, handleFormDataChange, suggestions, isInSmallScreen, setFormData} = props;
 
     const [isFocused, setIsFocused] = useState(false);
 
     const [satisfiedLocation, setSatisfiedLocation] = useState(suggestions);
 
-    const suggestLocationBar = useRef();
+    const inputData = {
+        title : title,
+        name : name, 
+        placeHolder : placeHolder, 
+        formData : formData, 
+        handleFormDataChange : handleFormDataChange,
+        setFormData : setFormData,
+        suggestions : suggestions
+    }
+
 
     const handleSuggestLocation = (e, suggestionLocations) => {
 
@@ -20,22 +29,26 @@ const LocationInput = (props) => {
 
     }
 
+    const containerRef = useRef("");
+
     const handleFocus = () => {
         setIsFocused(true); 
-        console.log("check input Ref : " + inputRef);
-        console.log("input loction is on focuse");
-    }
-    const handleBlur = () => {
-        if(isInSmallScreen) return;
-        setIsFocused(false);
-        console.log("input loction is on blur");
-    }
-
-    useEffect( () => {
         
-        satisfiedLocation.map(location => {console.log(location)});
+    }
 
-    }, [satisfiedLocation])
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        
+        if (containerRef.current && !containerRef.current.contains(event.target)) {
+           setIsFocused(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+ 
     
 
 
@@ -57,16 +70,16 @@ const LocationInput = (props) => {
 
     
 
-    return ( <div className="flex flex-col p-5  w-[40%] relative">
+    return ( <div className="flex flex-col p-5  w-[40%] relative" ref = {containerRef}>
         <h1>{title}</h1>
         <input
           name={name}
           type="text"
+          autocomplete="off"
           placeholder={placeHolder}
           value={formData[name]}
           className="outline-none text-[20px] md:text-[30px]"
           onFocus={handleFocus}
-          onBlur={handleBlur}
           onChange={(e) => {
             handleFormDataChange(e);
             handleSuggestLocation(e, suggestions);
@@ -75,11 +88,12 @@ const LocationInput = (props) => {
 
         {isInSmallScreen ? 
 
-        <SmallScreenSuggestLocation inputData = {props} satisfiedLocation = {satisfiedLocation} 
-        handleSuggestLocation={handleSuggestLocation} inputLocation = {formData[name]}
+        <SmallScreenSuggestLocation inputData = {inputData} satisfiedLocation = {satisfiedLocation} 
+        handleSuggestLocation={handleSuggestLocation} 
         isFocused={isFocused} setIsFocused={setIsFocused}></SmallScreenSuggestLocation> : 
 
-        <SuggestLocation satisfiedLocation = {satisfiedLocation} isFocused={isFocused} inputLocation = {formData[name]}></SuggestLocation>}
+        <SuggestLocation satisfiedLocation = {satisfiedLocation} 
+        isFocused={isFocused} inputData = {inputData} setIsFocused={setIsFocused}></SuggestLocation>}
 
       </div>)
 

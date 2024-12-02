@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 
 const BookTicketBox = ({
   formData,
+  setFormData,
   handleFormDataChange,
   handleFlightSearch
 }) => {
 
     const [isInSmallScreen, setIsInSmallScreen] = useState(window.innerWidth < 768 ? true : false);
+
+    const[isOneWayChosen, setIsOneWayChosen] = useState(false);
     
     useEffect(() => {
         const handleResize = () => {
@@ -27,11 +30,21 @@ const BookTicketBox = ({
 
     window.addEventListener("resize", handleResize);
 
+
+
     return () => {
       window.removeEventListener("resize", handleResize);
       console.log("remove resize listener")
     };
   }, []);
+
+  const handleRadioChange = (e) =>{
+    if(e.target.value == "oneWay"){
+      setIsOneWayChosen(true);
+    } else{
+      setIsOneWayChosen(false);
+    }
+  }
 
   return (
 
@@ -40,19 +53,25 @@ const BookTicketBox = ({
     <div className="py-[50px] mx-auto px-5 border-[2px] rounded-[10px] border-black-700 h-[42rem] md:h-[20rem] flex md:flex flex-col ">
 
       <div className="flex flex-col ">
+
         <div className="flex gap-5 items-center justify-start mb-5">
           <div className="flex justify-center items-center gap-2">
-            <input type="radio" name="ticketType" id="oneWay" defaultChecked class="h-[1rem] w-[1rem]"/>
+            <input type="radio" name="ticketType" value="oneWay" class="h-[1rem] w-[1rem]"
+            onChange={handleRadioChange}/>
             <label htmlFor="oneWay">One way</label>
           </div>
+
           <div className="flex justify-center items-center gap-2">
-            <input type="radio" name="ticketType" id="return" defaultChecked class="h-[1rem] w-[1rem]"/>
+            <input type="radio" name="ticketType" value="return" defaultChecked class="h-[1rem] w-[1rem]"
+            onChange={handleRadioChange}/>
             <label htmlFor="return">Return</label>
           </div>
+
         </div>
 
         
-        <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}/>
+        <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}
+        setFormData= {setFormData} isOneWayChosen={isOneWayChosen}/>
         
       </div>
       <button
