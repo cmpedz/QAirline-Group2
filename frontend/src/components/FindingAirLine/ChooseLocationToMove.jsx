@@ -15,7 +15,7 @@ class ChooseLocationToMove extends React.Component{
 
         <div className="flex gap-5 xl:max-w-fit flex-col md:flex-row md:w-[40%] border-gray-300 border-b-[2px] md:border-r-[2px] md:border-b-[0px] md:items-center">
 
-            <LocationInput title = "From" name = "from" placeHolder = "from" formData = {formData} value = {formData.from}
+            <LocationInput title = "From" name = "from" placeHolder = "from" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations} isInSmallScreen={isInSmallScreen}></LocationInput>
             
             
@@ -25,7 +25,7 @@ class ChooseLocationToMove extends React.Component{
             <i class="fa-solid fa-arrow-right"></i>
             </div>
 
-            <LocationInput title = "To" name = "to" placeHolder = "to" formData = {formData} value = {formData.to}
+            <LocationInput title = "To" name = "to" placeHolder = "to" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}
             isInSmallScreen={isInSmallScreen}></LocationInput>
 

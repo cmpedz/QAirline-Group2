@@ -1,14 +1,16 @@
 import SuggestLocation from "./ChooseLocationSuggest";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SmallScreenSuggestLocation from "./SmallScreenSuggestLocation";
 
 const LocationInput = (props) => {
 
-    const {title, name, placeHolder, formData, value, handleFormDataChange, suggestions, isInSmallScreen} = props;
+    const {title, name, placeHolder, formData, handleFormDataChange, suggestions, isInSmallScreen} = props;
 
     const [isFocused, setIsFocused] = useState(false);
 
     const [satisfiedLocation, setSatisfiedLocation] = useState(suggestions);
+
+    const suggestLocationBar = useRef();
 
     const handleSuggestLocation = (e, suggestionLocations) => {
 
@@ -20,6 +22,7 @@ const LocationInput = (props) => {
 
     const handleFocus = () => {
         setIsFocused(true); 
+        console.log("check input Ref : " + inputRef);
         console.log("input loction is on focuse");
     }
     const handleBlur = () => {
@@ -60,7 +63,7 @@ const LocationInput = (props) => {
           name={name}
           type="text"
           placeholder={placeHolder}
-          value={value}
+          value={formData[name]}
           className="outline-none text-[20px] md:text-[30px]"
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -73,9 +76,10 @@ const LocationInput = (props) => {
         {isInSmallScreen ? 
 
         <SmallScreenSuggestLocation inputData = {props} satisfiedLocation = {satisfiedLocation} 
-        isFocused={isFocused} setIsFocused = {setIsFocused} ></SmallScreenSuggestLocation> : 
+        handleSuggestLocation={handleSuggestLocation} inputLocation = {formData[name]}
+        isFocused={isFocused} setIsFocused={setIsFocused}></SmallScreenSuggestLocation> : 
 
-        <SuggestLocation satisfiedLocation = {satisfiedLocation} isFocused={isFocused}></SuggestLocation>}
+        <SuggestLocation satisfiedLocation = {satisfiedLocation} isFocused={isFocused} inputLocation = {formData[name]}></SuggestLocation>}
 
       </div>)
 
