@@ -1,8 +1,13 @@
 const SuggestLocationForm = (props) =>{
-    const {departLocation, code, airportName, setIsFocused} = props;
+    const {departLocation, code, airportName, setFormData, name, setIsFocused} = props;
     const onClickHandle = () => {
         console.log("suggest location is chosen");
-        props.setLocation(departLocation);
+
+         setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: departLocation,
+            }));
+        
         setIsFocused(false);
         
     }
