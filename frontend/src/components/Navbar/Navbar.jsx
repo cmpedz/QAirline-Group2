@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext";
 
@@ -21,34 +20,36 @@ function Navbar() {
   return (
     <header className="bg-white px-6 py-4 shadow-md">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
-        {/* Logo */}
-        <Link to={"/"} className="font-bold text-3xl">
-          ABVS
-        </Link>
-
-        {/* Links */}
-        <ul className="flex items-center gap-8">
-          <li>
-            <Link to={"/"} className="text-gray-700 hover:text-gray-900">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to={"/book"} className="text-gray-700 hover:text-gray-900">
-              Book Flight
-            </Link>
-          </li>
-          {isUserLoggedIn && (
+        {/* Logo và Links */}
+        <div className="flex items-center gap-10">
+          {/* Logo */}
+          <Link to={"/"} className="font-bold text-3xl">
+            MCH
+          </Link>
+          {/* Links */}
+          <ul className="flex items-center gap-6">
             <li>
-              <Link
-                to={"/bookings"}
-                className="text-gray-700 hover:text-gray-900"
-              >
-                Current Bookings
+              <Link to={"/"} className="text-gray-700 hover:text-gray-900">
+                Home
               </Link>
             </li>
-          )}
-        </ul>
+            <li>
+              <Link to={"/book"} className="text-gray-700 hover:text-gray-900">
+                Book Flight
+              </Link>
+            </li>
+            {isUserLoggedIn && (
+              <li>
+                <Link
+                  to={"/bookings"}
+                  className="text-gray-700 hover:text-gray-900"
+                >
+                  Current Bookings
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
 
         {/* User actions */}
         <div className="flex items-center gap-6">
