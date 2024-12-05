@@ -3,6 +3,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import flightRoute from "./Routes/flights.js";
+import authRoute from "./Routes/auth.js";
+
 
 
 dotenv.config();
@@ -32,6 +34,8 @@ const connectDB = async () => {
 
 
 app.use("/api/flights", flightRoute);
+
+app.use("/api/auth", authRoute);
 
 app.listen(5000, () => {
   connectDB();

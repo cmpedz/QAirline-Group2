@@ -33,6 +33,11 @@ const flightSchema = new Schema({
   bookedSeats: {
     type: [String],
   },
+  airline: {
+    type: mongoose.Schema.ObjectId,
+    ref: "airlines",
+    require: true,
+  }
 });
 
 export default mongoose.model("flights", flightSchema);
