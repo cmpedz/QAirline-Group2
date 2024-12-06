@@ -1,7 +1,7 @@
 
 
 .current-booking {
-    background-image: url('src/assets/images/Maui.jpeg');
+    background-image: url('src/assets/images/Mb1.jpg');
     background-color: white; /* Nền trắng */
     color: black; /* Chữ màu đen */
     text-align: center;
@@ -25,7 +25,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
-    background-color: rgba(231, 215, 215, 0.296); /* Nền trắng trong */
+    background-color: rgba(163, 151, 151, 0.296); /* Nền trắng trong */
     border: 2px solid black; /* Khung màu đen */
     border-radius: 10px;
     overflow: hidden;
