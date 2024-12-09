@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     try {
-      const loginURL = BACKENDURL + "/api/v1/auth/login";
+      const loginURL = BACKENDURL + "/api/auth/login";
 
       const response = await fetch(loginURL, {
         method: "POST",
