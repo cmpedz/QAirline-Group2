@@ -1,3 +1,4 @@
+import AirLineDisplayForm from "./AvaiableAirLineDisplay/AirlineDisplayForm";
 
 const SuitableFlights = (props) => {
 
@@ -9,6 +10,7 @@ const SuitableFlights = (props) => {
       <p className="py-5">
       <p>{searchStatus}</p>
     </p>
+    <AirLineDisplayForm></AirLineDisplayForm>
     {searchedFlights.length > 0 ? (
       <div className="flex justify-center items-center gap-5 flex-wrap w-full">
         {searchedFlights.map((flight, index) => {
