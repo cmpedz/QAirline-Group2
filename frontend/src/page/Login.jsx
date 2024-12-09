@@ -39,7 +39,7 @@ const Login = () => {
         return;
       }
     }
-
+  
     try {
       const loginURL = BACKENDURL + "/api/auth/login";
 
@@ -59,7 +59,6 @@ const Login = () => {
       }
 
       console.log(data);
-
       console.log(response.ok);
 
       if (response.ok) {
