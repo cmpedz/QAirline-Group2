@@ -71,11 +71,13 @@ const LocationInput = (props) => {
     
 
     return ( <div className="flex flex-col p-5  w-[40%] relative" ref = {containerRef}>
-        <h1 className="text-[30px] font-bold">{title }</h1>
+
+        <h1>{title}</h1>
         <input
           name={name}
           type="text"
           autocomplete="off"
+          placeholder={placeHolder}
           value={formData[name]}
           style={{
            backgroundColor: "rgba(100, 91, 91, 0.296)",
