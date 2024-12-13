@@ -1,5 +1,7 @@
-import flights from "../models/flightSchema.js";
-import airlines from "../models/airlineSchema.js"
+import flights from "../models/flightsDetailsModel/flightSchema.js";
+import airlines from "../models/flightsDetailsModel/airlineSchema.js";
+import serviceInfors from "../models/flightsDetailsModel/serviceInforsSchema.js";
+import locationMove from "../models/flightsDetailsModel/locationMoveSchema.js";
 
 export const addFlight = async (req, res) => {
   const {
@@ -84,16 +86,19 @@ export const getFlights = async (req, res) => {
     }
     const flightsWithAirlineInfo = await Promise.all(
       matchedFlights.map(async (flight) => {
-        const populatedFlight = await flights.populate(flight, {
-          path: "airline",
-        });
+        const populatedFlight = await flights.populate(flight, [
+          { path: "airline"},
+          {path : "from"},
+          {path : "to"},
+          { path: "tickets.service" }
+        ]);
         return {
           ...populatedFlight.toObject(), 
-          airlineLogo: populatedFlight.airline.airlineLogo,
+          
         };
       })
     );
-
+    console.log("check flights infors : " + JSON.stringify(flightsWithAirlineInfo));
     res.status(200).json(flightsWithAirlineInfo);
   } catch (error) {
     console.error("Error fetching flights:", error);
@@ -105,7 +110,9 @@ export const getFlights = async (req, res) => {
 
 export const getAllFlights = async (req, res) => {
   try {
-    const allFlights = await flights.find();
+    const allFlights = await flights.find().populate('from')
+    .populate('to').populate('airline')
+    .populate('tickets').exec();
     res.status(200).json(allFlights);
   } catch (error) {
     console.error("Error fetching flights:", error);
