@@ -12,8 +12,8 @@ const locationMoveSchema = new Schema({
   },
 
   airportCode : {
+    type : String,
     require : true,
-
   }
 })
 
