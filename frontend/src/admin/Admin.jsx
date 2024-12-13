@@ -1,43 +1,35 @@
 import React from "react";
+import SidebarItem from "./components/SidebarItem";
+import StatCard from "./components/StatCard";
 
 const Admin = () => {
   return (
-    <div className="flex h-screen bg-gray-100">
-       <aside className="w-64 bg-blue-500 text-white flex flex-col">
+    <div className="flex h-screen bg-gray-100 ">
+       <aside className="w-64 bg-blue-500 text-white flex flex-col rounded-xl overflow-hidden shadow-2xl">
         <div className="p-4 font-bold text-lg">MCH</div>
         <nav className="flex flex-col space-y-2 px-4">
-          <a href="#" className="hover:bg-blue-300 p-2 rounded flex items-center">
-            <img src="\src\assets\images\homepage.png" alt="Home Icon" className="w-5 h-5 mr-2" /> Home
-          </a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Manage Flights</a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Manage Bookings</a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Manage Aircrafts</a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Manage Airport</a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Promotions</a>
-          <a href="#" className="hover:bg-blue-300 p-2 rounded">Logout</a>
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\home.png" text="Home" />
+            <SidebarItem href="/all-flights" imageSrc="\src\assets\images\admin\flight.png" text="Manage Flights" />
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\booking.png" text="Manage Bookings" />
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\airplane.png" text="Manage Aircrafts" />
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\airpot.png" text="Manage Airport" />
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\shopping-online.png" text="Promotions" />
+            <SidebarItem href="#" imageSrc="\src\assets\images\admin\logout.png" text="Logout" />
         </nav>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
-        <h1 className="text-xl font-bold mb-4">Welcome back, Administrator!</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-yellow-300 text-center p-6 rounded shadow">
-            <h2 className="text-2xl font-bold">10</h2>
-            <p className="mt-2">Total Users</p>
-          </div>
-          <div className="bg-yellow-300 text-center p-6 rounded shadow">
-            <h2 className="text-2xl font-bold">5</h2>
-            <p className="mt-2">Total Flights</p>
-          </div>
-          <div className="bg-yellow-300 text-center p-6 rounded shadow">
-            <h2 className="text-2xl font-bold">10</h2>
-            <p className="mt-2">Total Airlines</p>
-          </div>
-          <div className="bg-yellow-300 text-center p-6 rounded shadow">
-            <h2 className="text-2xl font-bold">22</h2>
-            <p className="mt-2">Airports</p>
-          </div>
+      <main className="flex-1 p-8 bg-gradient-to-b from-gray-50 to-gray-100">
+        <h1 className="text-3xl font-extrabold text-gray-800 bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent mb-6">
+  Welcome back, Administrator!
+        </h1>
+
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <StatCard value="5" label="Total Flights" />
+          <StatCard value="10" label="Total Bookings" />
+          <StatCard value="10" label="Total Aircrafts" />
+          <StatCard value="22" label="Promotions" />
         </div>
       </main>
     </div>

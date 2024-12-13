@@ -12,8 +12,13 @@ const bookingSchema = new Schema({
     ref: "users",
     required: true,
   },
+  flightClasses: {
+    type: Schema.Types.ObjectId,
+    ref: "flightClasses",
+    required: true,
+  },
   seat: {
-    type: String,
+    type: [String],
     required: true,
   },
   firstName: {

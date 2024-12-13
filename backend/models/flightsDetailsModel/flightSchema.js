@@ -30,7 +30,10 @@ const priceDetails = new Schema({
 
 
 const flightSchema = new Schema({
-
+  flightNumber: {
+    type: String,
+    required: true
+  },
   from: {
     type: Schema.Types.ObjectId,
     ref: 'locationMove',
@@ -48,11 +51,10 @@ const flightSchema = new Schema({
   arriveInfors: dayInfors,
 
   tickets: [priceDetails],
-
-  bookedSeats: {
-    type: [String],
-  },
-
+  status: {
+    type: String,  // "Scheduled", "Delayed", "Canceled"
+    required: true
+  }, 
   airline: {
     type: Schema.Types.ObjectId, 
     ref: 'airlines',
