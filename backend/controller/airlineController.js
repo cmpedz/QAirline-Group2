@@ -1,4 +1,4 @@
-import airlines from "../models/airlineSchema.js"
+import airlines from "../models/flightsDetailsModel/airlineSchema.js"
 
 export const addAirLine = async (req, res) => {
     const { airlineLogo, airlineName } = req.body;
