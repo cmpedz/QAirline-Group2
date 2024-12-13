@@ -3,6 +3,9 @@ import AirLineDisplayForm from "./AvaiableAirLineDisplay/AirlineDisplayForm";
 const SuitableFlights = (props) => {
 
   const {searchedFlights, searchStatus} = props;
+  const flightDetails = {
+       
+  }
 
     console.log("check flights length : " + searchedFlights.length);
     return(

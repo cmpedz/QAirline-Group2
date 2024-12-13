@@ -2,14 +2,17 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const airlineSchema = new Schema({
-  airlineLogo: {
+  airlineManifacturing: {
     type: String,
     required: true,
   },
-  airlineName: {
+  airlineCode: {
     type: String,
-    required: true,
+    require : true
   },
+  airlineLogo:{
+    type: String
+  }
 });
 
 export default mongoose.model("airlines", airlineSchema);
