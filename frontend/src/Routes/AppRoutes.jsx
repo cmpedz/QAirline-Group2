@@ -6,7 +6,7 @@ import Home from "../page/Home";
 import Login from "../page/Login";
 import SignUp from "../page/SignUp";
 import ErrorPage from "../page/ErrorPage";
-
+import TicketBooking from "../page/TicketBooking";
 import TicketSearchPage from "../page/TicketSearchPage";
 import CurrentBooking from "../components/CurrentBooking";
 

@@ -46,8 +46,7 @@ export const getFlights = async (req, res) => {
         const populatedFlight = await flights.populate(flight, [
           { path: "airline"},
           {path : "from"},
-          {path : "to"},
-          { path: "flightsClass.service" }
+          {path : "to"}
         ]);
         return {
           ...populatedFlight.toObject(), 

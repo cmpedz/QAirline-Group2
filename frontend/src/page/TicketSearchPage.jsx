@@ -35,7 +35,7 @@ const TicketSearchPage = () => {
 
   const handleBookingRedirect = () => {
 
-    navigate(`/book-ticket/0`) // ${selectedFlight.id}
+    navigate(`/book/6757c28e2b453ebac1a92b22`) // ${selectedFlight.id}
     // Giả sử người dùng chọn chuyến bay đầu tiên để đặt vé
     // const selectedFlight = searchedFlights[0]; // Hoặc logic chọn chuyến bay của bạn
     // if (selectedFlight) {

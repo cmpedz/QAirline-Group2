@@ -90,7 +90,7 @@ const TicketBooking = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     setTimeout(() => {
-      fetch(BACKENDURL + "/api/v1/flights/getSingleFlight/" + id, {
+      fetch(BACKENDURL + "/api/flights/getSingleFlight/" + id, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -100,6 +100,8 @@ const TicketBooking = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
+            console.log("need log in !");
+            window.scrollTo(0, 0);
             toast.error("Please log in to book tickets");
             history("/");
             return;
