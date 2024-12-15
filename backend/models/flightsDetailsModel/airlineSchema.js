@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import flightsClass from "./flightsClassSchema.js";
 
 const Schema = mongoose.Schema;
 
@@ -20,8 +19,7 @@ const airlineSchema = new Schema({
   seatClasses: [
     {
       classType : {
-        type: Schema.Types.ObjectId,
-        ref: 'classType',
+        type: String,
         required: true,
       },
      

@@ -2,17 +2,6 @@ import mongoose from "mongoose";
 import dayInfors from "./dayInforsSchema.js";
 const Schema = mongoose.Schema;
 
-const seatsInforEachClassType = new Schema({
-     classType : {
-         type: String, 
-         required: true
-     },
-
-     seats:{
-        type: [String],
-        required: true
-     }
-})
 
 const flightSchema = new Schema({
 
@@ -37,9 +26,22 @@ const flightSchema = new Schema({
     required : true
   },
 
-  bookedSeats: [seatsInforEachClassType],
+  seatDetails : [
+    {
+      classType:{
+        type: String,
+        required : true,
+      },
 
-  avaibleSeats: [seatsInforEachClassType],
+      seats: [
+          {
+            seatNumber: {type: String, required: true},
+            status: {type: String, enum: ["available", "booked"], default: "available"}
+          }
+      ]
+
+    }
+  ],
 
   status: {
     type : String
