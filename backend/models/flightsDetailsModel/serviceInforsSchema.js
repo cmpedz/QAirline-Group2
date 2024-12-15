@@ -7,6 +7,11 @@ const serviceInforsSchema = new Schema({
       type : String,
       required : true
     },
+    extra_fee: {
+      type : Number,
+      required : true
+    }, 
+
     include : {
         type: [String]
         

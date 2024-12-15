@@ -12,6 +12,11 @@ const airlineSchema = new Schema({
   },
   airlineLogo:{
     type: String
+  },
+
+  capacity: {
+    type : Number,
+    require: true
   }
 });
 

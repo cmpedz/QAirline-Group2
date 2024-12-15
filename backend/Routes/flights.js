@@ -2,10 +2,10 @@ import express from "express";
 
 import {
   addFlight,
-  getSingleFlight,
-  getFlights,
   getAllFlights
 } from "../controller/searchFlightController.js";
+
+import { getFlights } from "../controller/SearchFlightController/getSuitableFligths.js";
 
 
 const router = express.Router();

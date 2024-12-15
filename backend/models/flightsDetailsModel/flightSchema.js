@@ -1,33 +1,18 @@
 import mongoose from "mongoose";
+import dayInfors from "./dayInforsSchema.js";
 const Schema = mongoose.Schema;
 
+const seatsInforEachClassType = new Schema({
+     classType : {
+         type: String, 
+         required: true
+     },
 
-const priceDetails = new Schema({
-
-  price : {
-    type : Number,
-    required : true
-  },
-
-  service : {
-    type: Schema.Types.ObjectId,
-    ref: 'serviceInfors',
-    required: true,
-  }
-  
+     seats:{
+        type: [String],
+        required: true
+     }
 })
- const dayInfors = new Schema({
-    date :{
-      type: String,
-      required: true,
-    },
-    time : {
-      type: String,
-      required: true,
-    }
- })
-
-
 
 const flightSchema = new Schema({
 
@@ -43,14 +28,21 @@ const flightSchema = new Schema({
     required: true,
   },
 
-  departInfors: dayInfors,
+  departDate: dayInfors,
 
-  arriveInfors: dayInfors,
+  arriveDate: dayInfors,
 
-  tickets: [priceDetails],
+  price : {
+    type : Number,
+    required : true
+  },
 
-  bookedSeats: {
-    type: [String],
+  bookedSeats: [seatsInforEachClassType],
+
+  avaibleSeats: [seatsInforEachClassType],
+
+  status: {
+    type : String
   },
 
   airline: {
