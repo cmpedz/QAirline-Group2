@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+import flightsClass from "./flightsClassSchema.js";
+
 const Schema = mongoose.Schema;
+
 
 const airlineSchema = new Schema({
   airlineManifacturing: {
@@ -14,10 +17,22 @@ const airlineSchema = new Schema({
     type: String
   },
 
-  capacity: {
-    type : Number,
-    require: true
-  }
+  seatClasses: [
+    {
+      classType : {
+        type: Schema.Types.ObjectId,
+        ref: 'classType',
+        required: true,
+      },
+     
+      seats: {
+         type : [String],
+         required: true,
+      }
+    }
+  ],
+
+
 });
 
 export default mongoose.model("airlines", airlineSchema);

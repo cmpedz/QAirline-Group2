@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const serviceInforsSchema = new Schema({
+const classTypeSchema = new Schema({
 
     type :{
       type : String,
       required : true
     },
+
     extra_fee: {
       type : Number,
       required : true
@@ -15,11 +16,11 @@ const serviceInforsSchema = new Schema({
     include : {
         type: [String]
         
-      },
+    },
   
-      exclude : {
-        type: [String]
-      }
+    exclude : {
+      type: [String]
+    }
 })
 
-export default mongoose.model("serviceInfors", serviceInforsSchema);
+export default mongoose.model("classType", classTypeSchema);
