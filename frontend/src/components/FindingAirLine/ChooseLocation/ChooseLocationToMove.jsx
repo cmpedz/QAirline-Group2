@@ -8,7 +8,7 @@ class ChooseLocationToMove extends React.Component{
 
     render(){
 
-        const suggestLocations = ["Ha Noi", "Hai Phong", "Dong Van", "Ha Giang"];
+        const suggestLocations = ["Hà Nội", "Hai Phong", "Dong Van", "Ha Giang"];
 
         const {formData, handleFormDataChange, isInSmallScreen, setFormData} = this.props;
 

@@ -4,7 +4,7 @@ const DistanceDetails = (props) => {
     const quantitiesStop = props.quantitiesStop + " stop";
 
     return (
-        <div className="bg-blue-500 w-40%">
+        <div className="w-40%">
             <div div className="flex flex-row items-center">
 
             <svg width="100%" height="10">
@@ -12,9 +12,8 @@ const DistanceDetails = (props) => {
             </svg>
 
                 <div className="flex flex-row">
-                    <p>h1</p>
-                    <p>h2</p>
-                    <p>h3</p>
+                    <p>bay thẳng</p>
+                    
                 </div>
 
                 <svg width="100%" height="10">
@@ -23,9 +22,9 @@ const DistanceDetails = (props) => {
 
             </div>
 
-            <div className="text-center">
+            {/* <div className="text-center">
                 <p>{quantitiesStop}</p>
-            </div>
+            </div> */}
         </div>
     );
 }
