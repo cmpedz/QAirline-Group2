@@ -6,7 +6,7 @@ import Home from "../page/Home";
 import Login from "../page/Login";
 import SignUp from "../page/SignUp";
 import ErrorPage from "../page/ErrorPage";
-
+import TicketBooking from "../page/TicketBooking";
 import TicketSearchPage from "../page/TicketSearchPage";
 import CurrentBooking from "../components/CurrentBooking";
 import BookingGuide from "../components/BookingGuide/BookingGuide";
@@ -21,12 +21,9 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/book" element={
-          <>
-          <h1 className="text-[3em] text-white mb-[30px] mt-[20px] text-center">Book Flight</h1>
-          <TicketSearchPage />
-          </>} />
         <Route path="/bookgui" element={<BookingGuide />} />
+        <Route path="/book" element={<TicketSearchPage />} />
+        <Route path="/book/:id" element={<TicketBooking />} />
         <Route path="/bookings" element={<CurrentBooking />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
