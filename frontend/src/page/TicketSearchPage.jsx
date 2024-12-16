@@ -47,7 +47,9 @@ const TicketSearchPage = () => {
 
   return (
 
-    <div className="px-[30px] md:px-[30px] max-w-[1400px] mx-auto">
+    // <div className="px-[30px] md:px-[30px] max-w-[1400px] mx-auto">
+    <div className="max-w-[1400px] mx-auto">
+
       <BookTicketBox
         formData={formData}
         setFormData={setFormData}
