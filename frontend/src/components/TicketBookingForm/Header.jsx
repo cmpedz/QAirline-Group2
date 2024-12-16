@@ -26,29 +26,36 @@ const Header = ({ currentFlight }) => {
     return formattedDate;
   };
 
-  const calcDuration = (departTime, arriveTime) => {
-    // Parse departure and arrival times
-    const [departHour, departMinute] = departTime.split(":").map(Number);
-    const [arriveHour, arriveMinute] = arriveTime.split(":").map(Number);
+  const calcDuration = (departDate, arriveDate) => {
 
-    // Calculate total minutes for departure and arrival
+    const [departHour, departMinute] = departDate.time.split(":").map(Number);
+
+    const [arriveHour, arriveMinute] = arriveDate.time.split(":").map(Number);
+
+    let _departDate = new Date(departDate.date);
+
+    let _arriveDate = new Date(arriveDate.date);
+
+    let durationDateToHour = (_arriveDate - _departDate)/(1000 * 3600);
+
     const departTotalMinutes = departHour * 60 + departMinute;
     let arriveTotalMinutes = arriveHour * 60 + arriveMinute;
 
-    // Check if arrival time is earlier than departure time (crosses midnight)
     if (arriveTotalMinutes < departTotalMinutes) {
-      // Add 24 hours worth of minutes to arrival time
+
       arriveTotalMinutes += 24 * 60;
+
+      durationDateToHour -= 24;
     }
 
-    // Calculate the duration
+    
     let durationMinutes = arriveTotalMinutes - departTotalMinutes;
 
-    // Calculate hours and minutes
-    const durationHour = Math.floor(durationMinutes / 60);
+  
+    const durationHour = durationDateToHour + Math.floor(durationMinutes / 60);
     const durationMinute = durationMinutes % 60;
 
-    // Format the duration
+    
     const formattedDuration = `${durationHour}h ${durationMinute}m`;
 
     return formattedDuration;
@@ -61,7 +68,7 @@ const Header = ({ currentFlight }) => {
             <img src={currentFlight.airline.airlineLogo} alt="..." />
           </div>
           <p className="text-[18px] font-semibold">
-            {currentFlight.airline.airlineName} Airlines
+            {currentFlight.airline.airlineManifacturing} Airlines
           </p>
         </div>
         <div>
@@ -73,17 +80,17 @@ const Header = ({ currentFlight }) => {
           <div className="text-center">
             <p className="text-[12px]">Depart</p>
             <p className="text-[18px] font-semibold mt-2">
-              {currentFlight.departTime}
+              {currentFlight.departDate.time}
             </p>
             <p className="text-[14px] text-gray-600">
-              {formatDate(currentFlight.departDate)}
+              {formatDate(currentFlight.departDate.date)}
             </p>
           </div>
           <div className="flex items-center my-5 lg:my-0">
             <div className="w-[15px] h-[15px] rounded-full bg-blue-300"></div>
             <div className="w-[15px] h-[1px] border-[1px] border-blue-400 border-dashed lg:w-[30px]"></div>
             <div className="text-[12px] px-2 py-1 text-blue-500 bg-blue-200 rounded-full lg:text-[14px] lg:px-3 text-center">
-              {calcDuration(currentFlight.departTime, currentFlight.arriveTime)}
+              {calcDuration(currentFlight.departDate, currentFlight.arriveDate)}
             </div>
             <div className="w-[15px] h-[1px] border-[1px] border-blue-400 border-dashed lg:w-[30px]"></div>
             <div className="w-[15px] h-[15px] rounded-full bg-blue-300"></div>
@@ -91,10 +98,10 @@ const Header = ({ currentFlight }) => {
           <div className="text-center">
             <p className="text-[12px]">Arrive</p>
             <p className="text-[18px] font-semibold mt-2">
-              {currentFlight.arriveTime}
+              {currentFlight.arriveDate.time}
             </p>
             <p className="text-[14px] text-gray-600">
-              {formatDate(currentFlight.arriveDate)}
+              {formatDate(currentFlight.arriveDate.date)}
             </p>
           </div>
         </div>

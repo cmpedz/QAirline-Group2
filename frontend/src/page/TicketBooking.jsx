@@ -13,7 +13,9 @@ import uploadImageToCloudinary from "../utils/uploadImageToCloudinary"; // Impor
 import airplaneLoader from "../assets/images/airplaneLoader.gif";
 
 const TicketBooking = () => {
-  const { isUserLoggedIn } = useContext(authContext);
+
+  const isUserLoggedIn = localStorage.getItem("token") !== null;
+
   const history = useNavigate();
 
   let { id } = useParams();
@@ -23,7 +25,9 @@ const TicketBooking = () => {
   const [formData, setFormData] = useState({});
   const [currentFlight, setCurrentFlight] = useState({});
   const [loading, setLoading] = useState(true);
+  const [bookedSeats, setBookedSeats] = useState([]);
 
+  
   const handleFlightBooking = async (e) => {
     e.preventDefault();
 
@@ -64,7 +68,7 @@ const TicketBooking = () => {
 
       // Send booking data to the backend
       const response = await fetch(
-        BACKENDURL + "/api/v1/bookings/checkout-session/" + id,
+        BACKENDURL + "/api/bookings/checkout-session/" + id,
         {
           method: "POST",
           headers: {
@@ -99,6 +103,8 @@ const TicketBooking = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("check user token : " + token);
+          console.log("check data : " + JSON.stringify(data));
           if (data.success === false) {
             console.log("need log in !");
             window.scrollTo(0, 0);
@@ -108,12 +114,24 @@ const TicketBooking = () => {
           }
           console.log(data);
           setCurrentFlight(data);
+
+          setBookedSeats(data.seatDetails.map(
+            (classType) => {
+              console.log("check class type in seatDetails : " + JSON.stringify(classType));
+              classType.seats.filter(seat => seat.status === "booked").map(
+                seat => seat
+              )
+            }
+        ))
+
+        console.log("seats booked : " + JSON.stringify(bookedSeats));
           setLoading(false);
         });
     }, 1000);
   }, []);
 
   if (!isUserLoggedIn) {
+    window.scrollTo(0, 0);
     toast.error("Please log in to book tickets");
     history("/");
     return null;
@@ -141,7 +159,7 @@ const TicketBooking = () => {
                     setNumberOfPassengers={setNumberOfPassengers}
                     selectedSeats={selectedSeats}
                     setSelectedSeats={setSelectedSeats}
-                    reservedSeats={currentFlight.bookedSeats}
+                    reservedSeats={bookedSeats}
                   />
                 ) : currentActiveForm === 1 ? (
                   <TravellerDetail
