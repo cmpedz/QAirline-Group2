@@ -15,10 +15,26 @@ const createJWTToken = (payload) => {
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
   if (!name || !email || !password) {
     return res
       .status(400)
       .json({ error: "Name, email, and password are required fields" });
+  }
+
+  if(!emailRegex.test(email)){
+    return res
+      .status(400)
+      .json({ error: "Invalid email format" });
+  }
+
+  if(!passwordRegex.test(password)){
+    return res
+      .status(400)
+      .json({ error: "Password must contain at least 8 characters, including uppercase, lowercase letters, and numbers" });
   }
 
   const existingUser = await users.findOne({ email });

@@ -48,9 +48,7 @@ const BookTicketBox = ({
 
   return (
 
-
-
-    <div className="py-[50px] mx-auto px-5 border-[2px] rounded-[10px] border-black-700 h-[42rem] md:h-[20rem] flex md:flex flex-col ">
+    <div className="bg-white py-[50px] mx-auto px-5 border-[2px] rounded-[10px] border-black-700 h-[42rem] md:h-[20rem] flex md:flex flex-col">
 
       <div className="flex flex-col ">
 
@@ -74,12 +72,10 @@ const BookTicketBox = ({
         setFormData= {setFormData} isOneWayChosen={isOneWayChosen}/>
         
       </div>
-      <button
-        className="hover:bg-[#1E293B] bg-[#bebebe] text-black hover:text-white px-5 py-2 mt-5 rounded-lg transition duration-100 w-[200px] self-center md:self-end "
-        onClick={handleFlightSearch}
-      >
+        <button className="hover:bg-[#1E293B] bg-[#bebebe] text-black hover:text-white px-5 py-2 mt-5 rounded-lg transition duration-100 w-[200px] self-center"
+          onClick={handleFlightSearch}>
         Search Flights
-      </button>
+        </button>
     </div>
   );
 };

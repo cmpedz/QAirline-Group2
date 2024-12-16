@@ -1,11 +1,16 @@
+import { getClassTypeInfors } from "../../../backend/controller/classTypeInforsController.js";
 import AirLineDisplayForm from "./AvaiableAirLineDisplay/AirlineDisplayForm";
-
+import { useEffect } from "react";
 const SuitableFlights = (props) => {
 
   const {searchedFlights, searchStatus} = props;
   const flightDetails = {
        
   }
+
+  useEffect(()=>{
+    getClassTypeInfors();
+  }, []);
 
     console.log("check flights length : " + searchedFlights.length);
     return(

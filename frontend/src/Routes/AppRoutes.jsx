@@ -11,17 +11,23 @@ import TicketSearchPage from "../page/TicketSearchPage";
 import CurrentBooking from "../components/CurrentBooking";
 import Flights from "../admin/Flights"
 import Aircrafts from "../admin/Aircrafts";
-const isAdminRoute = location.pathname.startsWith("/admin");
+import TicketBooking from "../page/TicketBooking";
+import BookingGuide from "../components/BookingGuide/BookingGuide";
+
+
 
 const AppRoutes = () => {
+  const isAdminRoute = location.pathname.startsWith("/admin");
   return (
-    <>
+    <div className="w-full h-screen bg-custom-gradient">
        {!isAdminRoute && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/bookgui" element={<BookingGuide />} />
         <Route path="/book" element={<TicketSearchPage />} />
+        <Route path="/book/:id" element={<TicketBooking />} />
         <Route path="/bookings" element={<CurrentBooking />} />
 
         <Route path="/admin" element={<Admin />} />
@@ -31,7 +37,7 @@ const AppRoutes = () => {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       {!isAdminRoute && <Footer />}
-    </>
+    </div>
   );
 };
 

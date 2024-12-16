@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
+
 const Schema = mongoose.Schema;
+
 
 const airlineSchema = new Schema({
   airlineManifacturing: {
@@ -13,10 +15,21 @@ const airlineSchema = new Schema({
   airlineLogo:{
     type: String
   },
-  capacity: {
-    type: Int32,
-    require: true
-  }
+
+
+  seatClasses: [
+    {
+      classType : {
+        type: String,
+        required: true,
+      },
+     
+      seats: {
+         type : [String],
+         required: true,
+      }
+    }
+  ],
 });
 
 export default mongoose.model("airlines", airlineSchema);

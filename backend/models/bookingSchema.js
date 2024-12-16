@@ -12,15 +12,20 @@ const bookingSchema = new Schema({
     ref: "users",
     required: true,
   },
-  flightClasses: {
-    type: Schema.Types.ObjectId,
-    ref: "flightClasses",
+
+  seatNumber: {
+    type: String,
     required: true,
   },
-  seat: {
-    type: [String],
+  classType: {
+    type: String,
     required: true,
   },
+  price : {
+    type: Number,
+    required : true
+  }, 
+  
   firstName: {
     type: String,
     required: true,

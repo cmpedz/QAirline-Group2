@@ -22,9 +22,7 @@ const SignUp = () => {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-
+    
     for (const key in formData) {
       if (!formData[key]) {
         toast.error(
@@ -39,19 +37,11 @@ const SignUp = () => {
           } is required`
         );
         return;
-      } else if (key === "email" && !emailRegex.test(formData.email)) {
-        toast.error("Invalid email format");
-        return;
-      } else if (key === "password" && !passwordRegex.test(formData.password)) {
-        toast.error(
-          "Password must contain at least 8 characters, including uppercase, lowercase letters, and numbers"
-        );
-        return;
-      }
+      } 
     }
 
     try {
-      const SignUpURL = BACKENDURL + "/api/v1/auth/register";
+      const SignUpURL = BACKENDURL + "/api/auth/register";
 
       const response = await fetch(SignUpURL, {
         method: "POST",

@@ -35,7 +35,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="max-w-[1800px] mx-auto w-full h-[90vh]  mt-6 rounded-[25px] overflow-hidden relative">
+    <section className="max-w-[1800px] mx-auto w-full h-[90vh] rounded-[25px] overflow-hidden relative">
       <Swiper
         modules={[Autoplay]}
         spaceBetween={0}

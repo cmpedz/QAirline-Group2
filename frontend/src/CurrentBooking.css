@@ -1,8 +1,6 @@
 
 
 .current-booking {
-    background-image: url('src/assets/images/Maui.jpeg');
-    background-color: white; /* Nền trắng */
     color: black; /* Chữ màu đen */
     text-align: center;
     padding: 20px;
