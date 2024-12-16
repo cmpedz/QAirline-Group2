@@ -9,7 +9,7 @@ const ticketSchema = new Schema({
   tickets: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "flights",
+      ref: "bookings",
     },
   ],
 });

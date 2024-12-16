@@ -12,6 +12,7 @@ const bookingSchema = new Schema({
     ref: "users",
     required: true,
   },
+
   seatNumber: {
     type: String,
     required: true,

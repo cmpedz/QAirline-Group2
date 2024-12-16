@@ -16,6 +16,7 @@ const airlineSchema = new Schema({
     type: String
   },
 
+
   seatClasses: [
     {
       classType : {
@@ -29,8 +30,6 @@ const airlineSchema = new Schema({
       }
     }
   ],
-
-
 });
 
 export default mongoose.model("airlines", airlineSchema);

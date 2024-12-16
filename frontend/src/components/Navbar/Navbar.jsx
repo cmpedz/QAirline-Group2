@@ -18,23 +18,33 @@ function Navbar() {
   };
 
   return (
-    <header className="bg-white px-6 py-4 shadow-md">
+    <header className="bg-transparent px-6 py-4 shadow-md">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
         {/* Logo và Links */}
         <div className="flex items-center gap-10">
           {/* Logo */}
-          <Link to={"/"} className="font-bold text-3xl">
+          <Link to={"/"} className="text-white font-bold text-3xl italic">
             MCH
           </Link>
           {/* Links */}
           <ul className="flex items-center gap-6">
             <li>
-              <Link to={"/"} className="text-gray-700 hover:text-gray-900">
+              <Link to={"/"} className="text-white hover:text-gray-900">
                 Home
               </Link>
             </li>
             <li>
-              <Link to={"/book"} className="text-gray-700 hover:text-gray-900">
+            <Link to={"/bookgui"} className="text-white hover:text-gray-900">
+                Booking Guide
+            </Link>
+            </li>
+            <li>
+            <Link to={"/info"} className="text-white hover:text-gray-900">
+                Key Info
+            </Link>
+            </li>
+            <li>
+              <Link to={"/book"} className="text-white hover:text-gray-900">
                 Book Flight
               </Link>
             </li>
@@ -42,7 +52,7 @@ function Navbar() {
               <li>
                 <Link
                   to={"/bookings"}
-                  className="text-gray-700 hover:text-gray-900"
+                  className="text-white hover:text-gray-900"
                 >
                   Current Bookings
                 </Link>
@@ -54,7 +64,7 @@ function Navbar() {
         {/* User actions */}
         <div className="flex items-center gap-6">
           {isUserLoggedIn ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <img
                 src={profilePic}
                 alt="User Avatar"
@@ -62,15 +72,15 @@ function Navbar() {
               />
               <button
                 onClick={handleLogout}
-                className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-400 transition duration-200"
+                className="bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-gray-900 transition duration-200"
               >
-                Logout
+                Log out
               </button>
             </div>
           ) : (
             <div>
               {/* Nút đỏ chứa Login | Sign up */}
-              <div className="flex items-center bg-red-500 text-white px-6 py-2 rounded-full gap-2">
+              <div className="flex items-center bg-transparent border border-white text-white px-6 py-2 rounded-full gap-2">
                 <Link to={"/login"} className="hover:underline">
                   Login
                 </Link>

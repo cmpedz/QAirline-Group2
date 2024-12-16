@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 
 
 const flightSchema = new Schema({
-
+  flightNumber: {
+    type: String,
+    required: true
+  },
   from: {
     type: Schema.Types.ObjectId,
     ref: 'locationMove',
