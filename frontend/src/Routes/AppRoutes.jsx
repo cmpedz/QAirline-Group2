@@ -9,7 +9,8 @@ import ErrorPage from "../page/ErrorPage";
 import Admin from "../admin/Admin";
 import TicketSearchPage from "../page/TicketSearchPage";
 import CurrentBooking from "../components/CurrentBooking";
-
+import Flights from "../admin/Flights"
+import Aircrafts from "../admin/Aircrafts";
 const isAdminRoute = location.pathname.startsWith("/admin");
 
 const AppRoutes = () => {
@@ -24,6 +25,9 @@ const AppRoutes = () => {
         <Route path="/bookings" element={<CurrentBooking />} />
 
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/flights" element={<Flights />} />
+        <Route path="/admin/aircrafts" element={<Aircrafts />} />
+        
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       {!isAdminRoute && <Footer />}
