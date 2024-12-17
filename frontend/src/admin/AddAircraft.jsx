@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const AddAircraft = ({ onSave, onCancel }) => {
   const [formData, setFormData] = useState({
-    id: "",
+    code: "",
     manufacturer: "",
     logo: "",
     seatClasses: [
@@ -11,11 +11,23 @@ const AddAircraft = ({ onSave, onCancel }) => {
     ],
   });
 
+   // Generate seats based on class type and capacity
+   const generateSeats = (classType, capacity) => {
+    const seats = [];
+    const prefix = classType === "Economy" ? "A" : "B";
+    for (let i = 1; i <= capacity; i++) {
+      seats.push(`${prefix}${i}`);
+    }
+    return seats;
+  };
+
+  
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
 
   // Handle seat class changes
   const handleSeatClassChange = (index, value) => {
@@ -27,9 +39,24 @@ const AddAircraft = ({ onSave, onCancel }) => {
   // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
+
+     // Create seat list for each class type
+     const updatedSeatClasses = formData.seatClasses.map((cls) => ({
+      classType: cls.classType,
+      seats: generateSeats(cls.classType, cls.capacity),
+    }));
+
+     // Final form data with generated seats
+     const finalData = {
+      code: formData.code,
+      manufacturer: formData.manufacturer,
+      logo: formData.logo,
+      seatClasses: updatedSeatClasses,
+    };
+
     onSave(formData);
     setFormData({
-      id: "",
+      code: "",
       manufacturer: "",
       logo: "",
       seatClasses: [
@@ -48,8 +75,8 @@ const AddAircraft = ({ onSave, onCancel }) => {
             <label className="block font-medium">Aircraft Code</label>
             <input
               type="text"
-              name="id"
-              value={formData.id}
+              name="code"
+              value={formData.code}
               onChange={handleInputChange}
               className="w-full border rounded p-2"
               required
