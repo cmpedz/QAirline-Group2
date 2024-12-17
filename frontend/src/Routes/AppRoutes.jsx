@@ -13,6 +13,8 @@ import Flights from "../admin/Flights"
 import Aircrafts from "../admin/Aircrafts";
 import TicketBooking from "../page/TicketBooking";
 import BookingGuide from "../components/BookingGuide/BookingGuide";
+import Airports from "../admin/Airports";
+import BookedFlights from "../admin/BookedFlights";
 
 
 
@@ -33,7 +35,8 @@ const AppRoutes = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/flights" element={<Flights />} />
         <Route path="/admin/aircrafts" element={<Aircrafts />} />
-        
+        <Route path="/admin/airports" element={<Airports />} />
+        <Route path="/admin/bookings" element={<BookedFlights />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       {!isAdminRoute && <Footer />}
