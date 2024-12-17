@@ -29,22 +29,22 @@ function Navbar() {
           {/* Links */}
           <ul className="flex items-center gap-6">
             <li>
-              <Link to={"/"} className="text-white hover:text-gray-900">
+              <Link to={"/"} className="text-white hover:underline">
                 Home
               </Link>
             </li>
             <li>
-            <Link to={"/bookgui"} className="text-white hover:text-gray-900">
+            <Link to={"/bookgui"} className="text-white hover:underline">
                 Booking Guide
             </Link>
             </li>
             <li>
-            <Link to={"/info"} className="text-white hover:text-gray-900">
+            <Link to={"/info"} className="text-white hover:underline">
                 Key Info
             </Link>
             </li>
             <li>
-              <Link to={"/book"} className="text-white hover:text-gray-900">
+              <Link to={"/book"} className="text-white hover:underline">
                 Book Flight
               </Link>
             </li>
@@ -52,7 +52,7 @@ function Navbar() {
               <li>
                 <Link
                   to={"/bookings"}
-                  className="text-white hover:text-gray-900"
+                  className="text-white hover:underline"
                 >
                   Current Bookings
                 </Link>

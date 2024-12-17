@@ -16,8 +16,7 @@ const Home = () => {
                 <TicketSearchPage />
               </div>
             </div>
-          
-
+        
             <div className="w-3/5 flex flex-col gap-4 p-4">
               <HeroSection />
               <ValuesWeProvide />
