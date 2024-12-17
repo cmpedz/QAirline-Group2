@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; 
 
 const AddAircraft = ({ onSave, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -37,33 +38,42 @@ const AddAircraft = ({ onSave, onCancel }) => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-     // Create seat list for each class type
-     const updatedSeatClasses = formData.seatClasses.map((cls) => ({
-      classType: cls.classType,
-      seats: generateSeats(cls.classType, cls.capacity),
-    }));
-
-     // Final form data with generated seats
-     const finalData = {
-      code: formData.code,
-      manufacturer: formData.manufacturer,
-      logo: formData.logo,
-      seatClasses: updatedSeatClasses,
-    };
-
-    onSave(formData);
-    setFormData({
-      code: "",
-      manufacturer: "",
-      logo: "",
-      seatClasses: [
-        { classType: "Economy", capacity: 0 },
-        { classType: "Business", capacity: 0 },
-      ],
-    });
+    try {
+          // Create seat list for each class type
+          const updatedSeatClasses = formData.seatClasses.map((cls) => ({
+            classType: cls.classType,
+            seats: generateSeats(cls.classType, cls.capacity),
+          }));
+      
+          // Final form data with generated seats
+          const finalData = {
+            airlineManifacturing: formData.manufacturer,
+            airlineCode: formData.code,
+            airlineLogo: formData.logo,
+            seatClasses: updatedSeatClasses,
+          };
+      
+          const response = await axios.post(
+            "http://localhost:5000/api/aircrafts/addAircraft",
+            finalData
+          );
+      
+          onSave(formData);
+          setFormData({
+            code: "",
+            manufacturer: "",
+            logo: "",
+            seatClasses: [
+              { classType: "Economy", capacity: 0 },
+              { classType: "Business", capacity: 0 },
+            ],
+          });
+    } catch (error) {
+      console.error("Error adding new aircraft:", error);
+      alert("Failed to add aircraft. Please try again.");
+    }
   };
 
   return (

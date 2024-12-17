@@ -6,6 +6,8 @@ import flightRoute from "./Routes/flights.js";
 import authRoute from "./Routes/auth.js";
 import aircraftRoute from "./Routes/aircraft.js";
 import classTypeRoute from "./Routes/classType.js";
+import airportRoute from "./Routes/airport.js";
+
 dotenv.config();
 
 const app = express();
@@ -36,6 +38,7 @@ app.use("/api/flights", flightRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/aircrafts", aircraftRoute);
 app.use("/api/classType", classTypeRoute);
+app.use("/api/airports", airportRoute)
 
 app.listen(5000, () => {
   connectDB();

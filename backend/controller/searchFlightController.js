@@ -5,32 +5,49 @@ import mongoose from "mongoose";
 
 export const addFlight = async (req, res) => {
   const {
+    flightNumber,
     from,
     to,
     departDate,
     arriveDate,
-    departTime,
-    arriveTime,
-    airlineUid,
     price,
+    status,
+    airline,
   } = req.body;
 
   try {
-    const airline = await airlines.findById(airlineUid);
+    // const airline = await airlines.findOne({ airlineCode: airlineCode });
+    // if (!airline) {
+    //   return res.status(404).json({ message: "Airline not found" });
+    // }
+    // const from = await locationMove.findOne({})
 
-    if (!airline) {
-      return res.status(404).json({ message: "Airline not found" });
-    }
+    const selectedAircraft = await airlines.findById(airline);
 
+      if (!selectedAircraft) {
+        return res.status(404).json({ message: "Aircraft not found" });
+      }
+
+      // Tạo seatDetails từ aircraft
+      const seatDetails = selectedAircraft.seatClasses.map((seatClass) => {
+        return {
+          classType: seatClass.classType,
+          seats: seatClass.seats.map((seatNumber) => ({
+            seatNumber,
+            status: "available", 
+          }))
+        };
+      });
     const newFlight = new flights({
-      airline: airline._id, 
+      flightNumber,
       from,
       to,
       departDate,
       arriveDate,
-      departTime,
-      arriveTime,
       price,
+      seatDetails,
+      status,
+      airline,
     });
 
     await newFlight.save();
@@ -47,8 +64,8 @@ export const addFlight = async (req, res) => {
 
 export const getAllFlights = async (req, res) => {
   try {
-    const allFlights = await flights.find().populate('from')
-    .populate('to').populate('airline');
+    const allFlights = await flights.find().populate('from', "nameLocation airportCode")
+    .populate('to', "nameLocation airportCode").populate('airline', "airlineCode airlineLogo");
     res.status(200).json(allFlights);
   } catch (error) {
     console.error("Error fetching flights:", error);

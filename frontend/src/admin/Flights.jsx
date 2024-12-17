@@ -1,19 +1,44 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Sidebar from "./components/Sidebar";
 import AddFlight from "./AddFlight";
-
+import axios from "axios";
 
 const Flights = () => {
+  const [flights, setFlights] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  
+  const fetchFlights = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/flights/getAllFlights");
+      setFlights(response.data); 
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFlights();
+  }, []);
+
+  const handleSave = () => {
+    fetchFlights();
+    setShowForm(false);
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
       <Sidebar />
+
+      {/* Main Content */}
       <main className="flex-1 p-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-extrabold text-gray-800">All Flights</h1>
-          <button className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition" onClick={() => setShowForm(true)}>
+          <button
+            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
+            onClick={() => setShowForm(true)}
+          >
             + New Flight
           </button>
         </div>
@@ -33,87 +58,93 @@ const Flights = () => {
               </tr>
             </thead>
             <tbody className="text-gray-800">
-              {/* Row 1 */}
-              <tr className="border-t hover:bg-gray-50 transition">
-                <td className="py-4 px-6 text-center font-medium">VN123</td>
-                <td className="py-4 px-6 text-center">Boeing 777</td>
-                <td className="py-4 px-6 text-center">
-                  <p className="font-bold">Hanoi (HAN)</p>
-                  <p className="text-sm text-gray-600">2024-12-20 08:00 AM</p>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <p className="font-bold">Ho Chi Minh City (SGN)</p>
-                  <p className="text-sm text-gray-600">2024-12-20 10:00 AM</p>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <div className="flex justify-center items-center">
-                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                      Scheduled
-                    </span>
-                    <i className="fas fa-check-circle text-green-500 mt-1"></i>
-                  </div>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <div>
-                    <p className="font-semibold">Economy:</p>
-                    <p>Price: $200 | Booked: 50 | Available: 100</p>
-                  </div>
-                  <div className="mt-2">
-                    <p className="font-semibold">Business:</p>
-                    <p>Price: $500 | Booked: 10 | Available: 20</p>
-                  </div>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <button className="text-blue-500 font-semibold hover:underline">
-                    Edit
-                  </button>
-                </td>
-              </tr>
+              {flights.length > 0 ? (
+                flights.map((flight) => (
+                  <tr key={flight._id} className="border-t hover:bg-gray-50 transition">
+                    {/* Flight Number */}
+                    <td className="py-4 px-6 text-center font-medium">
+                      {flight.flightNumber}
+                    </td>
 
-              {/* Row 2 */}
-              <tr className="border-t hover:bg-gray-50 transition">
-                <td className="py-4 px-6 text-center font-medium">VN456</td>
-                <td className="py-4 px-6 text-center">Airbus A320</td>
-                <td className="py-4 px-6 text-center">
-                  <p className="font-bold">Da Nang (DAD)</p>
-                  <p className="text-sm text-gray-600">2024-12-21 14:00 PM</p>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <p className="font-bold">Ho Chi Minh City (SGN)</p>
-                  <p className="text-sm text-gray-600">2024-12-21 16:00 PM</p>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <div className="flex justify-center items-center">
-                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
-                      Delayed
-                    </span>
-                    <i className="fas fa-exclamation-circle text-yellow-500 mt-1"></i>
-                  </div>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <div>
-                    <p className="font-semibold">Economy:</p>
-                    <p>Price: $150 | Booked: 80 | Available: 50</p>
-                  </div>
-                  <div className="mt-2">
-                    <p className="font-semibold">Business:</p>
-                    <p>Price: $400 | Booked: 20 | Available: 10</p>
-                  </div>
-                </td>
-                <td className="py-4 px-6 text-center">
-                  <button className="text-blue-500 font-semibold hover:underline">
-                    Edit
-                  </button>
-                </td>
-              </tr>
+                    {/* Aircraft */}
+                    <td className="py-4 px-6 text-center">
+                      {flight.airline.airlineCode}
+                      <img
+                        src={flight.airline.airlineLogo}
+                        alt="Logo"
+                        className="h-10 mx-auto mt-2"
+                      />
+                    </td>
+
+                    {/* Departure */}
+                    <td className="py-4 px-6 text-center">
+                      <p className="font-bold">{flight.from.nameLocation} ({flight.from.airportCode})</p>
+                      <p className="text-sm text-gray-600">
+                        {flight.departDate.date} {flight.departDate.time}
+                      </p>
+                    </td>
+
+                    {/* Arrival */}
+                    <td className="py-4 px-6 text-center">
+                      <p className="font-bold">{flight.to.nameLocation} ({flight.to.airportCode})</p>
+                      <p className="text-sm text-gray-600">
+                        {flight.arriveDate.date} {flight.arriveDate.time}
+                      </p>
+                    </td>
+
+                    {/* Status */}
+                    <td className="py-4 px-6 text-center">
+                      <div className="flex justify-center items-center">
+                        <span
+                          className={`px-3 py-1 rounded-full text-sm ${
+                            flight.status === "OK"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-yellow-100 text-yellow-800"
+                          }`}
+                        >
+                          {flight.status}
+                        </span>
+                      </div>
+                    </td>
+
+                    {/* Class Info */}
+                    <td className="py-4 px-6 text-center">
+                      {flight.seatDetails.map((seat) => (
+                        <div key={seat._id} className="mb-2">
+                          <p className="font-semibold">{seat.classType}:</p>
+                          <p>
+                            Booked: {seat.seats.filter(s => s.status === "booked").length} | Available:{" "}
+                            {seat.seats.filter(s => s.status === "available").length}
+                          </p>
+                        </div>
+                      ))}
+                    </td>
+
+                    {/* Action */}
+                    <td className="py-4 px-6 text-center">
+                      <button className="text-blue-500 font-semibold hover:underline">
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="py-6 text-center text-gray-500">
+                    No flights found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
 
-        {showForm && <AddFlight onClose={() => setShowForm(false)} />}
+        {/* Form */}
+        {showForm && <AddFlight onCancel={() => setShowForm(false)} onSave={handleSave} />}
       </main>
     </div>
   );
+    
 };
 
 export default Flights;
