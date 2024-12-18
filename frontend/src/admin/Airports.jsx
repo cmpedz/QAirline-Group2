@@ -1,21 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import AddAirport from "./AddAirport";
+import axios from "axios";
 
 const Airports = () => {
-  const [airports, setAirports] = useState([
-    // Dữ liệu giả
-    { id: "AP001", name: "Noi Bai International Airport", location: "Hanoi", code: "HAN" },
-    { id: "AP002", name: "Tan Son Nhat International Airport", location: "Ho Chi Minh City", code: "SGN" },
-  ]);
-
+  const [airports, setAirports] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const handleSave = (newAirport) => {
-    setAirports([...airports, { id: `AP00${airports.length + 1}`, ...newAirport }]);
-    setShowForm(false);
+  const fetchAirports = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/airports/getAllAirports");
+      setAirports(response.data); 
+    } catch (error) {
+      console.error("Error fetching airports:", error);
+    }
   };
 
+  useEffect(() => {
+    fetchAirports();
+  }, []);
+
+  const handleSave = () => {
+    fetchAirports();
+    setShowForm(false);
+  };
+ 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -47,9 +56,9 @@ const Airports = () => {
             <tbody className="text-gray-800">
               {airports.map((airport, index) => (
                 <tr key={index} className="border-t hover:bg-gray-50 transition">
-                  <td className="py-4 px-6 text-center">{airport.code}</td>
-                  <td className="py-4 px-6 text-center">{airport.name}</td>
-                  <td className="py-4 px-6 text-center">{airport.location}</td>
+                  <td className="py-4 px-6 text-center">{airport.airportCode}</td>
+                  <td className="py-4 px-6 text-center">{airport.airport}</td>
+                  <td className="py-4 px-6 text-center">{airport.nameLocation}</td>
                 </tr>
               ))}
             </tbody>

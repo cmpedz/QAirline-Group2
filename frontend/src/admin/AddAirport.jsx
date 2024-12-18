@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const AddAirport = ({ onSave, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -12,9 +13,29 @@ const AddAirport = ({ onSave, onCancel }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(formData);
+    try {
+      const finalData = {
+        nameLocation: formData.location,
+         airport: formData.name, 
+         airportCode: formData.code,
+      }
+      const response = await axios.post(
+        "http://localhost:5000/api/airports/addAirport",
+        finalData
+      );     
+      onSave(formData)
+      setFormData({
+        name: "",
+        location: "",
+        code: "",
+      });
+
+    } catch (error) {
+      console.error("Error adding new airport:", error);
+      alert("Failed to add airport. Please try again.");
+    }
   };
 
   return (
