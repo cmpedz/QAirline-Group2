@@ -13,7 +13,7 @@ class FindingAirLineBar extends React.Component{
 
         return ( 
 
-          <div className="flex flex-row md:flex-row w-[100%] border-[1px] rounded-[10px] md:h-[150px]">
+          <div className="flex flex-col md:flex-row w-[100%] border-[1px] rounded-[10px] md:h-[150px]">
 
           <ChooseLocationToMove formData = {formData} handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}
           setFormData= {setFormData}/>

@@ -5,7 +5,7 @@
 /* e:/final year projects/Airplane Ticket Booking/frontend/src/index.css */
 @layer components {
   .seatContainer {
-    @apply flex justify-center items-center w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] bg-white rounded-md cursor-pointer transition duration-200;
+    @apply flex justify-center items-center w-[40px] h-[50px] sm:w-[50px] bg-white rounded-md cursor-pointer transition duration-200;
   }
 
   .selectedSeats {
