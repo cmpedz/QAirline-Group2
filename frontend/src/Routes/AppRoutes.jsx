@@ -15,6 +15,8 @@ import TicketBooking from "../page/TicketBooking";
 import BookingGuide from "../components/BookingGuide/BookingGuide";
 import Airports from "../admin/Airports";
 import BookedFlights from "../admin/BookedFlights";
+import BaoHiem from "../page/BaoHiem";
+import DichVuTaxi from "../page/DichVuTaxi";
 
 
 
@@ -38,6 +40,8 @@ const AppRoutes = () => {
         <Route path="/admin/airports" element={<Airports />} />
         <Route path="/admin/bookings" element={<BookedFlights />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/bh" element={<BaoHiem/>} />
+        <Route path="/taxi" element={<DichVuTaxi/>} />
       </Routes>
       {!isAdminRoute && <Footer />}
     </div>

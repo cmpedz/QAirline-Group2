@@ -38,10 +38,45 @@ function Navbar() {
                 Booking Guide
             </Link>
             </li>
-            <li>
-            <Link to={"/info"} className="text-white hover:underline">
+            <li className="relative group">
+            <div className="text-white hover:underline">
                 Key Info
-            </Link>
+            </div>
+            {/* Dropdown content */}
+          <ul className="absolute hidden group-hover:block left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
+            <li className="p-3 border-b hover:bg-gray-100">
+              <Link to={"/bh"}>
+              <strong>Bảo hiểm</strong>
+              <p className="text-sm text-gray-500">
+                Thật yên tâm và thoải mái với các chương trình bảo hiểm uy tín...
+              </p>
+              </Link>
+            </li>
+            <li className="p-3 border-b hover:bg-gray-100">
+              <strong>
+                Săn vé giá rẻ{" "}
+                <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                  HOT
+                </span>
+              </strong>
+              <p className="text-sm text-gray-500">
+                Nhanh tay săn vé bay Vietjet giá tốt nhất...
+              </p>
+            </li>
+            <li className="p-3 hover:bg-gray-100">
+              <Link to={"/taxi"}>
+              <strong>
+                Dịch vụ taxi{" "}
+                <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                  HOT
+                </span>
+              </strong>
+              <p className="text-sm text-gray-500">
+                Dễ dàng đặt trước xe Taxi Xanh SM đón tại sân bay với các gói cước tiết kiệm...
+              </p>
+              </Link>
+            </li>
+          </ul>
             </li>
             <li>
               <Link to={"/book"} className="text-white hover:underline">
