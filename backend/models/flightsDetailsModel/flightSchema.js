@@ -42,21 +42,17 @@ const flightSchema = new Schema({
             status: {type: String, enum: ["available", "booked"], default: "available"}
           }
       ]
-
     }
   ],
 
   status: {
     type : String
   },
-
   airline: {
     type: Schema.Types.ObjectId, 
     ref: 'airlines',
     required: true,
-  }
-
-  
+  }  
 });
 
 export default mongoose.model("flights", flightSchema);

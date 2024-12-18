@@ -1,13 +1,27 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import AddAircraft from "./AddAircraft";
+import axios from "axios";
 
 const Aircrafts = () => {
   const [aircrafts, setAircrafts] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const handleSave = (newAircraft) => {
-    setAircrafts([...aircrafts, newAircraft]);
+  const fetchAircrafts = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/aircrafts/getAllAircrafts");
+      setAircrafts(response.data); 
+    } catch (error) {
+      console.error("Error fetching aircrafts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAircrafts();
+  }, []);
+
+  const handleSave = () => {
+    fetchAircrafts();
     setShowForm(false);
   };
 
@@ -41,22 +55,34 @@ const Aircrafts = () => {
               </tr>
             </thead>
             <tbody className="text-gray-800">
-              {aircrafts.map((aircraft, index) => (
-                <tr key={index} className="border-t hover:bg-gray-50 transition">
-                  <td className="py-4 px-6 text-center">{aircraft.id}</td>
-                  <td className="py-4 px-6 text-center">{aircraft.manufacturer}</td>
-                  <td className="py-4 px-6 text-center">
-                    <img src={aircraft.logo} alt="Logo" className="h-10 mx-auto" />
-                  </td>
-                  <td className="py-4 px-6 text-center">
-                    {aircraft.seatClasses.map((cls) => (
-                      <p key={cls.classType}>
-                        {cls.classType}: {cls.capacity} seats
-                      </p>
-                    ))}
+              {aircrafts.length > 0 ? (
+                aircrafts.map((aircraft, index) => (
+                  <tr key={index} className="border-t hover:bg-gray-50 transition">
+                    <td className="py-4 px-6 text-center">{aircraft.airlineCode}</td>
+                    <td className="py-4 px-6 text-center">{aircraft.airlineManifacturing}</td>
+                    <td className="py-4 px-6 text-center">
+                      <img
+                        src={aircraft.airlineLogo}
+                        alt="Logo"
+                        className="h-10 mx-auto"
+                      />
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      {aircraft.seatClasses.map((cls, idx) => (
+                        <p key={idx}>
+                          {cls.classType}: {cls.seats.length} seats
+                        </p>
+                      ))}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4" className="py-6 text-center text-gray-500">
+                    No aircrafts found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
