@@ -11,6 +11,7 @@ import { BACKENDURL } from "../Config/Config";
 import { authContext } from "../context/authContext";
 import uploadImageToCloudinary from "../utils/uploadImageToCloudinary"; // Import the image upload function
 import airplaneLoader from "../assets/images/airplaneLoader.gif";
+import getSpecifiedFlight from "../clientRequest/GetSpecifiedFlightRequest";
 
 const TicketBooking = () => {
 
@@ -25,7 +26,7 @@ const TicketBooking = () => {
   const [formData, setFormData] = useState({});
   const [currentFlight, setCurrentFlight] = useState({});
   const [loading, setLoading] = useState(true);
-  const [bookedSeats, setBookedSeats] = useState([]);
+  
 
   
   const handleFlightBooking = async (e) => {
@@ -92,42 +93,7 @@ const TicketBooking = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setTimeout(() => {
-      fetch(BACKENDURL + "/api/flights/getSingleFlight/" + id, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("check user token : " + token);
-          console.log("check data : " + JSON.stringify(data));
-          if (data.success === false) {
-            console.log("need log in !");
-            window.scrollTo(0, 0);
-            toast.error("Please log in to book tickets");
-            history("/");
-            return;
-          }
-          console.log(data);
-          setCurrentFlight(data);
-
-          setBookedSeats(data.seatDetails.map(
-            (classType) => {
-              console.log("check class type in seatDetails : " + JSON.stringify(classType));
-              classType.seats.filter(seat => seat.status === "booked").map(
-                seat => seat
-              )
-            }
-        ))
-
-        console.log("seats booked : " + JSON.stringify(bookedSeats));
-          setLoading(false);
-        });
-    }, 1000);
+    getSpecifiedFlight(id, history, setCurrentFlight, setLoading);
   }, []);
 
   if (!isUserLoggedIn) {
@@ -159,7 +125,7 @@ const TicketBooking = () => {
                     setNumberOfPassengers={setNumberOfPassengers}
                     selectedSeats={selectedSeats}
                     setSelectedSeats={setSelectedSeats}
-                    reservedSeats={bookedSeats}
+                    avaiableSeats={currentFlight.seatDetails}
                   />
                 ) : currentActiveForm === 1 ? (
                   <TravellerDetail

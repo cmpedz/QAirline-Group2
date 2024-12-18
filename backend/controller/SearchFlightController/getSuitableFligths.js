@@ -32,7 +32,7 @@ export const getFlights = async (req, res) => {
     const matchedFlights = await flights.find({
       from: fromLocation._id,
       to: toLocation._id,
-      //"departInfors.date" : departureDate,
+      "departDate.date" : departureDate,
     });
 
     if (matchedFlights.length === 0) {
