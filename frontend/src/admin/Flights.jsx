@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
 import Sidebar from "./components/Sidebar";
 import AddFlight from "./AddFlight";
+import EditFlightForm from "./EditFlightForm";
 import axios from "axios";
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);  
+  const [selectedFlight, setSelectedFlight] = useState(null);
   
   const fetchFlights = async () => {
     try {
@@ -19,6 +22,17 @@ const Flights = () => {
   useEffect(() => {
     fetchFlights();
   }, []);
+
+  const handleEdit = (flight) => {
+    setSelectedFlight(flight); 
+    setShowEditForm(true);
+  };
+
+  const handleSaveEdit = () => {
+    fetchFlights();
+    setShowEditForm(false);
+    setSelectedFlight(null);
+  };
 
   const handleSave = () => {
     fetchFlights();
@@ -122,7 +136,7 @@ const Flights = () => {
 
                     {/* Action */}
                     <td className="py-4 px-6 text-center">
-                      <button className="text-blue-500 font-semibold hover:underline">
+                      <button onClick={() => handleEdit(flight)} className="text-blue-500 font-semibold hover:underline">
                         Edit
                       </button>
                     </td>
@@ -141,6 +155,7 @@ const Flights = () => {
 
         {/* Form */}
         {showForm && <AddFlight onCancel={() => setShowForm(false)} onSave={handleSave} />}
+        {showEditForm && <EditFlightForm />}  
       </main>
     </div>
   );

@@ -6,6 +6,7 @@ import axios from "axios";
 const Aircrafts = () => {
   const [aircrafts, setAircrafts] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [selectedAircraft, setSelectedAircraft] = useState(null);
 
   const fetchAircrafts = async () => {
     try {
@@ -15,6 +16,18 @@ const Aircrafts = () => {
       console.error("Error fetching aircrafts:", error);
     }
   };
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/aircrafts/deleteAircraft/${id}`);
+      fetchAircrafts(); 
+    } catch (error) {
+      console.error("Error deleting aircraft:", error);
+    }
+  };
+  const handleEdit = (aircraft) => {
+    setSelectedAircraft(aircraft);
+    setShowForm(true);
+  };
 
   useEffect(() => {
     fetchAircrafts();
@@ -23,6 +36,7 @@ const Aircrafts = () => {
   const handleSave = () => {
     fetchAircrafts();
     setShowForm(false);
+    setSelectedAircraft(null);
   };
 
   return (
@@ -52,6 +66,7 @@ const Aircrafts = () => {
                 <th className="py-4 px-6 text-center">Manufacturer</th>
                 <th className="py-4 px-6 text-center">Logo</th>
                 <th className="py-4 px-6 text-center">Seat Classes</th>
+                <th className="py-4 px-6 text-center">Action</th>
               </tr>
             </thead>
             <tbody className="text-gray-800">
@@ -74,11 +89,25 @@ const Aircrafts = () => {
                         </p>
                       ))}
                     </td>
+                    <td className="py-4 px-6 text-center">
+                      <button
+                        onClick={() => handleEdit(aircraft)}
+                        className="text-blue-500 font-semibold hover:underline mr-4"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(aircraft._id)}
+                        className="text-red-500 font-semibold hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="py-6 text-center text-gray-500">
+                  <td colSpan="5" className="py-6 text-center text-gray-500">
                     No aircrafts found.
                   </td>
                 </tr>
@@ -89,7 +118,10 @@ const Aircrafts = () => {
 
         {/* Form */}
         {showForm && (
-          <AddAircraft onSave={handleSave} onCancel={() => setShowForm(false)} />
+          <AddAircraft onSave={handleSave} onCancel={() => {setShowForm(false); setSelectedAircraft(null);
+          }} 
+          initialData={selectedAircraft}
+          />
         )}
       </div>
     </div>

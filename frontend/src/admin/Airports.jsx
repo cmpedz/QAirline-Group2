@@ -6,6 +6,7 @@ import axios from "axios";
 const Airports = () => {
   const [airports, setAirports] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [selectedAirport, setSelectedAirport] = useState(null);
 
   const fetchAirports = async () => {
     try {
@@ -23,6 +24,21 @@ const Airports = () => {
   const handleSave = () => {
     fetchAirports();
     setShowForm(false);
+    setSelectedAirport(null);
+  };
+
+  const handleEdit = (airport) => {
+    setSelectedAirport(airport); 
+    setShowForm(true);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/airports/deleteAirport/${id}`);
+      fetchAirports(); 
+    } catch (error) {
+      console.error("Error deleting airport:", error);
+    }
   };
  
   return (
@@ -36,7 +52,10 @@ const Airports = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-extrabold text-gray-800">Manage Airports</h1>
           <button
-            onClick={() => setShowForm(true)}
+            onClick={() => { 
+              setSelectedAirport(null);
+              setShowForm(true);
+            }}
             className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
           >
             + New Airport
@@ -51,6 +70,7 @@ const Airports = () => {
                 <th className="py-4 px-6 text-center">Airport Code</th>
                 <th className="py-4 px-6 text-center">Airport Name</th>
                 <th className="py-4 px-6 text-center">Location</th>
+                <th className="py-4 px-6 text-center">Action</th>
               </tr>
             </thead>
             <tbody className="text-gray-800">
@@ -59,6 +79,20 @@ const Airports = () => {
                   <td className="py-4 px-6 text-center">{airport.airportCode}</td>
                   <td className="py-4 px-6 text-center">{airport.airport}</td>
                   <td className="py-4 px-6 text-center">{airport.nameLocation}</td>
+                  <td className="py-4 px-6 text-center">
+                    <button
+                      onClick={() => handleEdit(airport)}
+                      className="text-blue-500 font-semibold hover:underline mr-4"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(airport._id)}
+                      className="text-red-500 font-semibold hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -69,7 +103,8 @@ const Airports = () => {
         {showForm && (
           <AddAirport
             onSave={handleSave}
-            onCancel={() => setShowForm(false)}
+            onCancel={() => {setShowForm(false); selectedAirport(null);}}
+            initialData={selectedAirport}
           />
         )}
       </div>

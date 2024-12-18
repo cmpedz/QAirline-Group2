@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const AddAirport = ({ onSave, onCancel }) => {
+const AddAirport = ({ onSave, onCancel, initialData}) => {
   const [formData, setFormData] = useState({
     name: "",
     location: "",
     code: "",
   });
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        name: initialData.airport,
+        location: initialData.nameLocation,
+        code: initialData.airportCode,
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +30,18 @@ const AddAirport = ({ onSave, onCancel }) => {
          airport: formData.name, 
          airportCode: formData.code,
       }
-      const response = await axios.post(
-        "http://localhost:5000/api/airports/addAirport",
-        finalData
-      );     
+
+      if (initialData) {
+        // Update existing airport
+        await axios.put(
+          `http://localhost:5000/api/airports/updateAirport/${initialData._id}`,
+          finalData
+        );
+      } else {
+        // Add new airport
+        await axios.post("http://localhost:5000/api/airports/addAirport", finalData);
+      }
+  
       onSave(formData)
       setFormData({
         name: "",
