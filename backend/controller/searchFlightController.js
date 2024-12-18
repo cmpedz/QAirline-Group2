@@ -3,6 +3,30 @@ import airlines from "../models/flightsDetailsModel/airlineSchema.js";
 import locationMove from "../models/flightsDetailsModel/locationMoveSchema.js";
 import mongoose from "mongoose";
 
+export const updateFlight = async (req, res) => {
+  const { id } = req.params; 
+  const { departDate, arriveDate, status } = req.body; 
+
+  try {
+    const flight = await flights.findById(id);
+    if (!flight) {
+      return res.status(404).json({ message: "Flight not found" });
+    }
+
+    flight.departDate = departDate || flight.departDate;
+    flight.arriveDate = arriveDate || flight.arriveDate;
+    flight.status = status || flight.status;
+
+    await flight.save();
+
+    res.status(200).json({ message: "Flight updated successfully", flight });
+  } catch (error) {
+    console.error("Error when updating flight:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 export const addFlight = async (req, res) => {
   const {
     flightNumber,

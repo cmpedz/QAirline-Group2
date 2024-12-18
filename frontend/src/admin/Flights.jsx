@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Sidebar from "./components/Sidebar";
 import AddFlight from "./AddFlight";
-import EditFlightForm from "./EditFlightForm";
+import EditFlight from "./EditFlight";
 import axios from "axios";
 
 const Flights = () => {
@@ -155,7 +155,7 @@ const Flights = () => {
 
         {/* Form */}
         {showForm && <AddFlight onCancel={() => setShowForm(false)} onSave={handleSave} />}
-        {showEditForm && <EditFlightForm />}  
+        {showEditForm && <EditFlight flight={selectedFlight} onCancel={() => {setShowEditForm(false); selectedFlight(null);}} onSave={handleSaveEdit}/>}  
       </main>
     </div>
   );
