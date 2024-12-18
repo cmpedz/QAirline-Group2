@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"; 
 
-const AddAircraft = ({ onSave, onCancel }) => {
+const AddAircraft = ({ onSave, onCancel, initialData }) => {
   const [formData, setFormData] = useState({
     code: "",
     manufacturer: "",
@@ -11,6 +11,20 @@ const AddAircraft = ({ onSave, onCancel }) => {
       { classType: "Business", capacity: 0 },
     ],
   });
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        code: initialData.airlineCode,
+        manufacturer: initialData.airlineManifacturing,
+        logo: initialData.airlineLogo,
+        seatClasses: initialData.seatClasses.map((cls) => ({
+          classType: cls.classType,
+          capacity: cls.seats.length,
+        })),
+      });
+    }
+  }, [initialData]);
 
    // Generate seats based on class type and capacity
    const generateSeats = (classType, capacity) => {
@@ -54,12 +68,16 @@ const AddAircraft = ({ onSave, onCancel }) => {
             airlineLogo: formData.logo,
             seatClasses: updatedSeatClasses,
           };
-      
-          const response = await axios.post(
-            "http://localhost:5000/api/aircrafts/addAircraft",
-            finalData
-          );
-      
+          
+          if (initialData) {
+            await axios.put(
+              `http://localhost:5000/api/aircrafts/updateAircraft/${initialData._id}`,
+              finalData
+            );
+          } else {
+            await axios.post("http://localhost:5000/api/aircrafts/addAircraft", finalData);
+          }
+         
           onSave(formData);
           setFormData({
             code: "",

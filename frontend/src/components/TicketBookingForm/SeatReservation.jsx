@@ -9,16 +9,30 @@ const SeatReservation = ({
   setNumberOfPassengers,
   selectedSeats,
   setSelectedSeats,
-  reservedSeats,
+  avaiableSeats
 }) => {
-  const seats = {
-    A: [8, 7, 6, 5, 4, 3, 2, 1],
-    B: [8, 7, 6, 5, 4, 3, 2, 1],
-    C: [8, 7, 6, 5, 4, 3, 2, 1],
-    D: [8, 7, 6, 5, 4, 3, 2, 1],
+
+  const maxCols = 8;
+
+  let currentSeats = {
+    A1: ["A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1","A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1",
+      "A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1","A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1"
+    ],
+    B1: [8, 7, 6, 5, 4, 3, 2, 1],
+    
   };
 
+  let reservedSeats = [];
+
   const [bookedSeats, setBookedSeats] = useState(reservedSeats);
+
+  const handleAvaiableFlights = () => {
+      let rowIndex = 0;
+      let colIndex = 0;
+      avaiableSeats.map((classType) => {
+        console.log("check avaiable seats " + classType.classType + " : "  + JSON.stringify(classType.seats));  
+      })
+  }
 
   const handleNextClick = () => {
     if (numberOfPassengers === 0) {
@@ -59,6 +73,9 @@ const SeatReservation = ({
   const containerRef = useRef(null);
 
   useEffect(() => {
+
+    handleAvaiableFlights();
+
     const updateContainerSize = () => {
       if (containerRef.current) {
         const { clientWidth, clientHeight } = containerRef.current;
@@ -99,7 +116,7 @@ const SeatReservation = ({
   }, [selectedSeats, setNumberOfPassengers]);
 
   const renderSeats = (row) => {
-    return seats[row].map((seat) => (
+    return currentSeats[row].map((seat) => (
       <div
         key={seat}
         className={`seatContainer ${
@@ -108,10 +125,10 @@ const SeatReservation = ({
             : bookedSeats.includes(row + seat)
             ? "bookedSeats"
             : "seatsHover"
-        }`}
+        } w-[50px] md:w-[80px] md:h-[80px]`}
         onClick={() => handleSeatClick(row, seat)}
       >
-        <p className="text-[15px]">
+        <p className="text-[15px] ">
           {row}
           {seat}
         </p>
@@ -129,26 +146,29 @@ const SeatReservation = ({
     <div className="my-5 bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
       <p className="mb-5 text-4xl">Seat Booking</p>
       <p className="mb-2">{numPassengersText}</p>
-      <div className="flex flex-col-reverse md:flex-row mt-5">
+      <div className="flex flex-col  mt-5">
+
+      <div className="w-[100%] md:block">
+          <img
+            ref={imageRef}
+            src={AirplaneHead}
+            alt=""
+            className="w-[100%] md:block"
+          />
+        </div>
+
         <div
           ref={containerRef}
-          className="flex flex-row md:flex-col gap-5 w-fit h-fit p-5 bg-[#f3f5f8] rounded-b-[15px] md:rounded-s-[15px] md:w-auto"
+          className="flex flex-col gap-20 h-fit p-5 bg-[#f3f5f8] rounded-b-[15px] md:rounded-s-[15px] md:w-auto"
         >
-          {Object.keys(seats).map((row) => (
-            <div key={row} className="flex flex-col md:flex-row gap-1">
+          {Object.keys(currentSeats).map((row) => (
+            <div key={row} className="flex flex-row  flex-wrap gap-1  justify-center w-[100%]">
               {renderSeats(row)}
             </div>
           ))}
         </div>
 
-        <div className="w-full hidden md:block">
-          <img
-            ref={imageRef}
-            src={AirplaneHead}
-            alt=""
-            className="h-full rotate-[270deg] md:rotate-0 md:h-full"
-          />
-        </div>
+
       </div>
       <button
         className="bg-blue-300 text-white px-10 py-2 rounded-full hover:bg-blue-500 duration-300 mt-2"
