@@ -70,11 +70,16 @@ const BookTicketBox = ({
         
         <FindingAirLineBar formData = {formData} handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}
         setFormData= {setFormData} isOneWayChosen={isOneWayChosen}/>
-         <button className="hover:bg-[#1E293B] bg-[#bebebe] text-black hover:text-white px-5 py-2 mt-5 rounded-lg transition duration-100 w-[200px] self-center"
+         {/* <button className="hover:bg-[#1E293B] bg-[#bebebe] text-black hover:text-white px-5 py-2 mt-5 rounded-lg transition duration-100 w-[200px] self-center"
           onClick={handleFlightSearch}>
         Search Flights
+        </button> */}
+        <button
+           className="bg-[#FED7AA] text-[#1E293B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-[200px] self-center border-2 border-transparent hover:border-[#1E293B]"
+            onClick={handleFlightSearch}
+          >
+          Search Flights
         </button>
-        
       </div>
        
     </div>

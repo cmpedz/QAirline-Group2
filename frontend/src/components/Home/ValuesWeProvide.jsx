@@ -46,16 +46,6 @@ const ValuesWeProvide = () => {
             Best tour guide is ready to guide your trip
           </p>
         </div>
-        {/* ------------------------------- */}
-        <div className="flex justify-center items-center flex-col max-w-[200px]">
-          <div className="w-[50px] h-[50px] bg-gray-200 rounded-full text-2xl text-gray-500 flex justify-center items-center">
-            <CiDiscount1 className="text-black" />
-          </div>
-          <h1 className="text-xl font-bold mt-2">Lots of promos</h1>
-          <p className="text-sm text-center mt-1">
-            Various promotions and drawing of discount
-          </p>
-        </div>
       </div>
     </div>
   );

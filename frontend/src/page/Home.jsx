@@ -6,6 +6,7 @@ import PlanItinerary from "../components/Home/PlanItinerary";
 import Testimonials from "../components/Home/Testimonials";
 import LetGetToKnow from "../components/Home/LetGetToKnow";
 import TicketSearchPage from "./TicketSearchPage";
+import BookTicketBox2 from "../components/BookTicketBox2";
 
 const Home = () => {
 
@@ -47,7 +48,7 @@ const Home = () => {
                   handleFormDataChange={handleFormDataChange}
                   handleFlightSearch={handleFlightSearch}
                 /> */}
-                <TicketSearchPage />
+                <BookTicketBox2 />
               </div>
             </div>
         
@@ -55,7 +56,6 @@ const Home = () => {
               <HeroSection />
               <ValuesWeProvide />
               <TopPlaces />
-              <Testimonials />
               <PlanItinerary />
               <LetGetToKnow />
             </div>

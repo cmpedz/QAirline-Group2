@@ -4,128 +4,109 @@ const Footer = () => {
   return (
     <footer className="bg-white py-10">
       <div className="container mx-auto p-10 md:px-10">
-        {/* Bố cục chính */}
+        {/* Main Layout */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-          {/* Cột 1 */}
+          {/* Column 1 */}
           <div>
             <h3 className="font-bold mb-3 hover:bg-gray-100">Mahuco Airways</h3>
             <ul>
               <li className="mb-2">
                 <a href="#about" className="hover:underline">
-                  Về chúng tôi
+                  About Us
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#awards" className="hover:underline">
-                  Giải thưởng
+                  Awards
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#careers" className="hover:underline">
-                  Nghề nghiệp
+                  Careers
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#news" className="hover:underline">
-                  Thông cáo báo chí
+                  Press Releases
                 </a>
               </li>
               <li>
                 <a href="#sustainability" className="hover:underline">
-                  Nhận thức về môi trường
+                  Environmental Awareness
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Cột 2 */}
+          {/* Column 2 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">Công ty</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100">Company</h3>
             <ul>
               <li className="mb-2">
                 <a href="#airport" className="hover:underline">
-                  Sân bay quốc tế 
+                  International Airports
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#dutyfree" className="hover:underline">
-                  MCH Duty Free
+                  QA Duty Free
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#cargo" className="hover:underline">
-                  MCH Airways Cargo
+                  QA Airways Cargo
                 </a>
               </li>
               <li>
                 <a href="#more" className="hover:underline">
-                  Tìm hiểu thêm...
+                  Learn More...
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Cột 3 */}
+          {/* Column 3 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">Đối tác kinh doanh</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100">Business Partners</h3>
             <ul>
               <li className="mb-2">
                 <a href="#marketing" className="hover:underline">
-                  Tiếp thị liên kết
+                  Affiliate Marketing
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#shopping" className="hover:underline">
-                  Mua sắm điện tử
+                  Online Shopping
                 </a>
               </li>
               <li>
                 <a href="#partners" className="hover:underline">
-                  Đối tác thương mại
+                  Trade Partners
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Cột 4 */}
+          {/* Column 4 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">Liên hệ chúng tôi</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100">For businesses</h3>
             <ul>
               <li className="mb-2">
-                <a href="#support" className="hover:underline">
-                  Hỗ trợ
+                <a href="#companytravel" className="hover:underline">
+                  Company Travel
                 </a>
               </li>
-              <li className="flex space-x-3 mt-3">
-                <a
-                  href="#facebook"
-                  className="hover:text-gray-900 text-xl"
-                  aria-label="Facebook"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a
-                  href="#twitter"
-                  className="hover:text-gray-900 text-xl"
-                  aria-label="Twitter"
-                >
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a
-                  href="#linkedin"
-                  className="hover:text-gray-900 text-xl"
-                  aria-label="LinkedIn"
-                >
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-                <a
-                  href="#youtube"
-                  className="hover:text-gray-900 text-xl"
-                  aria-label="YouTube"
-                >
-                  <i className="fab fa-youtube"></i>
+              <li className="mb-2">
+                <a href="#qbiz" className="hover:underline">
+                  Qbiz: Loyal Company
                 </a>
               </li>
+              <li className="mb-2">
+                <a href="#qmice" className="hover:underline">
+                  QMICE: Meetings and Conferences
+                </a>
+              </li>
+              
             </ul>
           </div>
         </div>
@@ -136,7 +117,7 @@ const Footer = () => {
           <a href="#" class="text-white hover:underline">Terms of Use</a>
           <a href="#" class="text-white hover:underline">Conditions of Carriage</a>
           <a href="#" class="text-white hover:underline">Cookies</a>
-          <a href="#" class="text-white hover:underline">Manage my data</a>
+          <a href="#" class="text-white hover:underline">Manage My Data</a>
         </div>
         <ul className="flex flex-col md:flex-row space-x-6">
           <li className="text-white">Follow Us</li>
@@ -173,29 +154,28 @@ const Footer = () => {
         </ul>
       </div>
 
-      {/* Hàng giải thưởng */}
+      {/* Awards Row */}
       <div className="mt-10 text-center">
         <div className="flex justify-center items-center space-x-6 mb-6">
           <div className="flex flex-col items-center">
-            <img src="/path-to-award-1.png" alt="Award 1" className="h-12" />
-            <p className="mt-2 text-xs text-gray-500">Award 1</p>
+            <img src="..\\src\\assets\\images\\logo2.svg" alt="Award 1" className="h-12" />
+            <p className="mt-2 text-xs text-gray-500">World's Best Airline</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src="/path-to-award-2.png" alt="Award 2" className="h-12" />
-            <p className="mt-2 text-xs text-gray-500">Award 2</p>
+            <img src="..\\src\\assets\\images\\logo1.svg" alt="Award 2" className="h-12" />
+            <p className="mt-2 text-xs text-gray-500">World's Best Business Class</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src="/path-to-award-3.png" alt="Award 3" className="h-12" />
-            <p className="mt-2 text-xs text-gray-500">Award 3</p>
+            <img src="..\\src\\assets\\images\\logo2.svg" alt="Award 3" className="h-12" />
+            <p className="mt-2 text-xs text-gray-500">Best Airline in the Middle East</p>
           </div>
         </div>
-        {/* Chính sách */}
+        {/* Policies */}
         <p className="text-xs text-gray-600">
-          Chính sách Cookie | Pháp luật | Riêng tư | Trợ năng | Các dịch vụ và
-          phí tùy chọn
+          Cookie Policy | Legal | Privacy | Accessibility | Optional Services and Fees
         </p>
         <p className="text-xs text-gray-600 mt-2">
-          &copy; Mahuco Airways. Đã đăng ký Bản quyền
+          &copy;  QAirline. All Rights Reserved
         </p>
       </div>
     </footer>
