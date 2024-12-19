@@ -6,12 +6,9 @@ import flightRoute from "./Routes/flights.js";
 import authRoute from "./Routes/auth.js";
 import aircraftRoute from "./Routes/aircraft.js";
 import classTypeRoute from "./Routes/classType.js";
-<<<<<<< HEAD
 import locationRoute from "./Routes/location.js";
-=======
 import airportRoute from "./Routes/airport.js";
 
->>>>>>> 9fdb9ebf3628ce8bff73e113acabbc2a486faf82
 dotenv.config();
 
 const app = express();
