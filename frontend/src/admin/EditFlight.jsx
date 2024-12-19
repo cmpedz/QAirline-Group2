@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const EditFlightForm = ({ flight, onSave, onCancel }) => {
-  const [departureTime, setDepartureTime] = useState(flight.departDate.time);
-  const [arrivalTime, setArrivalTime] = useState(flight.arriveDate.time);
-  const [status, setStatus] = useState("Delayed");
+const EditFlight = ({ flight, onSave, onCancel }) => {
+  
+    const [departureDateTime, setDepartureDateTime] = useState(
+    `${flight.departDate.date}T${flight.departDate.time}`
+  );
+  const [arrivalDateTime, setArrivalDateTime] = useState(
+    `${flight.arriveDate.date}T${flight.arriveDate.time}`
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const [departDate, departTime] = departureDateTime.split("T");
+    const [arriveDate, arriveTime] = arrivalDateTime.split("T");
+
     try {
       const updatedFlight = {
-        departDate: { date: flight.departDate.date, time: departureTime },
-        arriveDate: { date: flight.arriveDate.date, time: arrivalTime },
-        status,
+        departDate: { date: departDate, time: departTime },
+        arriveDate: { date: arriveDate, time: arriveTime },
+        status: "Delayed",
       };
 
       await axios.put(
         `http://localhost:5000/api/flights/updateFlight/${flight._id}`,
         updatedFlight
       );
+
       onSave(); 
     } catch (error) {
       console.error("Error updating flight:", error);
@@ -32,41 +40,28 @@ const EditFlightForm = ({ flight, onSave, onCancel }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
         <h2 className="text-2xl font-bold mb-4">Edit Flight</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Departure Time */}
+          {/* Departure Date & Time */}
           <div>
-            <label className="block font-medium">New Departure Time</label>
+            <label className="block font-medium">New Departure Date & Time</label>
             <input
-              type="time"
-              value={departureTime}
-              onChange={(e) => setDepartureTime(e.target.value)}
+              type="datetime-local"
+              value={departureDateTime}
+              onChange={(e) => setDepartureDateTime(e.target.value)}
               className="w-full border rounded p-2"
               required
             />
           </div>
 
-          {/* Arrival Time */}
+          {/* Arrival Date & Time */}
           <div>
-            <label className="block font-medium">New Arrival Time</label>
+            <label className="block font-medium">New Arrival Date & Time</label>
             <input
-              type="time"
-              value={arrivalTime}
-              onChange={(e) => setArrivalTime(e.target.value)}
+              type="datetime-local"
+              value={arrivalDateTime}
+              onChange={(e) => setArrivalDateTime(e.target.value)}
               className="w-full border rounded p-2"
               required
             />
-          </div>
-
-          {/* Status */}
-          <div>
-            <label className="block font-medium">Status</label>
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full border rounded p-2"
-            >
-              <option value="OK">OK</option>
-              <option value="Delayed">Delayed</option>
-            </select>
           </div>
 
           {/* Buttons */}
@@ -91,4 +86,4 @@ const EditFlightForm = ({ flight, onSave, onCancel }) => {
   );
 };
 
-export default EditFlightForm;
+export default EditFlight;
