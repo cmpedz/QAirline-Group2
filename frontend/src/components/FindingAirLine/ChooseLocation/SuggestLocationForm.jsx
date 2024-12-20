@@ -16,11 +16,11 @@ const SuggestLocationForm = (props) =>{
         <div className="pl-3">
             <i className={`fa-solid fa-plane text-xl`}></i>
             
-            <h1 className={`font-bold text-xl`}>{departLocation}</h1>
+            <h1 className={` text-xl`}>{departLocation}</h1>
         </div>
         <div className="pr-3">
             <h1 className={`font-bold text-xl`}>{code}</h1>
-            <p className={`text-gray-500 font-bold text-base`}>{airportName}</p>
+            <p className={`text-gray-500 text-base`}>{airportName}</p>
         </div>
     </div>)
 }

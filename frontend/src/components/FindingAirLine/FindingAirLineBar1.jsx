@@ -1,7 +1,7 @@
 import React from "react";
 import PassengerAndClassChoice from "./PassangerAndClassChoice";
-import ChooseLocationToMove from "./ChooseLocation/ChooseLocationToMove";
-import DepartureAndReturnDate from "./Date/DepartureAndReturnDate";
+import ChooseLocationToMove1 from "./ChooseLocation/ChooseLocationToMove1";
+import DepartureAndReturnDate1 from "./Date/DepartureAndReturnDate1.jsx";
 
 class FindingAirLineBar1 extends React.Component {
   render() {
@@ -21,7 +21,7 @@ class FindingAirLineBar1 extends React.Component {
       >
         {/* Choose Location */}
         <div className="w-full">
-          <ChooseLocationToMove
+          <ChooseLocationToMove1
             formData={formData}
             handleFormDataChange={handleFormDataChange}
             isInSmallScreen={isInSmallScreen}
@@ -31,7 +31,7 @@ class FindingAirLineBar1 extends React.Component {
 
         {/* Departure and Return Date */}
         <div className="w-full">
-          <DepartureAndReturnDate
+          <DepartureAndReturnDate1
             formData={formData}
             handleFormDataChange={handleFormDataChange}
             isOneWayChosen={isOneWayChosen}

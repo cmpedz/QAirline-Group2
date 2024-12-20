@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FindingAirLineBar from "./FindingAirLine/FindingAirLineBar1";
+import FindingAirLineBar1 from "./FindingAirLine/FindingAirLineBar1";
 
 const BookHome = ({
   formData,
@@ -37,7 +37,7 @@ const BookHome = ({
   };
 
   return (
-    <div className="max-w-[520px] mx-auto bg-white p-5 rounded-lg shadow-lg border border-gray-300 min-h-[400px]" style={{ borderColor: "#1E90FF" }}>
+    <div className="max-w-[520px] mx-auto bg-white p-5 rounded-lg shadow-lg border border-gray-300 rounded-lg shadow-lg" style={{ borderColor: "#1E90FF" }}>
       
       <div className="flex flex-col w-full space-y-5">
         {/* Radio Buttons */}
@@ -66,7 +66,7 @@ const BookHome = ({
         </div>
 
         {/* FindingAirLineBar */}
-        <FindingAirLineBar
+        <FindingAirLineBar1
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           isInSmallScreen={isInSmallScreen}
