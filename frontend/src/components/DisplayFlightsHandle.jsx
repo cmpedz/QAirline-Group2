@@ -5,9 +5,7 @@ import getClassTypesRequest from "../clientRequest/ClassTypesRequest";
 const SuitableFlights = (props) => {
 
   const {searchedFlights, searchStatus} = props;
-  const flightDetails = {
-       
-  }
+
 
   useEffect(()=>{
     getClassTypesRequest();

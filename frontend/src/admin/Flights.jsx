@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Sidebar from "./components/Sidebar";
 import AddFlight from "./AddFlight";
-import EditFlightForm from "./EditFlightForm";
+import EditFlightForm from "./EditFlight";
 import axios from "axios";
 
 const Flights = () => {

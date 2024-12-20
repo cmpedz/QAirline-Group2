@@ -14,24 +14,41 @@ const SeatReservation = ({
 
   const maxCols = 8;
 
-  let currentSeats = {
-    A1: ["A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1","A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1",
-      "A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1","A8", "A7", "A6", "A5", "A4", "A3", "A2", "A1"
-    ],
-    B1: [8, 7, 6, 5, 4, 3, 2, 1],
-    
-  };
+  const [currentSeats, setCurrentSeats] = useState(
+    {
+      "Business": [],
+      "Economy" : []
+    }
+  );
 
-  let reservedSeats = [];
+  const [reservedSeats, setReservedSeats] = useState([]);
 
-  const [bookedSeats, setBookedSeats] = useState(reservedSeats);
 
   const handleAvaiableFlights = () => {
-      let rowIndex = 0;
-      let colIndex = 0;
+      
       avaiableSeats.map((classType) => {
-        console.log("check avaiable seats " + classType.classType + " : "  + JSON.stringify(classType.seats));  
-      })
+
+        console.log("check seats from server" + classType.classType + " : "  + JSON.stringify(classType.seats));  
+
+        setCurrentSeats((prevSeats) => ({
+          ...prevSeats, 
+          [classType.classType]: [...classType.seats.map(seatInfors => 
+            {   if(seatInfors.status == "booked" && !reservedSeats.includes(seatInfors.seatNumber)){
+                  setReservedSeats((prevReservedSeats) => [...prevReservedSeats, seatInfors.seatNumber]);
+                }
+                return seatInfors.seatNumber;
+            }
+            
+          )]
+        }));
+
+        
+        
+        console.log("check avaiable seats " + classType.classType + " : "  + JSON.stringify(currentSeats));  
+        console.log("check reserved seats "  + JSON.stringify(reservedSeats));  
+      })      
+
+
   }
 
   const handleNextClick = () => {
@@ -115,21 +132,20 @@ const SeatReservation = ({
     setNumberOfPassengers(totalSelectedSeats);
   }, [selectedSeats, setNumberOfPassengers]);
 
-  const renderSeats = (row) => {
-    return currentSeats[row].map((seat) => (
+  const renderSeats = (classType) => {
+    return currentSeats[classType].map((seat) => (
       <div
         key={seat}
         className={`seatContainer ${
-          selectedSeats[row] && selectedSeats[row].includes(seat)
+          selectedSeats[classType] && selectedSeats[classType].includes(seat)
             ? "selectedSeats"
-            : bookedSeats.includes(row + seat)
+            : reservedSeats.includes(seat)
             ? "bookedSeats"
             : "seatsHover"
         } w-[50px] md:w-[80px] md:h-[80px]`}
-        onClick={() => handleSeatClick(row, seat)}
+        onClick={() => handleSeatClick(classType, seat)}
       >
         <p className="text-[15px] ">
-          {row}
           {seat}
         </p>
       </div>
@@ -148,7 +164,7 @@ const SeatReservation = ({
       <p className="mb-2">{numPassengersText}</p>
       <div className="flex flex-col  mt-5">
 
-      <div className="w-[100%] md:block">
+      <div className="hidden w-[100%] md:block">
           <img
             ref={imageRef}
             src={AirplaneHead}
@@ -161,9 +177,9 @@ const SeatReservation = ({
           ref={containerRef}
           className="flex flex-col gap-20 h-fit p-5 bg-[#f3f5f8] rounded-b-[15px] md:rounded-s-[15px] md:w-auto"
         >
-          {Object.keys(currentSeats).map((row) => (
-            <div key={row} className="flex flex-row  flex-wrap gap-1  justify-center w-[100%]">
-              {renderSeats(row)}
+          {Object.keys(currentSeats).map((classType) => (
+            <div key={classType} className="flex flex-row  flex-wrap gap-1  justify-center w-[100%]">
+              {renderSeats(classType)}
             </div>
           ))}
         </div>

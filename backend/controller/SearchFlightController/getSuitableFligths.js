@@ -5,12 +5,28 @@ import locationMove from "../../models/flightsDetailsModel/locationMoveSchema.js
 
 export const getFlights = async (req, res) => {
 
-  const { from, to, departureDate, arriveDate} = req.body;
-  
+  const { from, to, departureDate, returnDate, quantitesPassangers, flightType} = req.body;
+
+  if (!from || !to) {
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter flight details to search flights" });
+  }
+
+  if(!departureDate){
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter departure date to search flights" });
+  }
+
+  if(quantitesPassangers == 0){
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter quantities passangers to search flights" });
+  }
 
   try {
 
-    console.log("from req : " + from + ", to req : " + to);
 
     const fromLocation = await locationMove.findOne({ nameLocation: from });
 
@@ -22,12 +38,6 @@ export const getFlights = async (req, res) => {
         .status(404)
         .json({ status: false, message: "No locations found" });
     }
-    
-    console.log("check fromlocation id : " + fromLocation);
-
-    console.log("check tolocation id : " + toLocation);
-
-    console.log("check date arrive" + departureDate);
     
     const matchedFlights = await flights.find({
       from: fromLocation._id,

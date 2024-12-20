@@ -14,8 +14,13 @@ const TicketSearchPage = () => {
     to: searchParams.get("to") || "",
     departureDate: searchParams.get("departureDate") || "",
     returnDate: searchParams.get("returnDate") || "",
+    quantitesPassangers: 0,
     flightType: "Economy",
   });
+
+  useEffect(() => {
+    console.log("check form data change : " + JSON.stringify(formData));
+  }, [formData]);
 
   const [searchStatus, setSearchStatus] = useState("");
   const [searchedFlights, setSearchedFlights] = useState([]);
