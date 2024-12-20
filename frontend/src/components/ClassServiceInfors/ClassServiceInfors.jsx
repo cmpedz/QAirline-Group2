@@ -26,7 +26,7 @@ const ClassServiceInfors = (props) =>{
                     }) */}
             
                 <div>
-                    <p className="font-bold text-[0.9rem] md:text-[1rem]">Bao gồm :</p>
+                    <p className="font-bold text-[0.9rem] md:text-[1rem]">Include :</p>
 
                     {avaiableService 
                         ? 
@@ -37,7 +37,7 @@ const ClassServiceInfors = (props) =>{
                 </div>
 
                 <div>
-                    <p className="font-bold text-[0.9rem] md:text-[1rem]">Chưa bao gồm :</p>
+                    <p className="font-bold text-[0.9rem] md:text-[1rem]">Not included:</p>
                     {avaiableService 
                         ? avaiableService.exclude.map((service, index) => {
                             return <AvaiableService service = {service} key={index}></AvaiableService>;
@@ -50,7 +50,7 @@ const ClassServiceInfors = (props) =>{
                     onClick={(e) => {
                         props.handleBookingRedirect()
                     }}>
-                         CHỌN
+                         SELECT
                     </button>
                 </div>
         </div>

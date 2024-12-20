@@ -24,7 +24,7 @@ function Navbar() {
         <div className="flex items-center gap-10">
           {/* Logo */}
           <Link to={"/"} className="text-white font-bold text-3xl italic">
-            MCH
+            QAIRLINE
           </Link>
           {/* Links */}
           <ul className="flex items-center gap-6">
@@ -52,17 +52,7 @@ function Navbar() {
                   </p>
                 </Link>
               </li>
-              <li className="p-3 border-b hover:bg-gray-100">
-                <strong>
-                  Cheap Tickets{" "}
-                  <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
-                    HOT
-                  </span>
-                </strong>
-                <p className="text-sm text-gray-500">
-                  Quickly grab the best Vietjet flight deals...
-                </p>
-              </li>
+              
               <li className="p-3 hover:bg-gray-100">
                 <Link to={"/taxi"}>
                   <strong>

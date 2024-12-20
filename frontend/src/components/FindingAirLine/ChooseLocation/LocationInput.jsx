@@ -71,7 +71,7 @@ const LocationInput = (props) => {
     
 
     return ( <div className="flex flex-col p-5  w-[40%] relative" ref = {containerRef}>
-        <h1>{title}</h1>
+        <h1 className= "text-[#00008B] text-[20px]">{title}</h1>
         <input
           name={name}
           type="text"
