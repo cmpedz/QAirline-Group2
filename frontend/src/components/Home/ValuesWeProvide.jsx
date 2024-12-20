@@ -9,7 +9,7 @@ const ValuesWeProvide = () => {
   return (
     <div className="py-[50px] max-w-[1400px] mx-auto">
       <div>
-        <h1 className="text-[35px] md:text-[50px] text-center font-bold">
+        <h1 className="text-[35px] md:text-[50px] text-center font-bold text-[#00008B]">
           Top values for you
         </h1>
         <p className="text-center">
@@ -21,7 +21,7 @@ const ValuesWeProvide = () => {
           <div className="w-[50px] h-[50px] bg-gray-200 rounded-full text-2xl text-gray-500 flex justify-center items-center">
             <GoPaperAirplane className="rotate-[-35deg] text-black" />
           </div>
-          <h1 className="text-xl font-bold mt-2">Airport pickup</h1>
+          <h1 className="text-xl font-bold mt-2 text-[#00008B]">Airport pickup</h1>
           <p className="text-sm text-center mt-1">
             We provide escort from the airport to the hotel
           </p>
@@ -31,7 +31,7 @@ const ValuesWeProvide = () => {
           <div className="w-[50px] h-[50px] bg-gray-200 rounded-full text-2xl text-gray-500 flex justify-center items-center">
             <IoWalletOutline className=" text-black" />
           </div>
-          <h1 className="text-xl font-bold mt-2">Easy payment</h1>
+          <h1 className="text-xl font-bold mt-2 text-[#00008B]">Easy payment</h1>
           <p className="text-sm text-center mt-1">
             Quick and easy booking of flights for upcoming dates
           </p>
@@ -41,7 +41,7 @@ const ValuesWeProvide = () => {
           <div className="w-[50px] h-[50px] bg-gray-200 rounded-full text-2xl text-gray-500 flex justify-center items-center">
             <MdOutlinePeople className="text-black" />
           </div>
-          <h1 className="text-xl font-bold mt-2">Best tour guide</h1>
+          <h1 className="text-xl font-bold mt-2 text-[#00008B]">Best tour guide</h1>
           <p className="text-sm text-center mt-1">
             Best tour guide is ready to guide your trip
           </p>

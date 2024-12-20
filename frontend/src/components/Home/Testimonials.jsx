@@ -31,7 +31,7 @@ const Testimonials = () => {
     <div className="py-5 max-w-[1400px] w-full mx-auto">
       <div>
         {/* TODO: ADD APP NAME HERE */}
-        <h1 className="text-[18px]">This is why passengers love us</h1>
+        <h1 className="text-[18px] text-[#00008B]">This is why passengers love us</h1>
       </div>
       <div>
         <Swiper

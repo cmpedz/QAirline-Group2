@@ -37,13 +37,13 @@ const TicketSearchPage = () => {
   return (
 
     // <div className="px-[30px] md:px-[30px] max-w-[1400px] mx-auto">
-    <div className="max-w-[1400px] mx-auto">
+    <div className="max-w-[1400px] mx-auto ">
 
         
         <div className="max-w-[520px] mx-auto bg-white p-7 rounded-lg shadow-lg border border-gray-300 min-h-[700px]"> 
-        <div className="max-w-[520px] mx-auto bg-[#FED7AA] text-center mb-[10px] py-[10px] px-[20px] rounded-lg border border-[#FED7AA]">
-            <h1 className="text-[1.5em] text-blue font-bold">
-                FIND YOUR NEXT ADVENTURE
+        <div className="max-w-[300px] md:max-w-[500px] mx-auto bg-[#FED7AA] mb-[10px] py-[10px] px-[20px] rounded-lg border border-[#FED7AA]">
+            <h1 className="text-[1em] md:text-[1.5em] text-blue font-bold text-center">
+                FIND YOUR NEXT TRIP
             </h1>
         </div> 
          <BookHome

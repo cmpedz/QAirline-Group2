@@ -8,7 +8,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 5px;
-    color: #333; /* Darker text */
+    color: #00008B; /* Darker text */
   }
   
   .subtitle {
@@ -48,12 +48,13 @@
   
   .cardContent {
     padding: 15px;
+    color: #00008B;
   }
   
   .cardTitle {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #333;
+    color: #00008B;
     margin-bottom: 10px;
   }
   
