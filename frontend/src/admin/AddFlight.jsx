@@ -93,7 +93,6 @@ const AddFlight = ({onSave,  onCancel }) => {
     } catch (error) {
       console.error("Error creating flight:", error);
       alert("Failed to add flight. Please try again.");
-
     }
   };
 

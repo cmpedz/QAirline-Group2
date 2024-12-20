@@ -1,8 +1,62 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import StatCard from "./components/StatCard";
 import Sidebar from "./components/Sidebar";
+import axios from "axios";
 
 const Admin = () => {
+  const [promotions, setPromotions] = useState([]);
+  const [aircrafts, setAircrafts] = useState([]);
+  const [flights, setFlights] = useState([]);
+  const [bookings, setBookings] = useState([]);
+  
+    
+  const fetchPromotions = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/promotions/getAllPromotions"
+      );
+      setPromotions(response.data);
+    } catch (error) {
+      console.error("Error fetching promotions:", error);
+    }
+  };
+  const fetchAircrafts = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/aircrafts/getAllAircrafts");
+      setAircrafts(response.data); 
+    } catch (error) {
+      console.error("Error fetching aircrafts:", error);
+    }
+  };
+
+  
+  
+
+  const fetchBookings = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/bookings/getAllBookings");
+      setBookings(response.data); 
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    }
+  };
+
+  const fetchFlights = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/flights/getAllFlights");
+      setFlights(response.data); 
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPromotions();
+    fetchAircrafts();
+    fetchBookings();
+    fetchFlights();
+  }, []);
+
   return (
     <div className="flex h-screen bg-gray-100 ">
       <Sidebar/>
@@ -14,10 +68,10 @@ const Admin = () => {
 
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <StatCard value="5" label="Total Flights" />
-          <StatCard value="10" label="Total Bookings" />
-          <StatCard value="10" label="Total Aircrafts" />
-          <StatCard value="22" label="Promotions" />
+          <StatCard value={flights.length} label="Total Flights" />
+          <StatCard value={bookings.length} label="Total Bookings" />
+          <StatCard value={aircrafts.length} label="Total Aircrafts" />
+          <StatCard value={promotions.length} label="Promotions" />
         </div>
       </main>
     </div>
