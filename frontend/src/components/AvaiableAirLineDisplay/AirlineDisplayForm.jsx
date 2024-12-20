@@ -98,7 +98,7 @@ const AirLineDisplayForm = (props) => {
         
         
         <div className={`${flightsInforsExpanded | classServiceInfors.isExpanded? 'rounded-tl-[10px] rounded-tr-[10px]' : 'rounded-[10px]'}  flex flex-row justify-between h-[150px] bg-gray-200 px-5 py-5 
-        transition-all duration-300 ease-in-out items-center w-[100%]`}>
+        transition-all duration-300 ease-in-out md:items-center w-[100%]`}>
             <AirLineInfors isExpanded = {flightsInforsExpanded} setExpanded={setFlightsInforsExpanded}
             flightInfors = {flightInforsObject} ></AirLineInfors>
             <AirLineClass isExpanded = {classServiceInfors.isExpanded} changeClassTypeInfors={changeClassTypeInfors}

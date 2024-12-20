@@ -20,7 +20,7 @@ class FindingAirLineBar extends React.Component{
             
           <DepartureAndReturnDate formData = {formData} handleFormDataChange = {handleFormDataChange} isOneWayChosen={isOneWayChosen}/>
            
-           <PassengerAndClassChoice handleFormDataChange = {handleFormDataChange} isInSmallScreen={isInSmallScreen}
+           <PassengerAndClassChoice setFormData= {setFormData} isInSmallScreen={isInSmallScreen}
            />
 
           </div>
