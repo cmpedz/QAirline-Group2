@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext";
 
 function Navbar() {
   const { user, token } = useContext(authContext);
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setDropdownVisible(false);
+    }, 4000); 
+  };
+
+  const handleClickOutside = () => {
+    setDropdownVisible(false);
+  };
 
   // Kiểm tra trạng thái đăng nhập
   const isUserLoggedIn = localStorage.getItem("token") !== null;
@@ -16,7 +32,7 @@ function Navbar() {
     localStorage.removeItem("user");
     window.location.reload(); // Refresh trang sau khi đăng xuất
   };
-
+  
   return (
     <header className="bg-transparent px-6 py-4 shadow-md">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
@@ -38,37 +54,42 @@ function Navbar() {
                 Booking Guide
             </Link>
             </li>
-            <li className="relative group">
-            <div className="text-white hover:underline">
+            <li
+              className="relative key-info-dropdown"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="text-white hover:underline">
                 Key Info
-            </div>
-            {/* Dropdown content */}
-            <ul className="absolute hidden group-hover:block left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
-              <li className="p-3 border-b hover:bg-gray-100">
-                <Link to={"/bh"}>
-                  <strong>Insurance</strong>
-                  <p className="text-sm text-gray-500">
-                    Feel secure and comfortable with reputable insurance programs...
-                  </p>
-                </Link>
-              </li>
-              
-              <li className="p-3 hover:bg-gray-100">
-                <Link to={"/taxi"}>
-                  <strong>
-                    Taxi Service{" "}
-                    <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
-                      HOT
-                    </span>
-                  </strong>
-                  <p className="text-sm text-gray-500">
-                    Easily pre-book a Green SM Taxi at the airport with affordable packages...
-                  </p>
-                </Link>
-              </li>
-            </ul>
-
+              </div>
+              {isDropdownVisible && (
+                <ul className="absolute left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
+                  <li className="p-3 border-b hover:bg-gray-100 text-[#00008B]">
+                    <Link to={"/bh"}>
+                      <strong>Insurance</strong>
+                      <p className="text-sm text-gray-500">
+                        Feel secure and comfortable with reputable insurance programs...
+                      </p>
+                    </Link>
+                  </li>
+                  <li className="p-3 hover:bg-gray-100 text-[#00008B]">
+                    <Link to={"/taxi"}>
+                      <strong>
+                        Taxi Service{" "}
+                        <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                          HOT
+                        </span>
+                      </strong>
+                      <p className="text-sm text-gray-500">
+                        Easily pre-book a Green SM Taxi at the airport with affordable
+                        packages...
+                      </p>
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
+            
             <li>
               <Link to={"/book"} className="text-white hover:underline">
                 Book Flight

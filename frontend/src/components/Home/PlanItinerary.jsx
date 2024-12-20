@@ -43,13 +43,13 @@ const PlanItinerary = () => {
       id: 7,
       title: "Special holiday offers",
       description: "Check offers",
-      imageUrl: "..\\src\\assets\\images\\download5.jpg",
+      imageUrl: "..\\src\\assets\\images\\download7.jpg",
     },
     {
       id: 8,
       title: "Last-minute deals",
       description: "Grab now",
-      imageUrl: "..\\src\\assets\\images\\download6.jpg",
+      imageUrl: "..\\src\\assets\\images\\download8.jpg",
     },
   ];
 
