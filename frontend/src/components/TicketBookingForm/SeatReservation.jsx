@@ -68,17 +68,25 @@ const SeatReservation = ({
     }
   };
 
-  const handleSeatClick = (row, seat) => {
-    if (!bookedSeats.includes(row + seat)) {
-      if (selectedSeats[row] && selectedSeats[row].includes(seat)) {
-        setSelectedSeats({
-          ...selectedSeats,
-          [row]: selectedSeats[row].filter((s) => s !== seat),
-        });
+  const handleSeatClick = (classType, seat) => {
+    if (!reservedSeats.includes(seat)) {
+      if (selectedSeats[classType] != null) {
+        if(!selectedSeats[classType].includes(seat)){
+          setSelectedSeats({
+            ...selectedSeats,
+            [classType]: [...(selectedSeats[classType]), seat],
+          });
+        } else{
+          setSelectedSeats({
+            ...selectedSeats,
+            [classType]: [...(selectedSeats[classType].filter(_seat => _seat !== seat))],
+          });
+        }
+        
       } else {
         setSelectedSeats({
           ...selectedSeats,
-          [row]: [...(selectedSeats[row] || []), seat],
+          [classType]: [seat],
         });
       }
     }
