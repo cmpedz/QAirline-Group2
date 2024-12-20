@@ -14,8 +14,13 @@ const TicketSearchPage = () => {
     to: searchParams.get("to") || "",
     departureDate: searchParams.get("departureDate") || "",
     returnDate: searchParams.get("returnDate") || "",
+    quantitesPassangers: 0,
     flightType: "Economy",
   });
+
+  useEffect(() => {
+    console.log("check form data change : " + JSON.stringify(formData));
+  }, [formData]);
 
   const [searchStatus, setSearchStatus] = useState("");
   const [searchedFlights, setSearchedFlights] = useState([]);
@@ -33,17 +38,6 @@ const TicketSearchPage = () => {
     flightsSearchRequest(formData, setSearchStatus, setSearchedFlights);
   };
 
-  const handleBookingRedirect = () => {
-
-    navigate(`/book/6757c28e2b453ebac1a92b22`) // ${selectedFlight.id}
-    // Giả sử người dùng chọn chuyến bay đầu tiên để đặt vé
-    // const selectedFlight = searchedFlights[0]; // Hoặc logic chọn chuyến bay của bạn
-    // if (selectedFlight) {
-    //   navigate(`/book-ticket/${selectedFlight.id}`); // Điều hướng với ID chuyến bay
-    // } else {
-    //   alert("Please select a flight to book!");
-    // }
-  };
 
   return (
 
@@ -63,12 +57,7 @@ const TicketSearchPage = () => {
         searchStatus={searchStatus}
       ></DisplayFlightsHandle>
 
-      <button
-        className="border-[3px] bg-gray-500"
-        onClick={handleBookingRedirect} // Gọi hàm điều hướng khi nhấn
-      >
-        Booking flights
-      </button>
+      
     </div>
   );
 };

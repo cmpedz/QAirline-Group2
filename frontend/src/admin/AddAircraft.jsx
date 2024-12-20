@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 
-const AddAircraft = ({ onSave, onCancel }) => {
+const AddAircraft = ({ onSave, onCancel, initialData }) => {
   const [formData, setFormData] = useState({
-    id: "",
+    code: "",
     manufacturer: "",
     logo: "",
     seatClasses: [
@@ -11,11 +12,37 @@ const AddAircraft = ({ onSave, onCancel }) => {
     ],
   });
 
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        code: initialData.airlineCode,
+        manufacturer: initialData.airlineManifacturing,
+        logo: initialData.airlineLogo,
+        seatClasses: initialData.seatClasses.map((cls) => ({
+          classType: cls.classType,
+          capacity: cls.seats.length,
+        })),
+      });
+    }
+  }, [initialData]);
+
+   // Generate seats based on class type and capacity
+   const generateSeats = (classType, capacity) => {
+    const seats = [];
+    const prefix = classType === "Economy" ? "A" : "B";
+    for (let i = 1; i <= capacity; i++) {
+      seats.push(`${prefix}${i}`);
+    }
+    return seats;
+  };
+
+  
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
 
   // Handle seat class changes
   const handleSeatClassChange = (index, value) => {
@@ -25,18 +52,46 @@ const AddAircraft = ({ onSave, onCancel }) => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(formData);
-    setFormData({
-      id: "",
-      manufacturer: "",
-      logo: "",
-      seatClasses: [
-        { classType: "Economy", capacity: 0 },
-        { classType: "Business", capacity: 0 },
-      ],
-    });
+    try {
+          // Create seat list for each class type
+          const updatedSeatClasses = formData.seatClasses.map((cls) => ({
+            classType: cls.classType,
+            seats: generateSeats(cls.classType, cls.capacity),
+          }));
+      
+          // Final form data with generated seats
+          const finalData = {
+            airlineManifacturing: formData.manufacturer,
+            airlineCode: formData.code,
+            airlineLogo: formData.logo,
+            seatClasses: updatedSeatClasses,
+          };
+          
+          if (initialData) {
+            await axios.put(
+              `http://localhost:5000/api/aircrafts/updateAircraft/${initialData._id}`,
+              finalData
+            );
+          } else {
+            await axios.post("http://localhost:5000/api/aircrafts/addAircraft", finalData);
+          }
+         
+          onSave(formData);
+          setFormData({
+            code: "",
+            manufacturer: "",
+            logo: "",
+            seatClasses: [
+              { classType: "Economy", capacity: 0 },
+              { classType: "Business", capacity: 0 },
+            ],
+          });
+    } catch (error) {
+      console.error("Error adding new aircraft:", error);
+      alert("Failed to add aircraft. Please try again.");
+    }
   };
 
   return (
@@ -48,8 +103,8 @@ const AddAircraft = ({ onSave, onCancel }) => {
             <label className="block font-medium">Aircraft Code</label>
             <input
               type="text"
-              name="id"
-              value={formData.id}
+              name="code"
+              value={formData.code}
               onChange={handleInputChange}
               className="w-full border rounded p-2"
               required

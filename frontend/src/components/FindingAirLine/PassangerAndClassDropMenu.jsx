@@ -13,6 +13,16 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
       Class_type : "Economy"
   })
 
+  useEffect(() => {
+    let quantitiesPassangers = passangerAnClassInfors.Adults + passangerAnClassInfors.Child;
+    props.setFormData((prev) =>( {
+      ...prev,
+      quantitesPassangers: quantitiesPassangers,
+      flightType: passangerAnClassInfors.Class_type
+    }))
+
+  }, [passangerAnClassInfors]) 
+
   const handlePassangerAndClassInforsChange = (name , value) => {
     setPassangerAnClassInfors((prevData) => ({
       ...prevData,
@@ -96,6 +106,7 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
             let passangerInfors = passangerAnClassInfors.Adults + " Adults, " + passangerAnClassInfors.Child + " Child - " + passangerAnClassInfors.Class_type;
             props.setPassangersInfors(passangerInfors);
             props.setIsDropdownVisible(false);
+
           }}
           className="border-1 rounded-[10px] w-[100%] bg-purple-500 py-1 text-white hover:bg-purple-300">
             Confirm

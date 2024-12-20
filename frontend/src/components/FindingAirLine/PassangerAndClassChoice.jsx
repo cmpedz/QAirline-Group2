@@ -35,7 +35,8 @@ function PassengerAndClassChoice(props) {
       </div>
 
       <PassangerAndClassChoiceDropMenu ref={dropDownRef} setIsDropdownVisible = {setIsDropdownVisible} isDropdownVisible = {isDropdownVisible} 
-      setPassangersInfors = {setPassangersInfors} isInSmallScreen = {props.isInSmallScreen}/>
+      setPassangersInfors = {setPassangersInfors} isInSmallScreen = {props.isInSmallScreen}
+      setFormData= {props.setFormData}/>
     </div>
   );
 }
