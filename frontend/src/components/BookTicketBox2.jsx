@@ -42,7 +42,7 @@ const TicketSearchPage = () => {
         
         <div className="max-w-[520px] mx-auto bg-white p-7 rounded-lg shadow-lg border border-gray-300 min-h-[700px]"> 
         <div className="max-w-[300px] md:max-w-[500px] mx-auto bg-[#FED7AA] mb-[10px] py-[10px] px-[20px] rounded-lg border border-[#FED7AA]">
-            <h1 className="text-[1em] md:text-[1.5em] text-blue font-bold text-center">
+            <h1 className="text-[1em] text-[#00008B] md:text-[1.5em] text-blue font-bold text-center">
                 FIND YOUR NEXT TRIP
             </h1>
         </div> 
@@ -53,7 +53,7 @@ const TicketSearchPage = () => {
             handleFlightSearch={handleFlightSearch}
         />
         <button
-          className="bg-[#FED7AA] text-[#1E293B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-full border-2 border-transparent hover:border-[#1E293B]"
+          className="bg-[#FED7AA] text-[#00008B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-full border-2 border-transparent hover:border-[#1E293B]"
           onClick={handleFlightSearch}
         >
           Search Flights
