@@ -6,12 +6,12 @@ const ticketSchema = new Schema({
     type: String,
     required: true,
   },
-  tickets: [
+  bookingId:
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "bookings",
     },
-  ],
+  
 });
 
 export default mongoose.model("tickets", ticketSchema);

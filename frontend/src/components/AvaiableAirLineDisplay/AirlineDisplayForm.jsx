@@ -87,7 +87,7 @@ const AirLineDisplayForm = (props) => {
      const handleBookingRedirect = () => {
         console.log("check airline id selected : " + props.flightInfors._id);
         if (props.flightInfors._id) {
-          navigate(`/book/${props.flightInfors._id}`); // Điều hướng với ID chuyến bay
+          navigate(`/book/${props.flightInfors._id}/${classServiceInfors.classType}`); // Điều hướng với ID chuyến bay
         } else {
           alert("flight is not exists !");
         }
