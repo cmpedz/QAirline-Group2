@@ -8,7 +8,7 @@ const FormHeader = ({ currentActiveForm }) => {
         <ul className="flex justify-between items-center overflow-x-scroll sm:overflow-hidden">
           <li
             className={`min-w-[100px] text-xl ${
-              currentActiveForm === 0 ? "text-blue-500 font-semibold" : ""
+              currentActiveForm === 0 ? "text-[#00008B] font-semibold" : ""
             }`}
           >
             Seat Booking
@@ -22,35 +22,35 @@ const FormHeader = ({ currentActiveForm }) => {
           </li>
           <li
             className={`min-w-[100px] text-xl ${
-              currentActiveForm === 1 ? "text-blue-500" : ""
+              currentActiveForm === 1 ? "text-[#00008B]" : ""
             }`}
           >
             Traveller Details
           </li>
           <li
             className={`min-w-[50px] flex justify-center items-center ${
-              currentActiveForm === 1 ? "text-blue-500" : ""
+              currentActiveForm === 1 ? "text-[#00008B]" : ""
             }`}
           >
             <IoIosArrowForward />
           </li>
           <li
             className={`min-w-[100px] text-xl text-center ${
-              currentActiveForm === 2 ? "text-blue-500" : ""
+              currentActiveForm === 2 ? "text-[#00008B]" : ""
             }`}
           >
             Review
           </li>
           <li
             className={`min-w-[50px] flex justify-center items-center ${
-              currentActiveForm === 2 ? "text-blue-500" : ""
+              currentActiveForm === 2 ? "text-[#00008B]" : ""
             }`}
           >
             <IoIosArrowForward />
           </li>
           <li
             className={`min-w-[100px] text-xl ${
-              currentActiveForm === 3 ? "text-blue-500" : ""
+              currentActiveForm === 3 ? "text-[#00008B]" : ""
             }`}
           >
             Payment

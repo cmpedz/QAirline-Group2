@@ -27,7 +27,7 @@ const PassengerDataForm = ({
   return (
     <div className="my-5 bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
       <div>
-        <p className="mb-5 text-4xl">
+        <p className="mb-5 text-4xl text-[#00008B]">
           Traveller Details - Passenger {passengerNumber}
         </p>
       </div>
@@ -37,7 +37,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`firstName-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               First Name
             </label>
@@ -53,7 +53,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`lastName-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Last Name
             </label>
@@ -70,7 +70,7 @@ const PassengerDataForm = ({
         {/* Date of Birth and Passport Number */}
         <div className="flex flex-col gap-5 md:flex-row md:gap-5 w-full py-3">
           <div className="w-full md:w-1/2">
-            <label htmlFor={`dob-${passengerNumber}`} className="block text-sm">
+            <label htmlFor={`dob-${passengerNumber}`} className="block text-sm text-[#00008B]">
               Date of birth
             </label>
             <input
@@ -84,7 +84,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`passportNumber-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Passport Number
             </label>
@@ -103,7 +103,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`country-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Country
             </label>
@@ -123,9 +123,9 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`stat-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
-              State
+              Province
             </label>
             <input
               type="text"
@@ -142,7 +142,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`phNumber-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Phone Number
             </label>
@@ -158,7 +158,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`email-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Email
             </label>
@@ -177,7 +177,7 @@ const PassengerDataForm = ({
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`passportSizePhoto-${passengerNumber}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Passport Size Photo
             </label>

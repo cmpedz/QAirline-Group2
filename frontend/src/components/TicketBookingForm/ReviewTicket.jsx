@@ -33,7 +33,7 @@ const ReviewTicket = ({
   return (
     <>
       <div className="my-5 bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
-        <p className="mb-5 text-4xl">Review Ticket</p>
+        <p className="mb-5 text-4xl text-[#00008B]">Review Ticket</p>
         {Object.keys(formData).map((passengerId, index) => {
           const passenger = formData[passengerId];
           return (
@@ -46,7 +46,7 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`country${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
                       First Name
                     </label>
@@ -61,7 +61,7 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`passportNumber_${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
                       Lastname
                     </label>
@@ -78,7 +78,7 @@ const ReviewTicket = ({
                 {/* Date of Birth and Passport Number */}
                 <div className="flex flex-col gap-5 md:flex-row md:gap-5 w-full py-3">
                   <div className="w-full md:w-1/2">
-                    <label htmlFor={`dob_${index}`} className="block text-sm">
+                    <label htmlFor={`dob_${index}`} className="block text-sm text-[#00008B]">
                       Date of birth
                     </label>
                     <input
@@ -92,7 +92,7 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`passportNumber_${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
                       Passport Number
                     </label>
@@ -112,7 +112,7 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`firstName${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
                       Country
                     </label>
@@ -127,9 +127,9 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`passportNumber_${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
-                      State
+                      Province
                     </label>
                     <input
                       type="text"
@@ -145,7 +145,7 @@ const ReviewTicket = ({
                 {/* Phone numbner and email */}
                 <div className="flex flex-col gap-5 md:flex-row md:gap-5 w-full py-3">
                   <div className="w-full md:w-1/2">
-                    <label htmlFor={`dob_${index}`} className="block text-sm">
+                    <label htmlFor={`dob_${index}`} className="block text-sm text-[#00008B]">
                       Phone number
                     </label>
                     <input
@@ -159,7 +159,7 @@ const ReviewTicket = ({
                   <div className="w-full md:w-1/2">
                     <label
                       htmlFor={`passportNumber_${index}`}
-                      className="block text-sm"
+                      className="block text-sm text-[#00008B]"
                     >
                       Email
                     </label>
@@ -178,7 +178,7 @@ const ReviewTicket = ({
                 <div className="w-full md:w-1/2">
                   <label
                     htmlFor={`passportSizePhoto_${index}`}
-                    className="block text-sm"
+                    className="block text-sm text-[#00008B]"
                   >
                     Passport Size Photo
                   </label>
@@ -194,7 +194,7 @@ const ReviewTicket = ({
         })}
       </div>
       <div className=" bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
-        <p className="mb-5 text-4xl">Pick seat reservation</p>
+        <p className="mb-5 text-4xl text-[#00008B]">Pick seat reservation</p>
         <div className="flex flex-row">
           {Object.keys(selectedSeats).map((seatType, index) => (
             <div key={index} className="flex flex-row">
@@ -242,13 +242,13 @@ const ReviewTicket = ({
 
       <div className="flex justify-start items-center gap-2 mt-10">
         <button
-          className="border border-blue-300 text-blue-400 px-10 py-2 rounded-full hover:bg-blue-400 duration-300 hover:text-white"
+          className="border border-[#00008B] text-[#00008B] px-10 py-2 rounded-full hover:bg-[#00008B] duration-300 hover:text-white"
           onClick={() => setCurrentActiveForm(1)}
         >
           Previous
         </button>
         <button
-          className={`bg-blue-300 text-white px-10 py-2 rounded-full hover:bg-blue-500 duration-300 ${
+          className={`bg-[#00008B] text-white px-10 py-2 rounded-full hover:bg-black duration-300 ${
             !aggreed || !terms ? "cursor-not-allowed" : ""
           }`}
           onClick={handleFlightBooking}
