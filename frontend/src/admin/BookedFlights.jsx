@@ -1,29 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
-
+import axios from "axios";
 const BookedFlights = () => {
-  const [bookings] = useState([
-    {
-      userName: "John Doe",
-      flightNo: "VN123",
-      aircraft: "Boeing 777",
-      departure: { location: "Hanoi (HAN)", time: "2024-12-20 08:00 AM" },
-      arrival: { location: "Ho Chi Minh City (SGN)", time: "2024-12-20 10:00 AM" },
-      seatClass: "Business",
-      seatNumber: "12B",
-      totalPrice: "$500",
-    },
-    {
-      userName: "Jane Smith",
-      flightNo: "VN456",
-      aircraft: "Airbus A320",
-      departure: { location: "Da Nang (DAD)", time: "2024-12-21 02:00 PM" },
-      arrival: { location: "Ho Chi Minh City (SGN)", time: "2024-12-21 04:00 PM" },
-      seatClass: "Economy",
-      seatNumber: "24A",
-      totalPrice: "$150",
-    },
-  ]);
+  const [bookings, setBookings] = useState([]);
+  const [filteredBookings, setFilteredBookings] = useState([]);
+  const [input, setInput] = useState("")
+  const [filterType, setFilterType] = useState("flight");
+
+  const fetchBookings = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/bookings/getAllBookings");
+      setBookings(response.data); 
+      setFilteredBookings(bookings);
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    }
+  };
+
+const filterByFlightNumber = (bookings, flightNumber) => {
+  return bookings.filter(booking => booking.flight.flightNumber === flightNumber);
+};
+
+const filterByUserName = (bookings, userName) => {
+  return bookings.filter(booking => booking.user.name.toLowerCase() === userName.toLowerCase());
+};
+
+useEffect(() => {
+     fetchBookings();
+   }, []);
+  
+const handleFilterByFlightNumber = () => {
+    const result = filterByFlightNumber(bookings, input);
+    setFilteredBookings(result);
+};
+
+const handleFilterByUserName = () => {
+  const result = filterByUserName(bookings, input);
+  setFilteredBookings(result);
+};
+
+const handleSearch = () => {
+  if (input) {
+    if (filterType === "flight") {
+      const result = filterByFlightNumber(bookings, input);
+      setFilteredBookings(result);
+      console.log("flight")
+    } else if (filterType === "user") {
+      const result = filterByUserName(bookings, input);
+      setFilteredBookings(result);
+      console.log("user")
+    }
+  } else {
+    alert("Please enter filter data")
+  }
+};
+
+const calculateTotalPrice = () => {
+  return filteredBookings.reduce((total, booking) => total + booking.price, 0);
+};
+
+
+  
 
   return (
     <div className="flex bg-gray-100 min-h-screen">
@@ -37,6 +74,42 @@ const BookedFlights = () => {
           <h1 className="text-3xl font-extrabold text-gray-800">Manage Bookings</h1>
         </div>
 
+
+        {/* Filters and Summary */}
+        <div className="flex justify-between items-center mb-4">
+          {/* Filter Dropdown and Input */}
+          <div className="flex items-center space-x-4">
+            <select
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+              className="border rounded px-3 py-2"
+            >
+              <option value="flight">Flight</option>
+              <option value="user">User</option>
+            </select>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Enter value"
+              className="border rounded px-3 py-2"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+          </div>
+
+          {/* Results Summary */}
+          <div>
+            <p className="font-bold">Results: {filteredBookings.length}</p>
+          </div>
+          <div> 
+            <p className="font-bold">Total Price: {calculateTotalPrice()}</p>
+          </div>
+        </div>
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white rounded-lg shadow-md border border-gray-200">
@@ -53,22 +126,22 @@ const BookedFlights = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking, index) => (
+              {filteredBookings.map((booking, index) => (
                 <tr key={index} className="border-t hover:bg-gray-50 transition">
-                  <td className="py-4 px-6 text-center">{booking.userName}</td>
-                  <td className="py-4 px-6 text-center">{booking.flightNo}</td>
-                  <td className="py-4 px-6 text-center">{booking.aircraft}</td>
+                  <td className="py-4 px-6 text-center">{booking.user.name}</td>
+                  <td className="py-4 px-6 text-center">{booking.flight.flightNumber}</td>
+                  <td className="py-4 px-6 text-center">{booking.flight.airline.airlineCode}</td>
                   <td className="py-4 px-6 text-center">
-                    <p className="font-semibold">{booking.departure.location}</p>
-                    <p className="text-gray-500 text-sm">{booking.departure.time}</p>
+                    <p className="font-semibold">{booking.flight.from.nameLocation}</p>
+                    <p className="text-gray-500 text-sm">{booking.flight.departDate.date} {booking.flight.departDate.time}</p>
                   </td>
                   <td className="py-4 px-6 text-center">
-                    <p className="font-semibold">{booking.arrival.location}</p>
-                    <p className="text-gray-500 text-sm">{booking.arrival.time}</p>
+                    <p className="font-semibold">{booking.flight.to.nameLocation}</p>
+                    <p className="text-gray-500 text-sm">{booking.flight.arriveDate.date} {booking.flight.arriveDate.time}</p>
                   </td>
-                  <td className="py-4 px-6 text-center">{booking.seatClass}</td>
+                  <td className="py-4 px-6 text-center">{booking.classType}</td>
                   <td className="py-4 px-6 text-center">{booking.seatNumber}</td>
-                  <td className="py-4 px-6 text-center">{booking.totalPrice}</td>
+                  <td className="py-4 px-6 text-center">{booking.price}</td>
                 </tr>
               ))}
             </tbody>

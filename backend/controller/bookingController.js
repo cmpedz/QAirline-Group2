@@ -4,8 +4,23 @@ export const getAllBookings = async (req, res) => {
   try {
     const allBookings = await bookings
       .find()
-      .populate("flight", "flightNumber airline from to departDate arriveDate") 
-      .populate("user", "firstName lastName email");
+      .populate({
+        path: "flight",
+        select: "flightNumber from to departDate arriveDate airline",
+        populate: [
+          {
+            path: "from", select: "nameLocation"
+          },
+          {
+            path: "to", select: "nameLocation"
+          },
+          {
+            path: "airline", select: "airlineCode"
+          }
+        ]
+
+      }) 
+      .populate("user","name");
 
     res.status(200).json(allBookings);
   } catch (error) {
