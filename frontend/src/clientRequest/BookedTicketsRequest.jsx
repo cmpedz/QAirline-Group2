@@ -31,7 +31,8 @@ async function getBookedTicketsRequest(setBookedTickets){
                 price: bookedTicket.price,
                 classType: bookedTicket.classType,
                 flightNumber: bookedTicket.flightNumber, 
-                ticketId: bookedTicket.ticketId
+                ticketId: bookedTicket.ticketId, 
+                status: bookedTicket.status
             }
             setBookedTickets((prev) => [...prev, ticketInfors]);
         })

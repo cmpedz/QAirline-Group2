@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
 
-const BookedTicket = ({ bookedTicketInfors, handleCancel, order }) =>{
+const BookedTicket = ({ bookedTicketInfors, handleCancel}) =>{
 
-    const {flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId} = bookedTicketInfors
-   console.log("check order : " + order);
+
+    const {order, flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId, status} = bookedTicketInfors
+   
 
     return(    
         <tr key={order} className="border-t hover:bg-gray-50 transition">
@@ -21,6 +22,7 @@ const BookedTicket = ({ bookedTicketInfors, handleCancel, order }) =>{
         <td className="py-4 px-6 text-center">{classType}</td>
         <td className="py-4 px-6 text-center">{seatNumber}</td>
         <td className="py-4 px-6 text-center">{price}</td>
+        <td className="py-4 px-6 text-center">{status}</td>
         <td className="py-4 px-6 text-center">
           <button  className="text-blue-500 font-semibold hover:underline" onClick={() => handleCancel(ticketId)}>
             Cancel
