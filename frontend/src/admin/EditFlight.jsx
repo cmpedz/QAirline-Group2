@@ -9,17 +9,31 @@ const EditFlight = ({ flight, onSave, onCancel }) => {
   const [arrivalDateTime, setArrivalDateTime] = useState(
     `${flight.arriveDate.date}T${flight.arriveDate.time}`
   );
+  function convertDepartureTimeToJson(datetime) {
+    const [date, time] = datetime.split("T"); 
+    const [hour, minute] = time.split(":");
+
+    const period = hour >= 12 ? "PM" : "AM";
+    const formattedHour = hour % 12 || 12; 
+    const formattedTime = `${formattedHour}:${minute}${period}`;
+
+    return {
+        date: date, 
+        time: formattedTime 
+    };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const [departDate, departTime] = departureDateTime.split("T");
-    const [arriveDate, arriveTime] = arrivalDateTime.split("T");
-
+    // const [departDate, departTime] = departureDateTime.split("T");
+    // const [arriveDate, arriveTime] = arrivalDateTime.split("T");
+    
     try {
+      
       const updatedFlight = {
-        departDate: { date: departDate, time: departTime },
-        arriveDate: { date: arriveDate, time: arriveTime },
+        departDate: { date: convertDepartureTimeToJson(departureDateTime).date, time: convertDepartureTimeToJson(departureDateTime).time },
+        arriveDate: { date: convertDepartureTimeToJson(arrivalDateTime).date, time: convertDepartureTimeToJson(arrivalDateTime).time},
         status: "Delayed",
       };
 

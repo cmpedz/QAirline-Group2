@@ -1,57 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PlanItinerary.module.css";
+import axios from "axios";
 
 const PlanItinerary = () => {
-  const cards = [
-    {
-      id: 1,
-      title: "Current promotions",
-      description: "View promotions",
-      imageUrl: "..\\src\\assets\\images\\download0.jpg",
-    },
-    {
-      id: 2,
-      title: "Guide to entering Vietnamese names",
-      description: "Instructions for entering names",
-      imageUrl: "..\\src\\assets\\images\\download2.jpg",
-    },
-    {
-      id: 3,
-      title: "Book early – great prices",
-      description: "Book now",
-      imageUrl: "..\\src\\assets\\images\\download3.jpg",
-    },
-    {
-      id: 4,
-      title: "One-way ticket promotions",
-      description: "Learn more",
-      imageUrl: "..\\src\\assets\\images\\download4.jpg",
-    },
-    {
-      id: 5,
-      title: "Special holiday offers",
-      description: "Check offers",
-      imageUrl: "..\\src\\assets\\images\\download5.jpg",
-    },
-    {
-      id: 6,
-      title: "Last-minute deals",
-      description: "Grab now",
-      imageUrl: "..\\src\\assets\\images\\download6.jpg",
-    },
-    {
-      id: 7,
-      title: "Special holiday offers",
-      description: "Check offers",
-      imageUrl: "..\\src\\assets\\images\\download7.jpg",
-    },
-    {
-      id: 8,
-      title: "Last-minute deals",
-      description: "Grab now",
-      imageUrl: "..\\src\\assets\\images\\download8.jpg",
-    },
-  ];
+  const [promotions, setPromotions] = useState([]);
+    
+  const fetchPromotions = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/promotions/getAllPromotions"
+      );
+      setPromotions(response.data);
+    } catch (error) {
+      console.error("Error fetching promotions:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPromotions();
+  }, []);
+  
+  const cards = promotions.map((item, index) => ({
+    id: index + 1,
+    title: item.title,
+    description: item.content,
+    imageUrl: item.imageUrl,
+  }));
+  console.log(cards);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 4;
