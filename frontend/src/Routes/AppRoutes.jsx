@@ -25,6 +25,7 @@ const AppRoutes = () => {
   return (
     <div className="w-full h-screen bg-custom-gradient">
        {!isAdminRoute && <Navbar />}
+       <div className="mt-[110px]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -43,6 +44,7 @@ const AppRoutes = () => {
         <Route path="/bh" element={<BaoHiem/>} />
         <Route path="/taxi" element={<DichVuTaxi/>} />
       </Routes>
+      </div>
       {!isAdminRoute && <Footer />}
     </div>
   );

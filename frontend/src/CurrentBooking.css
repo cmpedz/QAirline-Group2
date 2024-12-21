@@ -4,9 +4,7 @@
     color: black; /* Chữ màu đen */
     text-align: center;
     padding: 20px;
-    border-radius: 20px;
-    border: 1px solid black; /* Khung ngoài */
-     height: 800px; /* Tăng chiều cao gấp đôi */
+    height: 800px; /* Tăng chiều cao gấp đôi */
     display: flex; /* Đảm bảo căn giữa nội dung */
     flex-direction: column;
     /* justify-content: center; */
@@ -30,7 +28,6 @@
     overflow: hidden;
   }
   
-  table th,
   table td {
     padding: 15px;
     border: 1px solid black; /* Đường viền ô màu đen */
@@ -39,6 +36,10 @@
   }
   
   table th {
+    padding: 15px;
+    border: 1px solid black; /* Đường viền ô màu đen */
+    color: #00008B; /* Chữ màu đen */
+    text-align: center;
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.9); /* Nền nhạt cho header */
   }
