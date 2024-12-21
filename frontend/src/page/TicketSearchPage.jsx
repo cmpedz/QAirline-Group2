@@ -3,6 +3,7 @@ import BookTicketBox from "../components/BookTicketBox";
 import { Link, useLocation, useNavigate } from "react-router-dom"; // Thêm useNavigate
 import DisplayFlightsHandle from "../components/DisplayFlightsHandle.jsx";
 import flightsSearchRequest from "../clientRequest/FlightsSearchRequest.jsx";
+import WattingProcess from "../components/Loading/WattingProcess.jsx";
 
 const TicketSearchPage = () => {
   const location = useLocation();
@@ -13,7 +14,23 @@ const TicketSearchPage = () => {
     to: data.to,
     departureDate: data.departureDate,
     returnDate: data.returnDate,
+    quantitesPassangers: 0,
+    flightType: "Economy"
   });
+
+  const [isWattingProcessVisible, setIsWattingProcessVisible] = useState(false);
+
+   useEffect(() => {
+      if(!isWattingProcessVisible){
+        document.body.style.overflow = "auto";
+      } else{
+        document.body.style.overflow = "hidden";
+      }
+    }, [isWattingProcessVisible])
+
+    useEffect(() =>{
+      window.scrollTo(0, 0);
+    }, []) 
 
   useEffect(() => {
     console.log("check form data change : " + JSON.stringify(formData));
@@ -32,15 +49,20 @@ const TicketSearchPage = () => {
 
   const handleFlightSearch = async (e) => {
     e.preventDefault();
-    flightsSearchRequest(formData, setSearchStatus, setSearchedFlights);
+    setIsWattingProcessVisible(true);
+    flightsSearchRequest(formData, setSearchStatus, setSearchedFlights,
+      setIsWattingProcessVisible
+    );
   };
 
 
   return (
 
     // <div className="px-[30px] md:px-[30px] max-w-[1400px] mx-auto">
+    <>
+    <WattingProcess isVisible = {isWattingProcessVisible}></WattingProcess>
     <div className="max-w-[1400px] mx-auto">
-
+      
       <h1 className="text-[3em] text-white mb-[30px] mt-[20px] text-center">Book Flight</h1>
       <BookTicketBox
         formData={formData}
@@ -56,6 +78,7 @@ const TicketSearchPage = () => {
 
       
     </div>
+    </>
   );
 };
 

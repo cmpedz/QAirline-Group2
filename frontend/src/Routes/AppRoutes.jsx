@@ -8,7 +8,7 @@ import SignUp from "../page/SignUp";
 import ErrorPage from "../page/ErrorPage";
 import Admin from "../admin/Admin";
 import TicketSearchPage from "../page/TicketSearchPage";
-import CurrentBooking from "../components/CurrentBooking";
+import CurrentBooking from "../components/currentBooking/CurrentBooking.jsx";
 import Flights from "../admin/Flights"
 import Aircrafts from "../admin/Aircrafts";
 import TicketBooking from "../page/TicketBooking";
