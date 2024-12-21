@@ -20,7 +20,6 @@ const BookedFlights = () => {
     }
   };
 
-
   const fetchBookings = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/bookings/getAllBookings");
@@ -193,7 +192,5 @@ const calculateTotalPrice = () => {
     </div>
   );
 };
-
-
 
 export default BookedFlights;
