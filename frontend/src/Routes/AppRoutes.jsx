@@ -19,6 +19,10 @@ import BaoHiem from "../page/BaoHiem";
 import DichVuTaxi from "../page/DichVuTaxi";
 import CheckoutPage from "../page/CheckoutPage"
 
+import PromotionPage from "../admin/Promotions";
+
+
+
 
 const AppRoutes = () => {
   const isAdminRoute = location.pathname.startsWith("/admin");
@@ -39,6 +43,8 @@ const AppRoutes = () => {
         <Route path="/admin/aircrafts" element={<Aircrafts />} />
         <Route path="/admin/airports" element={<Airports />} />
         <Route path="/admin/bookings" element={<BookedFlights />} />
+        <Route path="/admin/promotions" element={<PromotionPage />} />
+        
         <Route path="*" element={<ErrorPage />} />
         <Route path="/bh" element={<BaoHiem/>} />
         <Route path="/taxi" element={<DichVuTaxi/>} />

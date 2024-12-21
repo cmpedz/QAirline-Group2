@@ -9,6 +9,8 @@ import classTypeRoute from "./Routes/classType.js";
 import locationRoute from "./Routes/location.js";
 import airportRoute from "./Routes/airport.js";
 import bookingRoute from "./Routes/booking.js";
+import promotionRoute from "./Routes/promotion.js";
+
 dotenv.config();
 
 const app = express();
@@ -40,8 +42,11 @@ app.use("/api/auth", authRoute);
 app.use("/api/aircrafts", aircraftRoute);
 app.use("/api/classType", classTypeRoute);
 app.use("/api/locationsMove", locationRoute);
-app.use("/api/airports", airportRoute)
+app.use("/api/airports", airportRoute);
 app.use("/api/bookings", bookingRoute);
+app.use("/api/promotions", promotionRoute);
+
+
 
 app.listen(5000, () => {
   connectDB();

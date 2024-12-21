@@ -63,7 +63,7 @@ const cards = [
 
   return (
     <div className={styles.container}>
-      <h2 className="text-[35px] md:text-[50px] font-bold">Plan your journey</h2>
+      <h2 className="text-[35px] md:text-[50px] font-bold text-[#00008B]">Plan your journey</h2>
       <p className={styles.subtitle}>
       Some tips to start an amazing adventure with QAlines
       </p>

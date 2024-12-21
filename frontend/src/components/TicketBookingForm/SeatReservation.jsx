@@ -186,7 +186,7 @@ const SeatReservation = ({
 
   return (
     <div className="my-5 bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
-      <p className="mb-5 text-4xl">Seat Booking</p>
+      <p className="mb-5 text-4xl text-[#00008B]">Seat Booking</p>
       <p className="mb-2">{numPassengersText}</p>
       <div className="flex flex-col  mt-5">
 
@@ -213,7 +213,7 @@ const SeatReservation = ({
 
       </div>
       <button
-        className="bg-blue-300 text-white px-10 py-2 rounded-full hover:bg-blue-500 duration-300 mt-2"
+        className="bg-[#00008B] text-white px-10 py-2 rounded-full hover:bg-black duration-300 mt-2"
         onClick={handleNextClick}
       >
         Next
