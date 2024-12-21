@@ -63,7 +63,7 @@ const Airports = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="">
           <table className="min-w-full bg-white rounded-lg shadow-md border border-gray-200">
             <thead className="bg-gray-200 text-gray-700 text-sm uppercase font-semibold">
               <tr>

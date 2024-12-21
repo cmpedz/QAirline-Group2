@@ -20,9 +20,10 @@ import DichVuTaxi from "../page/DichVuTaxi";
 import CheckoutPage from "../page/CheckoutPage"
 
 import PromotionPage from "../admin/Promotions";
-
-
-
+const ProtectedRoute = ({ element: Element, ...rest }) => {
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  return isAdmin ? <Element {...rest} /> : <Navigate to="/" replace />;
+};
 
 const AppRoutes = () => {
   const isAdminRoute = location.pathname.startsWith("/admin");
@@ -39,6 +40,7 @@ const AppRoutes = () => {
         <Route path="/book/:id/:classType" element={<TicketBooking />} />
         <Route path="/bookings" element={<CurrentBooking />} />
         <Route path="/checkout-page" element={<CheckoutPage />} />
+        {/* <Route path="/admin" element={<ProtectedRoute element={<Admin />} />} /> */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/flights" element={<Flights />} />
         <Route path="/admin/aircrafts" element={<Aircrafts />} />
