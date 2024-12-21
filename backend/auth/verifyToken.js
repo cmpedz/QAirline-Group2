@@ -10,14 +10,14 @@ export const authenticate = async (req, res, next) => {
 
   try {
     const token = authToken.split(" ")[1];
-
+    
     const decoded = jwt.verify(token, process.env.JWT_TOKEN);
     req.userId = decoded.userId;
 
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
-      console.log("token is expired");
+      
       return res
         .status(401)
         .json({ success: false, message: "Session Expired" });

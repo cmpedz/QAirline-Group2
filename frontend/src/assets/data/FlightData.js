@@ -13,7 +13,7 @@ import JejuImg from "../images/Jeju.jpg";
 export const flightLocationData = [
   {
     id: 1,
-    location: "Andaman and Nicobar Islands",
+    location: "Andamn  Islands",
     country: "India",
     imageUrl: andamanAndNicoBarIslandsImg,
     rating: 5.0,

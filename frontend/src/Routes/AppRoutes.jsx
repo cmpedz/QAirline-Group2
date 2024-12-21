@@ -13,6 +13,14 @@ import Flights from "../admin/Flights"
 import Aircrafts from "../admin/Aircrafts";
 import TicketBooking from "../page/TicketBooking";
 import BookingGuide from "../components/BookingGuide/BookingGuide";
+import Airports from "../admin/Airports";
+import BookedFlights from "../admin/BookedFlights";
+import BaoHiem from "../page/BaoHiem";
+import DichVuTaxi from "../page/DichVuTaxi";
+import CheckoutPage from "../page/CheckoutPage"
+
+import PromotionPage from "../admin/Promotions";
+
 
 
 
@@ -27,14 +35,19 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/bookgui" element={<BookingGuide />} />
         <Route path="/book" element={<TicketSearchPage />} />
-        <Route path="/book/:id" element={<TicketBooking />} />
+        <Route path="/book/:id/:classType" element={<TicketBooking />} />
         <Route path="/bookings" element={<CurrentBooking />} />
-
+        <Route path="/checkout-page" element={<CheckoutPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/flights" element={<Flights />} />
         <Route path="/admin/aircrafts" element={<Aircrafts />} />
+        <Route path="/admin/airports" element={<Airports />} />
+        <Route path="/admin/bookings" element={<BookedFlights />} />
+        <Route path="/admin/promotions" element={<PromotionPage />} />
         
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/bh" element={<BaoHiem/>} />
+        <Route path="/taxi" element={<DichVuTaxi/>} />
       </Routes>
       {!isAdminRoute && <Footer />}
     </div>

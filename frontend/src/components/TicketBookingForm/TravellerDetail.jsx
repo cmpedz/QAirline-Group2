@@ -79,13 +79,13 @@ const TravellerDetail = ({
       {travelerForms}
       <div className="flex justify-start items-center gap-2 mt-10">
         <button
-          className="border border-blue-300 text-blue-400 px-10 py-2 rounded-full hover:bg-blue-400 duration-300 hover:text-white"
+          className="border border-[#00008B] text-[#00008B] px-10 py-2 rounded-full hover:bg-[#00008B] duration-300 hover:text-white"
           onClick={() => setCurrentActiveForm(0)}
         >
           Previous
         </button>
         <button
-          className="bg-blue-300 text-white px-10 py-2 rounded-full hover:bg-blue-500 duration-300"
+          className="bg-[#00008B] text-white px-10 py-2 rounded-full hover:bg-black duration-300"
           onClick={
             (() => validatePassengerData(formData))
           }

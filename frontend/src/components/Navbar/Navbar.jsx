@@ -29,22 +29,58 @@ function Navbar() {
           {/* Links */}
           <ul className="flex items-center gap-6">
             <li>
-              <Link to={"/"} className="text-white hover:text-gray-900">
+              <Link to={"/"} className="text-white hover:underline">
                 Home
               </Link>
             </li>
             <li>
-            <Link to={"/bookgui"} className="text-white hover:text-gray-900">
+            <Link to={"/bookgui"} className="text-white hover:underline">
                 Booking Guide
             </Link>
             </li>
-            <li>
-            <Link to={"/info"} className="text-white hover:text-gray-900">
+            <li className="relative group">
+            <div className="text-white hover:underline">
                 Key Info
-            </Link>
+            </div>
+            {/* Dropdown content */}
+            <ul className="absolute hidden group-hover:block left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
+              <li className="p-3 border-b hover:bg-gray-100">
+                <Link to={"/bh"}>
+                  <strong>Insurance</strong>
+                  <p className="text-sm text-gray-500">
+                    Feel secure and comfortable with reputable insurance programs...
+                  </p>
+                </Link>
+              </li>
+              <li className="p-3 border-b hover:bg-gray-100">
+                <strong>
+                  Cheap Tickets{" "}
+                  <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                    HOT
+                  </span>
+                </strong>
+                <p className="text-sm text-gray-500">
+                  Quickly grab the best Vietjet flight deals...
+                </p>
+              </li>
+              <li className="p-3 hover:bg-gray-100">
+                <Link to={"/taxi"}>
+                  <strong>
+                    Taxi Service{" "}
+                    <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                      HOT
+                    </span>
+                  </strong>
+                  <p className="text-sm text-gray-500">
+                    Easily pre-book a Green SM Taxi at the airport with affordable packages...
+                  </p>
+                </Link>
+              </li>
+            </ul>
+
             </li>
             <li>
-              <Link to={"/book"} className="text-white hover:text-gray-900">
+              <Link to={"/book"} className="text-white hover:underline">
                 Book Flight
               </Link>
             </li>
@@ -52,7 +88,7 @@ function Navbar() {
               <li>
                 <Link
                   to={"/bookings"}
-                  className="text-white hover:text-gray-900"
+                  className="text-white hover:underline"
                 >
                   Current Bookings
                 </Link>

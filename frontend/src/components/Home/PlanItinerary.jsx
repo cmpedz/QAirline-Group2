@@ -36,36 +36,36 @@ const PlanItinerary = () => {
 const cards = [
     {
       id: 1,
-      title: "Các chương trình ưu đãi hiện hành",
-      description: "Xem ưu đãi",
-      imageUrl: "https://cdn.pixabay.com/photo/2015/09/18/23/11/eiffel-tower-949672_960_720.jpg",
+      title: "Current promotions",
+      description: "View promotions",
+      imageUrl: "..\\src\\assets\\images\\download0.jpg",
     },
     {
       id: 2,
-      title: "Hướng dẫn nhập tên Tiếng Việt",
-      description: "Hướng dẫn khi nhập tên",
-      imageUrl: "https://cdn.pixabay.com/photo/2017/01/14/10/56/china-1974666_960_720.jpg",
+      title: "Guide to entering Vietnamese names",
+      description: "Instructions for entering names",
+      imageUrl: "..\\src\\assets\\images\\download2.jpg",
     },
     {
       id: 3,
-      title: "Mua sớm - giá tốt",
-      description: "Đặt vé ngay",
-      imageUrl: "https://cdn.pixabay.com/photo/2016/11/14/04/02/statue-of-liberty-1822635_960_720.jpg",
+      title: "Book early – great prices",
+      description: "Book now",
+      imageUrl: "..\\src\\assets\\images\\download3.jpg",
     },
     {
       id: 4,
-      title: "Ưu đãi vé một chiều",
-      description: "Xem thêm",
-      imageUrl: "https://cdn.pixabay.com/photo/2016/08/11/09/03/sydney-opera-house-1584903_960_720.jpg",
+      title: "One-way ticket promotions",
+      description: "Learn more",
+      imageUrl: "..\\src\\assets\\images\\download4.jpg",
     },
   ];
   
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Lên kế hoạch hành trình</h2>
+      <h2 className="text-[35px] md:text-[50px] font-bold text-[#00008B]">Plan your journey</h2>
       <p className={styles.subtitle}>
-        Một số gợi ý để bắt đầu một hành trình tuyệt vời cùng MCH Airways
+      Some tips to start an amazing adventure with QAlines
       </p>
       <div className={styles.cardContainer}>
         {cards.map((card) => (
