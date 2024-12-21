@@ -67,13 +67,13 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
         ref={bgDropDownRef}
         
        
-        className= {`sticky md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-51
+        className= {`fixed md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-51
           ${ props.isDropdownVisible &&  props.isInSmallScreen? "" : "hidden "} `}
       ></div>
 
       <div ref={dropDownRef}
 
-        className={`sticky md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-51
+        className={`fixed md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-51
           ${props.isDropdownVisible? "" : "hidden"} `}
       >
         <div className="w-[100%] flex flex-row items-center justify-between">
