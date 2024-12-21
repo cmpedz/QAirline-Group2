@@ -18,7 +18,8 @@ useEffect(() => {
    }, []);
   
   return (
-    
+    <div className="max-w-[1400px] pb-[30px] mx-auto">
+    <h1 className="text-[2.7em] font-bold text-white mb-[30px] mt-[20px] text-center ">Current Booking</h1>
     <div className="overflow-x-auto">
     <table className="min-w-full bg-white rounded-lg shadow-md border border-gray-200">
       <thead className="bg-gray-200 text-gray-700 text-sm uppercase font-semibold">
@@ -58,6 +59,7 @@ useEffect(() => {
         ))}
       </tbody>
     </table>
+  </div>
   </div>
  
   );

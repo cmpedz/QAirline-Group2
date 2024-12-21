@@ -45,13 +45,13 @@ const Aircrafts = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 pl-[280px] p-6">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800">Manage Aircrafts</h1>
+        <div className="flex justify-between pf-[280px] items-center mb-6">
+          <h1 className="text-3xl font-extrabold text-[#00008B]">Manage Aircrafts</h1>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
+            className="bg-[#00008B] text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
           >
             + New Aircraft
           </button>

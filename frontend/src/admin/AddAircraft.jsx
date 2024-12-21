@@ -97,7 +97,7 @@ const AddAircraft = ({ onSave, onCancel, initialData }) => {
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-6 rounded-lg shadow-lg w-1/2">
-        <h2 className="text-2xl font-bold mb-4">Add New Aircraft</h2>
+        <h2 className="text-2xl pf-[200px] font-bold mb-4">Add New Aircraft</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block font-medium">Aircraft Code</label>

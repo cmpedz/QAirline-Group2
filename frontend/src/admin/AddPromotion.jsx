@@ -32,9 +32,9 @@ const AddPromotion = ({ onSave, onCancel }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-xl w-full pf-[280px] max-w-md">
         {/* Header */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+        <h2 className="text-2xl font-bold text-gray-800 pf-[280px] mb-6 text-center">
           Add New Promotion
         </h2>
         

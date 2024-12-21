@@ -45,12 +45,12 @@ const Flights = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8 pl-[280px]">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800">All Flights</h1>
+          <h1 className="text-3xl font-extrabold text-[#00008B]">All Flights</h1>
           <button
-            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
+            className="bg-[#00008B] text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
             onClick={() => setShowForm(true)}
           >
             + New Flight

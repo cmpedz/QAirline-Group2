@@ -4,7 +4,7 @@ import styles from "./BookingGuide.module.css"; // CSS Module
 
 const BookingGuide = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container }  >
       {/* Title Section */}
       <div className={styles.header}>
         <h1 className={styles.title}>Booking Guide</h1>
