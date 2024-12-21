@@ -1,6 +1,7 @@
 import User from "../../models/userSchema.js";
 import Tickets from "../../models/ticketSchema.js";
 
+
 function convertDate(date){
     let _date = date.date;
     let time = date.time;
@@ -58,9 +59,9 @@ export const getAllUserBookedTickets = async (req, res) => {
             seatNumber : bookedTicket.bookingId.seatNumber,
             price: bookedTicket.bookingId.price,
             classType: bookedTicket.bookingId.classType,
-            flightNumber: bookedTicket.bookingId.flight.flightNumber
+            flightNumber: bookedTicket.bookingId.flight.flightNumber,
+            ticketId: bookedTicketId._id
         }
-          
         bookedTickets.push(bookedticketInfors);
     }));
 

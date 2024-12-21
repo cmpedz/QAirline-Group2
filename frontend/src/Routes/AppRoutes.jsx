@@ -20,7 +20,6 @@ import DichVuTaxi from "../page/DichVuTaxi";
 import CheckoutPage from "../page/CheckoutPage"
 import PromotionPage from "../admin/Promotions";
 
-
 const AppRoutes = () => {
 
   const isAdmin = localStorage.getItem("isAdmin") === "true";
