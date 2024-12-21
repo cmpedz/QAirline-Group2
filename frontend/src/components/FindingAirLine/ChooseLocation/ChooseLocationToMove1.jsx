@@ -48,7 +48,7 @@ const ChooseLocationToMove1 = (props) => {
     }
         return( 
 
-        <div className="flex  flex-col max-h-[20px] border-gray-300 ">
+        <div className="flex flex-col max-h-[20px] border-gray-300 ">
 
             <LocationInput1 title = "From" name = "from" placeHolder = "from" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations} isInSmallScreen={isInSmallScreen}

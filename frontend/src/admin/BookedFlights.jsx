@@ -107,10 +107,10 @@ const calculateTotalPrice = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 pl-[280px] p-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800">Manage Bookings</h1>
+          <h1 className="text-3xl font-extrabold text-[#00008B]">Manage Bookings</h1>
         </div>
 
 
@@ -137,7 +137,7 @@ const calculateTotalPrice = () => {
             />
             <button
               onClick={handleSearch}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-[#00008B] text-white px-4 py-2 rounded"
             >
               Search
             </button>

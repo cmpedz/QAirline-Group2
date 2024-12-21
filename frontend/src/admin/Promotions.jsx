@@ -28,18 +28,18 @@ const PromotionPage = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 min-h-screen">
+    <div className="flex bg-gray-100 pf-[280px] min-h-screen">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 pl-[280px] p-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-extrabold text-gray-800">Promotions</h1>
+          <h1 className="text-3xl font-extrabold text-[#00008B]">Promotions</h1>
           <button
             onClick={() => setShowForm(true)}
-            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
+            className="bg-[#00008B] text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
           >
             + New Promotion
           </button>
@@ -50,7 +50,7 @@ const PromotionPage = () => {
           {promotions.map((promotion) => (
             <div
               key={promotion._id}
-              className="bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+              className="bg-white border border-gray-300 rounded-lg shadow-md overflow-auto hover:shadow-lg transition-shadow duration-200"
             >
               <img
                 src={promotion.imageUrl}

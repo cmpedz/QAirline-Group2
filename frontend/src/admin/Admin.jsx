@@ -58,8 +58,8 @@ const Admin = () => {
     <div className="flex h-screen bg-gray-100 ">
       <Sidebar/>
       {/* Main Content */}
-      <main className="flex-1 p-8 bg-gradient-to-b from-gray-50 to-gray-100">
-        <h1 className="text-3xl font-extrabold text-gray-800 bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent mb-6">
+      <main className="flex-1 pl-[280px] p-8 bg-gradient-to-b from-gray-50 to-gray-100">
+        <h1 className="text-3xl font-extrabold text-gray-800 bg-gradient-to-r from-[#00008B] to-blue-400 bg-clip-text text-transparent mb-6">
   Welcome back, Administrator!
         </h1>
 

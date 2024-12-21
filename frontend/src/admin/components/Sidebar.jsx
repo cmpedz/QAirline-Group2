@@ -1,23 +1,28 @@
 import React from "react";
 import SidebarItem from "./SidebarItem.jsx";
+import { FaPlane, FaBook, FaRegPaperPlane, FaBuilding, FaTags, FaSignOutAlt, FaHome } from "react-icons/fa";
+import logo from "../../assets/images/imagelogo.png"; 
 
 const Sidebar = () => {
     
     return (
-        <aside className="w-64 bg-blue-500 text-white flex flex-col rounded-xl overflow-hidden shadow-2xl">
-        <div className="p-4 font-bold text-lg">MCH</div>
-        <nav className="flex flex-col space-y-2 px-4">
-            <SidebarItem href="/admin" imageSrc="\src\assets\images\admin\home.png" text="Home" />
-            <SidebarItem href="/admin/flights" imageSrc="\src\assets\images\admin\flight.png" text="Manage Flights" />
-            <SidebarItem href="/admin/bookings" imageSrc="\src\assets\images\admin\booking.png" text="Manage Bookings" />
-            <SidebarItem href="/admin/aircrafts" imageSrc="\src\assets\images\admin\airplane.png" text="Manage Aircrafts" />
-            <SidebarItem href="/admin/airports" imageSrc="\src\assets\images\admin\airpot.png" text="Manage Airport" />
-            <SidebarItem href="/admin/promotions" imageSrc="\src\assets\images\admin\shopping-online.png" text="Promotions" />
-            <SidebarItem href="/" imageSrc="\src\assets\images\admin\logout.png" text="Logout" />
-            
-        </nav>
-      </aside>
+
+        <aside className="w-64 bg-[#00008B] text-white flex h-full fixed flex-col rounded-xl overflow-auto shadow-2xl">
+           
+            <div className="p-4 flex justify-left">
+                <img src={logo} alt="Logo" className="h-12 w-auto" /> 
+            </div>
+            <nav className="flex flex-col space-y-2 px-4">
+                <SidebarItem href="/admin" Icon={FaHome} text="Home" />
+                <SidebarItem href="/admin/flights" Icon={FaPlane} text="Manage Flights" />
+                <SidebarItem href="/admin/bookings" Icon={FaBook} text="Manage Bookings" />
+                <SidebarItem href="/admin/aircrafts" Icon={FaRegPaperPlane} text="Manage Aircrafts" />
+                <SidebarItem href="/admin/airports" Icon={FaBuilding} text="Manage Airport" />
+                <SidebarItem href="/admin/promotions" Icon={FaTags} text="Promotions" />
+                <SidebarItem href="/" Icon={FaSignOutAlt} text="Logout" />
+            </nav>
+        </aside>
     );
 }
 
-export default Sidebar
+export default Sidebar;
