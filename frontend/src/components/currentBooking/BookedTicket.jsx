@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-const BookedTicket = ({ bookedTicketInfors, handleCancel }) =>{
+const BookedTicket = ({ bookedTicketInfors, handleCancel}) =>{
+
 
     const {order, flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId, status} = bookedTicketInfors
    
