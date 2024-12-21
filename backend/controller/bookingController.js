@@ -30,11 +30,15 @@ export const getCheckoutSession = async (req, res) => {
     let savedBookingIds = await saveNewBookingIntoDataBase(bookingUsersData, 
       selectedSeats, flight, user, price, classType);
 
-    await Promise.all(
-      savedBookingIds.map(async (savedBookingId) => {
-        await createTicketForUser(savedBookingId, user);
-      })
-    );
+    // await Promise.all(
+    //   savedBookingIds.map(async (savedBookingId) => {
+    //     await createTicketForUser(savedBookingId, user);
+    //   })
+    // );
+
+    for (const savedBookingId of savedBookingIds) {
+      await createTicketForUser(savedBookingId, user);
+    }
     
 
     await updateSeats(flight, selectedSeats, classType);
