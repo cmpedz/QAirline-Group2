@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-const BookedTicket = ({ bookedTicketInfors, handleCancel }) =>{
+const BookedTicket = ({ bookedTicketInfors, handleCancel, order }) =>{
 
-    const {order, flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId} = bookedTicketInfors
-   
+    const {flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId} = bookedTicketInfors
+   console.log("check order : " + order);
 
     return(    
         <tr key={order} className="border-t hover:bg-gray-50 transition">
