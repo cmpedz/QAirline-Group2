@@ -67,17 +67,17 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
         ref={bgDropDownRef}
         
        
-        className= {`fixed md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-49
+        className= {`sticky md:static w-[100%] h-[100%] bg-black bg-opacity-50 inset-0 z-51
           ${ props.isDropdownVisible &&  props.isInSmallScreen? "" : "hidden "} `}
       ></div>
 
       <div ref={dropDownRef}
 
-        className={`fixed md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-50
+        className={`sticky md:absolute right-0 top-20 bg-gray-100 w-[100%] md:w-[270px] px-5 border-1 rounded-[10px] py-5 z-51
           ${props.isDropdownVisible? "" : "hidden"} `}
       >
         <div className="w-[100%] flex flex-row items-center justify-between">
-          <h1 className="font-bold">Passenger</h1>
+          <h1 className="font-bold text-[#00008B]">Passenger</h1>
           <i
             className="fa-solid fa-x cursor-pointer hover:text-red-500"
             onClick={() => props.setIsDropdownVisible(false)}
@@ -93,7 +93,7 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
           handlePassangerAndClassInforsChange = {handlePassangerAndClassInforsChange}/>
         </div>
         <br />
-        <h1 className="font-bold">Class</h1>
+        <h1 className="font-bold text-[#00008B]">Class</h1>
         <br />
         <hr className="border-1 border-black" />
         <br />
@@ -108,7 +108,7 @@ const PassangerAndClassChoiceDropMenu = forwardRef((props, ref) => {
             props.setIsDropdownVisible(false);
 
           }}
-          className="border-1 rounded-[10px] w-[100%] bg-purple-500 py-1 text-white hover:bg-purple-300">
+          className="border-1 rounded-[10px] w-[100%] bg-[#00008B] py-1 text-white hover:bg-blue-400">
             Confirm
           </button>
         </div>

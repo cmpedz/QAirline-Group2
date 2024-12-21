@@ -14,7 +14,7 @@ function PassengerAndClassChoice(props) {
     <div className="flex gap-5 md:w-[30%] flex-row px-5 relative py-5 cursor-pointer justify-between">
       <div>
         <div>
-          <h1>Passengers/Class</h1>
+          <h1 className="text-[#00008B]">Passengers/Class</h1>
           <p className="outline-none text-[20px] w-full text-gray-400"> {passangersInfors}</p>
         </div>
       </div>
