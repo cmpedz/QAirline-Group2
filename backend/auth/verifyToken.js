@@ -12,6 +12,7 @@ export const authenticate = async (req, res, next) => {
     const token = authToken.split(" ")[1];
     
     const decoded = jwt.verify(token, process.env.JWT_TOKEN);
+    console.log("check user id from jwt: " + decoded.userId);
     req.userId = decoded.userId;
 
     next();

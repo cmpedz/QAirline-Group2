@@ -2,7 +2,9 @@
 import { BACKENDURL } from "../Config/Config.js";
 import { toast } from "react-toastify";
 
-async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFlights) {
+async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFlights, 
+  setIsWattingProcessVisible
+) {
 
 
     try {
@@ -18,6 +20,7 @@ async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFligh
 
       const data = await response.json();
 
+      setIsWattingProcessVisible(false);
 
       if(response.status == 400){
         setSearchStatus(<p className="text-red-500">{data.message}</p>);
