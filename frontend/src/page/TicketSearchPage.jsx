@@ -6,16 +6,13 @@ import flightsSearchRequest from "../clientRequest/FlightsSearchRequest.jsx";
 
 const TicketSearchPage = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // Khởi tạo useNavigate
-  const searchParams = new URLSearchParams(location.search);
+  const data = location.state || {};
 
   const [formData, setFormData] = useState({
-    from: searchParams.get("from") || "",
-    to: searchParams.get("to") || "",
-    departureDate: searchParams.get("departureDate") || "",
-    returnDate: searchParams.get("returnDate") || "",
-    quantitesPassangers: 0,
-    flightType: "Economy",
+    from: data.from,
+    to: data.to,
+    departureDate: data.departureDate,
+    returnDate: data.returnDate,
   });
 
   useEffect(() => {

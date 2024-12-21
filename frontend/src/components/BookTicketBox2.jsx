@@ -4,21 +4,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom"; // Thêm useN
 import DisplayFlightsHandle from "../components/DisplayFlightsHandle.jsx";
 import flightsSearchRequest from "../clientRequest/FlightsSearchRequest.jsx";
 
-const TicketSearchPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate(); // Khởi tạo useNavigate
-  const searchParams = new URLSearchParams(location.search);
+const BookHomeContainer = () => {
+  
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
-    from: searchParams.get("from") || "",
-    to: searchParams.get("to") || "",
-    departureDate: searchParams.get("departureDate") || "",
-    returnDate: searchParams.get("returnDate") || "",
-    flightType: "Economy",
+    from: "",
+    to: "",
+    departureDate: "",
+    returnDate: "",
   });
 
-  const [searchStatus, setSearchStatus] = useState("");
-  const [searchedFlights, setSearchedFlights] = useState([]);
 
   const handleFormDataChange = (event) => {
     const { name, value } = event.target;
@@ -28,9 +24,9 @@ const TicketSearchPage = () => {
     }));
   };
 
-  const handleFlightSearch = async (e) => {
-    e.preventDefault();
-    flightsSearchRequest(formData, setSearchStatus, setSearchedFlights);
+  const moveToTicketSearchPage = async (e) => {
+    
+    navigate("/book/", {state: formData});
   };
 
 
@@ -50,25 +46,19 @@ const TicketSearchPage = () => {
             formData={formData}
             setFormData={setFormData}
             handleFormDataChange={handleFormDataChange}
-            handleFlightSearch={handleFlightSearch}
+            handleFlightSearch={moveToTicketSearchPage}
         />
         <button
           className="bg-[#FED7AA] text-[#00008B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-full border-2 border-transparent hover:border-[#1E293B]"
-          onClick={handleFlightSearch}
+          onClick={moveToTicketSearchPage}
         >
           Search Flights
         </button>
         </div>
-        
-
-      <DisplayFlightsHandle
-        searchedFlights={searchedFlights}
-        searchStatus={searchStatus}
-      ></DisplayFlightsHandle>
 
       
     </div>
   );
 };
 
-export default TicketSearchPage;
+export default BookHomeContainer;
