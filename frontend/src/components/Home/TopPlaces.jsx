@@ -70,7 +70,7 @@ const TopPlaces = () => {
         ))}
         <div className="flex gap-2 my-5">
           <div
-            className="w-[45px] h-[45px] border-[1px] border-black flex justify-center items-center rounded-full hover:bg[00008B] hover:text-white cursor-pointer transition duration-200 swiper-button-prev"
+            className="w-[45px] h-[45px] border-[1px] border-black flex justify-center items-center rounded-full hover:bg-black hover:text-white cursor-pointer transition duration-200 swiper-button-prev"
             onClick={goPrev}
           >
             <HiOutlineArrowSmLeft size={25} />

@@ -50,7 +50,7 @@ const ChooseLocationToMove = (props) => {
 
         <div className="flex gap-5 flex-col md:flex-row md:w-[40%] border-gray-300 border-b-[2px] md:border-r-[2px] md:border-b-[0px] md:items-center">
 
-            <LocationInput title = "From" name = "from" placeHolder = "from" formData = {formData}
+            <LocationInput title = "From" name = "from" placeHolder = "From" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations} isInSmallScreen={isInSmallScreen}
             setFormData = {setFormData}></LocationInput>
             
@@ -62,7 +62,7 @@ const ChooseLocationToMove = (props) => {
             <i class="fa-solid fa-arrow-right"></i>
             </div>
 
-            <LocationInput title = "To" name = "to" placeHolder = "to" formData = {formData}
+            <LocationInput title = "To" name = "to" placeHolder = "To" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}
             setFormData = {setFormData}
             isInSmallScreen={isInSmallScreen}></LocationInput>

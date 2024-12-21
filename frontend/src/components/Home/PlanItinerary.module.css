@@ -68,4 +68,34 @@
   .cardDescription:hover {
     color: #0056b3; /* Darker hover color */
   }
+  .navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .navButton {
+    background-color: #00008B;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .navButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .navButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
   
