@@ -13,7 +13,8 @@ import tickets from "../models/ticketSchema.js"
       console.log("check ticket deleted : " + JSON.stringify(ticket));
       if (ticket.bookingId) {
         const booking = await bookings.findById(ticket.bookingId);
-        const flight = await flight.findById(booking.flight);
+        
+        // const flight = await flight.findById(booking.flight);
         
         await bookings.findByIdAndDelete(ticket.bookingId);
       }
