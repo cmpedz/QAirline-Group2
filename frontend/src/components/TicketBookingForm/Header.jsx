@@ -75,8 +75,8 @@ const Header = ({ currentFlight }) => {
           <p className="text-[14px] text-[#00008B]">Economy class</p>
         </div>
       </div>
-      <div className="p-5">
-        <div className="flex max-w-[800px] w-full m-auto justify-between items-center relative z-10">
+      <div className="p-5 ">
+        <div className="flex max-w-[800px] w-full m-auto justify-between items-center relative z-10 ">
           <div className="text-center">
             <p className="text-[15px] font-semibold text-white ">Depart</p>
             <p className="text-[20px] text-[#FED7AA] font-semibold mt-2">

@@ -12,7 +12,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`country${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 First Name
               </label>
@@ -27,7 +27,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`passportNumber_${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 Lastname
               </label>
@@ -44,7 +44,7 @@ const passangerInfors = (props) => {
           {/* Date of Birth and Passport Number */}
           <div className="flex flex-col gap-5 md:flex-row md:gap-5 w-full py-3">
             <div className="w-full md:w-1/2">
-              <label htmlFor={`dob_${index}`} className="block text-sm">
+              <label htmlFor={`dob_${index}`} className="block text-sm text-[#00008B]">
                 Date of birth
               </label>
               <input
@@ -58,7 +58,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`passportNumber_${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 Passport Number
               </label>
@@ -78,7 +78,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`firstName${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 Country
               </label>
@@ -93,7 +93,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`passportNumber_${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 State
               </label>
@@ -111,7 +111,7 @@ const passangerInfors = (props) => {
           {/* Phone numbner and email */}
           <div className="flex flex-col gap-5 md:flex-row md:gap-5 w-full py-3">
             <div className="w-full md:w-1/2">
-              <label htmlFor={`dob_${index}`} className="block text-sm">
+              <label htmlFor={`dob_${index}`} className="block text-sm text-[#00008B]">
                 Phone number
               </label>
               <input
@@ -125,7 +125,7 @@ const passangerInfors = (props) => {
             <div className="w-full md:w-1/2">
               <label
                 htmlFor={`passportNumber_${index}`}
-                className="block text-sm"
+                className="block text-sm text-[#00008B]"
               >
                 Email
               </label>
@@ -144,7 +144,7 @@ const passangerInfors = (props) => {
           <div className="w-full md:w-1/2">
             <label
               htmlFor={`passportSizePhoto_${index}`}
-              className="block text-sm"
+              className="block text-sm text-[#00008B]"
             >
               Passport Size Photo
             </label>
