@@ -8,30 +8,30 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
           {/* Column 1 */}
           <div>
-            <h3 className="font-bold mb-3 hover:bg-gray-100">Mahuco Airways</h3>
+            <h3 className="font-bold mb-3 hover:bg-gray-100 text-[#00008B]">Mahuco Airways</h3>
             <ul>
               <li className="mb-2">
-                <a href="#about" className="hover:underline">
+                <a href="#about" className="hover:underline text-[#00008B] text-[#00008B]">
                   About Us
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#awards" className="hover:underline">
+                <a href="#awards" className="hover:underline text-[#00008B] text-[#00008B]">
                   Awards
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#careers" className="hover:underline">
+                <a href="#careers" className="hover:underline text-[#00008B] text-[#00008B]">
                   Careers
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#news" className="hover:underline">
+                <a href="#news" className="hover:underline text-[#00008B] text-[#00008B]">
                   Press Releases
                 </a>
               </li>
               <li>
-                <a href="#sustainability" className="hover:underline">
+                <a href="#sustainability" className="hover:underline text-[#00008B] text-[#00008B]">
                   Environmental Awareness
                 </a>
               </li>
@@ -40,25 +40,25 @@ const Footer = () => {
 
           {/* Column 2 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">Company</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100 text-[#00008B]">Company</h3>
             <ul>
               <li className="mb-2">
-                <a href="#airport" className="hover:underline">
+                <a href="#airport" className="hover:underline text-[#00008B] text-[#00008B]">
                   International Airports
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#dutyfree" className="hover:underline">
+                <a href="#dutyfree" className="hover:underline text-[#00008B] text-[#00008B]">
                   QA Duty Free
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#cargo" className="hover:underline">
+                <a href="#cargo" className="hover:underline text-[#00008B] text-[#00008B]">
                   QA Airways Cargo
                 </a>
               </li>
               <li>
-                <a href="#more" className="hover:underline">
+                <a href="#more" className="hover:underline text-[#00008B] text-[#00008B]">
                   Learn More...
                 </a>
               </li>
@@ -67,20 +67,20 @@ const Footer = () => {
 
           {/* Column 3 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">Business Partners</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100 text-[#00008B]">Business Partners</h3>
             <ul>
               <li className="mb-2">
-                <a href="#marketing" className="hover:underline">
+                <a href="#marketing" className="hover:underline text-[#00008B] text-[#00008B]">
                   Affiliate Marketing
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#shopping" className="hover:underline">
+                <a href="#shopping" className="hover:underline text-[#00008B] text-[#00008B]">
                   Online Shopping
                 </a>
               </li>
               <li>
-                <a href="#partners" className="hover:underline">
+                <a href="#partners" className="hover:underline text-[#00008B] text-[#00008B]">
                   Trade Partners
                 </a>
               </li>
@@ -89,20 +89,20 @@ const Footer = () => {
 
           {/* Column 4 */}
           <div>
-            <h3 className="font-semibold mb-3 hover:bg-gray-100">For businesses</h3>
+            <h3 className="font-semibold mb-3 hover:bg-gray-100 text-[#00008B]">For businesses</h3>
             <ul>
               <li className="mb-2">
-                <a href="#companytravel" className="hover:underline">
+                <a href="#companytravel" className="hover:underline text-[#00008B] text-[#00008B]">
                   Company Travel
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#qbiz" className="hover:underline">
+                <a href="#qbiz" className="hover:underline text-[#00008B] text-[#00008B]">
                   Qbiz: Loyal Company
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#qmice" className="hover:underline">
+                <a href="#qmice" className="hover:underline text-[#00008B]">
                   QMICE: Meetings and Conferences
                 </a>
               </li>
@@ -114,10 +114,10 @@ const Footer = () => {
 
       <div className="bg-[#00008B] flex flex-col md:flex-row justify-between w-full p-6">
         <div className="flex flex-col md:flex-row md:space-x-4">
-          <a href="#" class="text-white hover:underline">Terms of Use</a>
-          <a href="#" class="text-white hover:underline">Conditions of Carriage</a>
-          <a href="#" class="text-white hover:underline">Cookies</a>
-          <a href="#" class="text-white hover:underline">Manage My Data</a>
+          <a href="#" class="text-white hover:underline text-[#00008B]">Terms of Use</a>
+          <a href="#" class="text-white hover:underline text-[#00008B]">Conditions of Carriage</a>
+          <a href="#" class="text-white hover:underline text-[#00008B]">Cookies</a>
+          <a href="#" class="text-white hover:underline text-[#00008B]">Manage My Data</a>
         </div>
         <ul className="flex flex-col md:flex-row space-x-6">
           <li className="text-white">Follow Us</li>

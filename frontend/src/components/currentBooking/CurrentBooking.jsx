@@ -14,37 +14,44 @@ const CurrentBooking = () => {
     console.log("check bookedTickets : " + JSON.stringify(bookedTickets.length));
   }, [bookedTickets])
 
+
   return (
-    <div className="current-booking">
-      <h1>Current Bookings</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Flight</th>
-            <th>Departure City</th>
-            <th>Arrival City</th>
-            <th>Departure Date</th>
-            <th>Arrival Date</th>
-            <th>Seat Number</th>
-          </tr>
-        </thead>
-        <tbody>
-        {
-           bookedTickets.length > 0 ? (
+
+    <div className="overflow-x-auto">
+    <table className="min-w-full bg-white rounded-lg shadow-md border border-gray-200">
+      <thead className="bg-gray-200 text-gray-700 text-sm uppercase font-semibold">
+        <tr>
+          <th className="py-4 px-6 text-center">Flight No.</th>
+          <th className="py-4 px-6 text-center">Aircraft</th>
+          <th className="py-4 px-6 text-center">Departure</th>
+          <th className="py-4 px-6 text-center">Arrival</th>
+          <th className="py-4 px-6 text-center">Seat Class</th>
+          <th className="py-4 px-6 text-center">Seat Number</th>
+          <th className="py-4 px-6 text-center">Total Price</th>
+          <th className="py-4 px-6 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {
+       bookedTickets.length > 0 ? (
+            
+               bookedTickets.map((bookedTicket, index) =>{
+                  console.log("check index " + index);
+                  return <BookedTicket key={index} bookedTicketInfors={bookedTicket} order={index}
+                />
                 
-                   bookedTickets.map((bookedTicket, index) =>{
-                    console.log("check index : " + index);
-                    return  (<BookedTicket key={index} bookedTicketInfors={bookedTicket} order={index}/>);
-                  })
-           
-          ) : (      
-            null
-          )
-        }
-        </tbody>
-        </table>
-    </div>
+                
+              })
+       
+      ) : (      
+        null
+      )
+    }
+
+      </tbody>
+    </table>
+  </div>
    
   );
 };

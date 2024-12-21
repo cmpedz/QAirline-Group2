@@ -41,10 +41,10 @@ export const getAllUserBookedTickets = async (req, res) => {
                     select: 'nameLocation',
                   },
                 ],
-                select: 'departDate arriveDate',
+                select: 'departDate arriveDate flightNumber',
               },
             ],
-            select: 'seatNumber',
+            select: 'seatNumber price classType',
           });
 
 
@@ -55,7 +55,10 @@ export const getAllUserBookedTickets = async (req, res) => {
             arrivalCity : bookedTicket.bookingId.flight.to.nameLocation, 
             departDate : convertDate(bookedTicket.bookingId.flight.departDate), 
             arrivalDate : convertDate(bookedTicket.bookingId.flight.arriveDate),
-            seatNumber : bookedTicket.bookingId.seatNumber
+            seatNumber : bookedTicket.bookingId.seatNumber,
+            price: bookedTicket.bookingId.price,
+            classType: bookedTicket.bookingId.classType,
+            flightNumber: bookedTicket.bookingId.flight.flightNumber
         }
           
         bookedTickets.push(bookedticketInfors);

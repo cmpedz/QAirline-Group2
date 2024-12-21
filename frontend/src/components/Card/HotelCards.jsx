@@ -5,8 +5,8 @@ import { HiLocationMarker } from "react-icons/hi";
 
 const HotelCards = (props) => {
   return (
-    <div className="w-[240px] rounded-[30px] overflow-hidden border-[1px] border-gray-300 pb-5 h-full">
-      <div className="relative rounded-[30px] overflow-hidden">
+    <div className="w-[240px] rounded-[30px] overflow border-[1px] border-gray-300 pb-5 h-full">
+      <div className="relative rounded-[30px] overflow-auto">
         <img
           src={props.data.imageUrl}
           alt=""

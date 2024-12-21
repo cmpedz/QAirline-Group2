@@ -34,7 +34,7 @@ const ReviewTicket = ({
   return (
     <>
       <div className="my-5 bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
-        <p className="mb-5 text-4xl">Review Ticket</p>
+        <p className="mb-5 text-4xl text-[#00008B]">Review Ticket</p>
         {Object.keys(formData).map((passengerId, index) => {
           const passenger = formData[passengerId];
           return (
@@ -42,24 +42,7 @@ const ReviewTicket = ({
           );
         })}
       </div>
-      <div className=" bg-white border-[1px] border-gray-200 rounded-[30px] p-5">
-        <p className="mb-5 text-4xl">Pick seat reservation</p>
-        <div className="flex flex-row">
-          {Object.keys(selectedSeats).map((seatType, index) => (
-            <div key={index} className="flex flex-row">
-              {selectedSeats[seatType].map((seatNumber, index) => (
-                <div
-                  key={index}
-                  className="flex justify-center items-center w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] text-white bg-blue-400 rounded-md  cursor-pointer mr-5"
-                >
-                  {seatType}
-                  {seatNumber}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      
       <div className="bg-white border-[1px] border-gray-200 rounded-[30px] p-5 mt-5">
         <div className="flex items-center">
           <input
@@ -91,13 +74,13 @@ const ReviewTicket = ({
 
       <div className="flex justify-start items-center gap-2 mt-10">
         <button
-          className="border border-blue-300 text-blue-400 px-10 py-2 rounded-full hover:bg-blue-400 duration-300 hover:text-white"
+          className="border border-[#00008B] text-[#00008B] px-10 py-2 rounded-full hover:bg-[#00008B] duration-300 hover:text-white"
           onClick={() => setCurrentActiveForm(1)}
         >
           Previous
         </button>
         <button
-          className={`bg-blue-300 text-white px-10 py-2 rounded-full hover:bg-blue-500 duration-300 ${
+          className={`bg-[#00008B] text-white px-10 py-2 rounded-full hover:bg-black duration-300 ${
             !aggreed || !terms ? "cursor-not-allowed" : ""
           }`}
           onClick={handleFlightBooking}

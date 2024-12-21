@@ -2,7 +2,7 @@ import SuggestLocation from "./ChooseLocationSuggest";
 import { useState, useEffect, useRef } from "react";
 import SmallScreenSuggestLocation from "./SmallScreenSuggestLocation";
 
-const LocationInput = (props) => {
+const LocationInput1 = (props) => {
 
     const {title, name, placeHolder, formData, handleFormDataChange, suggestions, isInSmallScreen, setFormData} = props;
 
@@ -70,7 +70,7 @@ const LocationInput = (props) => {
 
     
 
-    return ( <div className="flex flex-col p-5  w-[40%] relative" ref = {containerRef}>
+    return ( <div className="flex flex-col  w-[40%] relative" ref = {containerRef}>
         <h1 className= "text-[#00008B] text-[20px]">{title}</h1>
         <input
           name={name}
@@ -99,4 +99,4 @@ const LocationInput = (props) => {
 
 }
 
-export default LocationInput;
+export default LocationInput1;

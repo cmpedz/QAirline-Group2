@@ -27,7 +27,10 @@ async function getBookedTicketsRequest(setBookedTickets){
                 arrivalCity: bookedTicket.arrivalCity, 
                 departDate: bookedTicket.departDate, 
                 arrivalDate: bookedTicket.arrivalDate, 
-                seatNumber : bookedTicket.seatNumber
+                seatNumber : bookedTicket.seatNumber,
+                price: bookedTicket.price,
+                classType: bookedTicket.classType,
+                flightNumber: bookedTicket.flightNumber
             }
             setBookedTickets((prev) => [...prev, ticketInfors]);
         })

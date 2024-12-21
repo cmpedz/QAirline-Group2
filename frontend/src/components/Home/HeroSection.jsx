@@ -35,7 +35,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="max-w-[1800px] mx-auto w-full h-[90vh] rounded-[25px] overflow-hidden relative">
+    <section className="max-w-[1800px] mx-auto w-full h-[90vh] rounded-[25px] overflow-auto relative">
       <Swiper
         modules={[Autoplay]}
         spaceBetween={0}
@@ -47,7 +47,7 @@ const HeroSection = () => {
         }}
       >
         {homeData.map((data, index) => (
-          <SwiperSlide key={index} className="h-[90vh]">
+          <SwiperSlide key={index} className="h-[90vh] overflow">
             <HeroSectionCard
               heading={data.heading}
               subheading={data.subheading}
