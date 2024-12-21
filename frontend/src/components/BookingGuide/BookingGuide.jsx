@@ -21,7 +21,7 @@ const BookingGuide = () => {
              number of passengers. Then click on <strong>"Search Flights"</strong>.
             </p>
             <img
-                src="https://cdn.pixabay.com/photo/2016/06/27/05/39/airplane-1480049_960_720.jpg"
+                src="src\assets\images\flight_details.png"
                 alt="Enter Flight Details"
                 className={styles.stepImage}
             />
@@ -36,7 +36,7 @@ const BookingGuide = () => {
           proceed.
          </p>
          <img
-           src="https://cdn.pixabay.com/photo/2017/03/27/14/56/aircraft-2179207_960_720.jpg"
+           src="src\assets\images\flight_details2.png"
            alt="Choose Flight"
            className={styles.stepImage}
          />
@@ -50,7 +50,7 @@ const BookingGuide = () => {
           Ensure accuracy to avoid issues during check-in.
         </p>
         <img
-          src="https://cdn.pixabay.com/photo/2017/08/02/01/01/airplane-2561678_960_720.jpg"
+          src="src\assets\images\passenger.png"
           alt="Enter Passenger Information"
           className={styles.stepImage}
         />
@@ -64,7 +64,7 @@ const BookingGuide = () => {
           correct, proceed to payment by clicking <strong>"Confirm Booking"</strong>.
         </p>
         <img
-          src="https://cdn.pixabay.com/photo/2016/03/27/20/01/airplane-1284721_960_720.jpg"
+          src="src\assets\images\review.png"
           alt="Review and Confirm"
           className={styles.stepImage}
         />
