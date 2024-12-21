@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-<<<<<<< HEAD
 const handleLogout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
