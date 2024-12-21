@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SuggestLocation from "../ChooseLocation/ChooseLocationSuggest";
-import LocationInput from "../ChooseLocation/LocationInput";
+import LocationInput1 from "../ChooseLocation/LocationInput1";
 import getLocationsRequest from "../../../clientRequest/LocationMovesRequest";
 
 const ChooseLocationToMove1 = (props) => {
@@ -48,23 +48,23 @@ const ChooseLocationToMove1 = (props) => {
     }
         return( 
 
-        <div className="flex gap-5 flex-col border-gray-300 border-b-[2px]">
+        <div className="flex  flex-col max-h-[20px] border-gray-300 ">
 
-            <LocationInput title = "From" name = "from" placeHolder = "from" formData = {formData}
+            <LocationInput1 title = "From" name = "from" placeHolder = "from" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations} isInSmallScreen={isInSmallScreen}
-            setFormData = {setFormData}></LocationInput>
+            setFormData = {setFormData}></LocationInput1>
             
             
-            <div class="flex flex-col h-[20px] text-right cursor-pointer"
+            <div class="flex flex-col  text-right cursor-pointer"
             onClick = {swapData}>
             <i class="fa-solid fa-arrow-left"></i>
             <i class="fa-solid fa-arrow-right"></i>
             </div>
 
-            <LocationInput title = "To" name = "to" placeHolder = "to" formData = {formData}
+            <LocationInput1 title = "To" name = "to" placeHolder = "to" formData = {formData}
             handleFormDataChange = {handleFormDataChange} suggestions = {suggestLocations}
             setFormData = {setFormData}
-            isInSmallScreen={isInSmallScreen}></LocationInput>
+            isInSmallScreen={isInSmallScreen}></LocationInput1>
 
         </div>
 

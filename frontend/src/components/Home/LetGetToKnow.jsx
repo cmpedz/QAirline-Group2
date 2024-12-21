@@ -2,7 +2,7 @@ import React from "react";
 
 const LetGetToKnow = () => {
   return (
-    <div className="w-full h-auto overflow-hidden rounded-[30px] bg-cover bg-center py-10 px-5 flex justify-center items-center min-h-[600px] bg-no-repeat bg-[url('https://thumbs.dreamstime.com/b/big-clound-seascape-view-airplane-window-189486954.jpg')] bg-[#F4F4F4] relative">
+    <div className="w-full h-auto overflow-auto rounded-[30px] bg-cover bg-center py-10 px-5 flex justify-center items-center min-h-[600px] bg-no-repeat bg-[url('https://thumbs.dreamstime.com/b/big-clound-seascape-view-airplane-window-189486954.jpg')] bg-[#F4F4F4] relative">
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black/30"></div>
       {/* Phần màu xanh */}
       <div

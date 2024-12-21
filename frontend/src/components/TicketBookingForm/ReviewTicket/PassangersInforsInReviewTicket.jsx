@@ -3,7 +3,7 @@ import React from "react";
 
 const passangerInfors = (props) => {
     const{index, passenger} = props;
-    return( <div key={index} className="mt-10">
+    return( <div key={index} className="mt-10 ">
         <p className="">Passenger {index + 1} Details</p>
         <div>
           {/* Traveller Details */}

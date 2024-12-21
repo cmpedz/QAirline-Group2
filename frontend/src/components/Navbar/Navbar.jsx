@@ -33,7 +33,7 @@ function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 left-0 bg-[#00008B] w-full px-6 py-4 shadow-md z-50">
+    <header className="sticky top-0 left-0 bg-[#00008B] w-full px-6 py-2 shadow-md z-50">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
         {/* Logo */}
         <Link to={"/"} className="flex-shrink-0">
@@ -128,8 +128,8 @@ function Navbar() {
           )}
           {isMobileMenuVisible && isUserLoggedIn && (
             <li>
-              <button onClick={handleLogout} className="text-white hover:underline">
-                Logout
+              <button onClick={handleLogout} className="text-white  hover:underline">
+                Log out
               </button>
             </li>
             )}
@@ -153,7 +153,7 @@ function Navbar() {
               />
               <button
                 onClick={handleLogout}
-                className="bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-gray-900 transition duration-200"
+                className="bg-transparent border h-[50px] w-[70px] border-white text-row text-white  px-4 py-0 rounded-full hover:bg-gray-900 transition duration-200"
               >
                 Log out
               </button>
@@ -163,7 +163,7 @@ function Navbar() {
               <Link to={"/login"} className="hover:underline">
                 Login
               </Link>
-              <span className="border-l border-white h-5"></span>
+              <span className="border-l border-white h-8"></span>
               <Link to={"/signup"} className="hover:underline">
                 Sign up
               </Link>

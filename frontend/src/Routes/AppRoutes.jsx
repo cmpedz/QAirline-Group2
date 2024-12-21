@@ -29,7 +29,7 @@ const AppRoutes = () => {
   return (
     <div className="w-full h-screen bg-custom-gradient">
        {!isAdminRoute && <Navbar />}
-       <div className={isAdminRoute ? "mt-[0px]" : "mt-[110px]"}>
+       <div className={isAdminRoute ? "mt-[0px]" : ""}>
        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
