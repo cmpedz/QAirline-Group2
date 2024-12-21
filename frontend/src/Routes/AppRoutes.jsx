@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
@@ -18,18 +18,30 @@ import BookedFlights from "../admin/BookedFlights";
 import BaoHiem from "../page/BaoHiem";
 import DichVuTaxi from "../page/DichVuTaxi";
 import CheckoutPage from "../page/CheckoutPage"
-
 import PromotionPage from "../admin/Promotions";
 
 
-
-
 const AppRoutes = () => {
-  const isAdminRoute = location.pathname.startsWith("/admin");
+
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  
+  const location = useLocation();
+
+  const ProtectedRoute = ({ element: Element, ...rest }) => {
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
+    console.log("check is Admin : " + isAdmin);
+    return isAdmin ? <Element {...rest} /> : <Navigate to="/" replace />;
+  };
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
+  
+  }, [location]);
+
   return (
     <div className="w-full h-screen bg-custom-gradient">
-       {!isAdminRoute && <Navbar />}
-       <div className={isAdminRoute ? "mt-[0px]" : ""}>
+       {!isAdmin && <Navbar />}
+       <div className={isAdmin ? "mt-[0px]" : ""}>
        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -39,7 +51,7 @@ const AppRoutes = () => {
         <Route path="/book/:id/:classType" element={<TicketBooking />} />
         <Route path="/bookings" element={<CurrentBooking />} />
         <Route path="/checkout-page" element={<CheckoutPage />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<ProtectedRoute element={Admin} />} />
         <Route path="/admin/flights" element={<Flights />} />
         <Route path="/admin/aircrafts" element={<Aircrafts />} />
         <Route path="/admin/airports" element={<Airports />} />
@@ -51,7 +63,7 @@ const AppRoutes = () => {
         <Route path="/taxi" element={<DichVuTaxi/>} />
       </Routes>
       </div>
-      {!isAdminRoute && <Footer />}
+      {!isAdmin && <Footer />}
     </div>
   );
 };

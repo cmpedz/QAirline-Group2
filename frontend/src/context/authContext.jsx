@@ -50,6 +50,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("token", state.token);
     localStorage.setItem("isAdmin", state.isAdmin);
     localStorage.setItem("isUserLoggedIn", state.isUserLoggedIn);
+    console.log("update user :" + localStorage.getItem("user"));
   }, [state]);
 
   return (

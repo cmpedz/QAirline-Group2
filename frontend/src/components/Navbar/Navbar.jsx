@@ -1,47 +1,39 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext";
+import logo from "../../assets/images/imagelogo.png";
 
 function Navbar() {
   const { user, token } = useContext(authContext);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
 
-  const handleMouseEnter = () => {
-    setDropdownVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setDropdownVisible(false);
-    }, 4000);
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuVisible(!isMobileMenuVisible);
-  };
-
-  const isUserLoggedIn = localStorage.getItem("token") !== null;
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const profilePic =
-    "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png";
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("isAdmin");
     window.location.reload();
   };
+
+  const handleMouseEnter = () => setDropdownVisible(true);
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => setDropdownVisible(false), 4000);
+    return () => clearTimeout(timeout);
+  };
+
+  const toggleMobileMenu = () => setMobileMenuVisible(!isMobileMenuVisible);
+
+  const isUserLoggedIn = Boolean(localStorage.getItem("token"));
+  const profilePic =
+    "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png";
 
   return (
     <header className="sticky top-0 left-0 bg-[#00008B] w-full px-6 py-2 shadow-md z-50">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
         {/* Logo */}
         <Link to={"/"} className="flex-shrink-0">
-          <img
-            src="..\\src\\assets\\images\\imagelogo.png"
-            alt="QAIRLINE"
-            className="h-16 w-auto"
-          />
+          <img src={logo} alt="QAIRLINE" className="h-16 w-auto" />
         </Link>
 
         {/* Hamburger for mobile */}
@@ -128,18 +120,21 @@ function Navbar() {
           )}
           {isMobileMenuVisible && isUserLoggedIn && (
             <li>
-              <button onClick={handleLogout} className="text-white  hover:underline">
+              <button
+                onClick={handleLogout}
+                className="text-white hover:underline"
+              >
                 Log out
               </button>
             </li>
-            )}
+          )}
           {isMobileMenuVisible && !isUserLoggedIn && (
             <li>
               <Link to={"/login"} className="hover:underline">
                 Login
               </Link>
             </li>
-            )}
+          )}
         </ul>
 
         {/* User actions */}
@@ -153,7 +148,7 @@ function Navbar() {
               />
               <button
                 onClick={handleLogout}
-                className="bg-transparent border h-[50px] w-[70px] border-white text-row text-white  px-4 py-0 rounded-full hover:bg-gray-900 transition duration-200"
+                className="bg-transparent border h-[50px] w-[70px] border-white text-row text-white px-4 py-0 rounded-full hover:bg-gray-900 transition duration-200"
               >
                 Log out
               </button>
