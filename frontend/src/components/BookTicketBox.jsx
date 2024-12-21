@@ -56,13 +56,13 @@ const BookTicketBox = ({
           <div className="flex justify-center items-center gap-2">
             <input type="radio" name="ticketType" value="oneWay" class="h-[1rem] w-[1rem]"
             onChange={handleRadioChange}/>
-            <label htmlFor="oneWay">One way</label>
+            <label htmlFor="oneWay" className="text-[20px] text-[#00008B]">One way</label>
           </div>
 
           <div className="flex justify-center items-center gap-2">
             <input type="radio" name="ticketType" value="return" defaultChecked class="h-[1rem] w-[1rem]"
             onChange={handleRadioChange}/>
-            <label htmlFor="return">Return</label>
+            <label htmlFor="return" className="text-[20px] text-[#00008B]">Return</label>
           </div>
 
         </div>
@@ -75,7 +75,7 @@ const BookTicketBox = ({
         Search Flights
         </button> */}
         <button
-           className="bg-[#FED7AA] text-[#1E293B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-[200px] self-center border-2 border-transparent hover:border-[#1E293B]"
+           className="bg-[#FED7AA] text-[#00008B] font-bold px-5 py-2 mt-5 rounded-full transition duration-100 w-[200px] self-center border-2 border-transparent hover:border-[#1E293B]"
             onClick={handleFlightSearch}
           >
           Search Flights

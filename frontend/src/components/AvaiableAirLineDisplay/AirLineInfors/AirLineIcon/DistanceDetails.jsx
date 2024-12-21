@@ -12,7 +12,7 @@ const DistanceDetails = (props) => {
             </svg>
 
                 <div className="flex flex-row text-[12px] md:text-xl">
-                    <p>bay thẳng</p>
+                    <p>Fly straight</p>
                     
                 </div>
 

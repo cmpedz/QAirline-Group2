@@ -47,7 +47,7 @@ const HeroSection = () => {
         }}
       >
         {homeData.map((data, index) => (
-          <SwiperSlide key={index} className="h-[90vh]">
+          <SwiperSlide key={index} className="h-[90vh] overflow-hidden">
             <HeroSectionCard
               heading={data.heading}
               subheading={data.subheading}

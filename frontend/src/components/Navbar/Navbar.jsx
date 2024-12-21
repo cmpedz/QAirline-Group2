@@ -1,11 +1,26 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext";
 
 function Navbar() {
   const { user, token } = useContext(authContext);
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
 
-  // Kiểm tra trạng thái đăng nhập
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setDropdownVisible(false);
+    }, 4000);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuVisible(!isMobileMenuVisible);
+  };
+
   const isUserLoggedIn = localStorage.getItem("token") !== null;
   const userData = JSON.parse(localStorage.getItem("user"));
   const profilePic =
@@ -14,91 +29,121 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.reload(); // Refresh trang sau khi đăng xuất
+    window.location.reload();
   };
 
   return (
-    <header className="bg-transparent px-6 py-4 shadow-md">
+    <header className="fixed top-0 left-0 bg-[#00008B] w-full px-6 py-4 shadow-md z-50">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
-        {/* Logo và Links */}
-        <div className="flex items-center gap-10">
-          {/* Logo */}
-          <Link to={"/"} className="text-white font-bold text-3xl italic">
-            MCH
-          </Link>
-          {/* Links */}
-          <ul className="flex items-center gap-6">
-            <li>
-              <Link to={"/"} className="text-white hover:underline">
-                Home
-              </Link>
-            </li>
-            <li>
-            <Link to={"/bookgui"} className="text-white hover:underline">
-                Booking Guide
-            </Link>
-            </li>
-            <li className="relative group">
-            <div className="text-white hover:underline">
-                Key Info
-            </div>
-            {/* Dropdown content */}
-            <ul className="absolute hidden group-hover:block left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
-              <li className="p-3 border-b hover:bg-gray-100">
-                <Link to={"/bh"}>
-                  <strong>Insurance</strong>
-                  <p className="text-sm text-gray-500">
-                    Feel secure and comfortable with reputable insurance programs...
-                  </p>
-                </Link>
-              </li>
-              <li className="p-3 border-b hover:bg-gray-100">
-                <strong>
-                  Cheap Tickets{" "}
-                  <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
-                    HOT
-                  </span>
-                </strong>
-                <p className="text-sm text-gray-500">
-                  Quickly grab the best Vietjet flight deals...
-                </p>
-              </li>
-              <li className="p-3 hover:bg-gray-100">
-                <Link to={"/taxi"}>
-                  <strong>
-                    Taxi Service{" "}
-                    <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
-                      HOT
-                    </span>
-                  </strong>
-                  <p className="text-sm text-gray-500">
-                    Easily pre-book a Green SM Taxi at the airport with affordable packages...
-                  </p>
-                </Link>
-              </li>
-            </ul>
+        {/* Logo */}
+        <Link to={"/"} className="flex-shrink-0">
+          <img
+            src="..\\src\\assets\\images\\imagelogo.png"
+            alt="QAIRLINE"
+            className="h-16 w-auto"
+          />
+        </Link>
 
-            </li>
-            <li>
-              <Link to={"/book"} className="text-white hover:underline">
-                Book Flight
-              </Link>
-            </li>
-            {isUserLoggedIn && (
-              <li>
-                <Link
-                  to={"/bookings"}
-                  className="text-white hover:underline"
-                >
-                  Current Bookings
-                </Link>
-              </li>
-            )}
-          </ul>
+        {/* Hamburger for mobile */}
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleMobileMenu} className="text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6h16.5M3.75 12h16.5M3.75 18h16.5"
+              />
+            </svg>
+          </button>
         </div>
 
+        {/* Main menu */}
+        <ul
+          className={`${
+            isMobileMenuVisible ? "block" : "hidden"
+          } md:flex md:items-center gap-6 rounded-[25px] text-[18px] md:static p-[33px] absolute top-16 right-0 w-full bg-[#00008B] md:bg-transparent shadow-md md:shadow-none z-50`}
+        >
+          <li>
+            <Link to={"/"} className="text-white hover:underline">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to={"/bookgui"} className="text-white hover:underline">
+              Booking Guide
+            </Link>
+          </li>
+          <li
+            className="relative key-info-dropdown"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="text-white hover:underline">Key Info</div>
+            {isDropdownVisible && (
+              <ul className="absolute left-0 top-8 bg-white shadow-lg border border-gray-300 rounded-lg w-64 z-50">
+                <li className="p-3 border-b hover:bg-gray-100 text-[#00008B]">
+                  <Link to={"/bh"}>
+                    <strong>Insurance</strong>
+                    <p className="text-sm text-gray-500">
+                      Feel secure and comfortable with reputable insurance
+                      programs...
+                    </p>
+                  </Link>
+                </li>
+                <li className="p-3 hover:bg-gray-100 text-[#00008B]">
+                  <Link to={"/taxi"}>
+                    <strong>
+                      Taxi Service{" "}
+                      <span className="bg-red-500 text-white px-1 py-0.5 text-xs rounded">
+                        HOT
+                      </span>
+                    </strong>
+                    <p className="text-sm text-gray-500">
+                      Easily pre-book a Green SM Taxi at the airport with
+                      affordable packages...
+                    </p>
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li>
+            <Link to={"/book"} className="text-white hover:underline">
+              Book Flight
+            </Link>
+          </li>
+          {isUserLoggedIn && (
+            <li>
+              <Link to={"/bookings"} className="text-white hover:underline">
+                Current Bookings
+              </Link>
+            </li>
+          )}
+          {isMobileMenuVisible && isUserLoggedIn && (
+            <li>
+              <button onClick={handleLogout} className="text-white hover:underline">
+                Logout
+              </button>
+            </li>
+            )}
+          {isMobileMenuVisible && !isUserLoggedIn && (
+            <li>
+              <Link to={"/login"} className="hover:underline">
+                Login
+              </Link>
+            </li>
+            )}
+        </ul>
+
         {/* User actions */}
-        <div className="flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6">
           {isUserLoggedIn ? (
             <div className="flex items-center gap-6">
               <img
@@ -114,17 +159,14 @@ function Navbar() {
               </button>
             </div>
           ) : (
-            <div>
-              {/* Nút đỏ chứa Login | Sign up */}
-              <div className="flex items-center bg-transparent border border-white text-white px-6 py-2 rounded-full gap-2">
-                <Link to={"/login"} className="hover:underline">
-                  Login
-                </Link>
-                <span className="border-l border-white h-5"></span>
-                <Link to={"/signup"} className="hover:underline">
-                  Sign up
-                </Link>
-              </div>
+            <div className="flex items-center bg-transparent border border-white text-white px-6 py-2 rounded-full gap-2">
+              <Link to={"/login"} className="hover:underline">
+                Login
+              </Link>
+              <span className="border-l border-white h-5"></span>
+              <Link to={"/signup"} className="hover:underline">
+                Sign up
+              </Link>
             </div>
           )}
         </div>

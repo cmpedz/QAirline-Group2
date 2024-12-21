@@ -47,10 +47,10 @@ const BookHome = ({
               type="radio"
               name="ticketType"
               value="oneWay"
-              className="h-[1rem] w-[1rem]"
+              className="h-[1rem] w-[1rem] "
               onChange={handleRadioChange}
             />
-            <label htmlFor="oneWay">One way</label>
+            <label htmlFor="oneWay" className="text-[20px] text-[#00008B]">One way</label>
           </div>
           <div className="flex items-center gap-2">
             <input
@@ -58,10 +58,10 @@ const BookHome = ({
               name="ticketType"
               value="return"
               defaultChecked
-              className="h-[1rem] w-[1rem]"
+              className="h-[1rem] w-[1rem] "
               onChange={handleRadioChange}
             />
-            <label htmlFor="return">Return</label>
+            <label htmlFor="return" className="text-[20px] text-[#00008B]">Return</label>
           </div>
         </div>
 

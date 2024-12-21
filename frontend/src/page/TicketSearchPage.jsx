@@ -41,7 +41,7 @@ const TicketSearchPage = () => {
     // <div className="px-[30px] md:px-[30px] max-w-[1400px] mx-auto">
     <div className="max-w-[1400px] mx-auto">
 
-      <h1 className="text-[3em] text-white mb-[30px] mt-[20px] text-center">Book Flight</h1>
+      <h1 className="text-[2.7em] font-bold text-white mb-[30px] mt-[20px] text-center ">Book Flight</h1>
       <BookTicketBox
         formData={formData}
         setFormData={setFormData}
