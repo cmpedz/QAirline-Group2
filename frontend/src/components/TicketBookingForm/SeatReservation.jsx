@@ -9,10 +9,10 @@ const SeatReservation = ({
   setNumberOfPassengers,
   selectedSeats,
   setSelectedSeats,
-  avaiableSeats
+  avaiableSeats,
+  selectedClassType
 }) => {
 
-  const maxCols = 8;
 
   const [currentSeats, setCurrentSeats] = useState(
     {
@@ -21,18 +21,19 @@ const SeatReservation = ({
     }
   );
 
+  const [unAvaiableSeats, setUnAvaiableSeats] = useState([]);
+
   const [reservedSeats, setReservedSeats] = useState([]);
 
+  const handleAvaiableSeats = () => {
 
-  const handleAvaiableFlights = () => {
+      console.log("check selected class type : " + selectedClassType);
       
-      avaiableSeats.map((classType) => {
-
-        console.log("check seats from server" + classType.classType + " : "  + JSON.stringify(classType.seats));  
+      avaiableSeats.map((classTypeObject) => {
 
         setCurrentSeats((prevSeats) => ({
           ...prevSeats, 
-          [classType.classType]: [...classType.seats.map(seatInfors => 
+          [classTypeObject.classType]: [...classTypeObject.seats.map(seatInfors => 
             {   if(seatInfors.status == "booked" && !reservedSeats.includes(seatInfors.seatNumber)){
                   setReservedSeats((prevReservedSeats) => [...prevReservedSeats, seatInfors.seatNumber]);
                 }
@@ -41,12 +42,25 @@ const SeatReservation = ({
             
           )]
         }));
-
+        console.log("check evaluated class type : " + classTypeObject.classType + " and selected class type : " + selectedClassType);
+        if(classTypeObject.classType != selectedClassType){
+          classTypeObject.seats.forEach(seat => {
+              if(!unAvaiableSeats.includes(seat.seatNumber)){
+                setUnAvaiableSeats(prev => [
+                  ...prev, 
+                  seat.seatNumber
+                ]);
+              }
+          })
+        }
         
-        
-        console.log("check avaiable seats " + classType.classType + " : "  + JSON.stringify(currentSeats));  
+        console.log("check avaiable seats " + classTypeObject.classType + " : "  + JSON.stringify(currentSeats));  
         console.log("check reserved seats "  + JSON.stringify(reservedSeats));  
       })      
+
+    
+
+      console.log("check unavaiable seats : " + JSON.stringify(unAvaiableSeats));
 
 
   }
@@ -69,7 +83,7 @@ const SeatReservation = ({
   };
 
   const handleSeatClick = (classType, seat) => {
-    if (!reservedSeats.includes(seat)) {
+    if (!reservedSeats.includes(seat) && !unAvaiableSeats.includes(seat)) {
       if (selectedSeats[classType] != null) {
         if(!selectedSeats[classType].includes(seat)){
           setSelectedSeats({
@@ -99,7 +113,7 @@ const SeatReservation = ({
 
   useEffect(() => {
 
-    handleAvaiableFlights();
+    handleAvaiableSeats();
 
     const updateContainerSize = () => {
       if (containerRef.current) {
@@ -141,6 +155,7 @@ const SeatReservation = ({
   }, [selectedSeats, setNumberOfPassengers]);
 
   const renderSeats = (classType) => {
+  
     return currentSeats[classType].map((seat) => (
       <div
         key={seat}
@@ -149,7 +164,10 @@ const SeatReservation = ({
             ? "selectedSeats"
             : reservedSeats.includes(seat)
             ? "bookedSeats"
+            : unAvaiableSeats.includes(seat)
+            ? "unAvaiableSeats"
             : "seatsHover"
+            
         } w-[50px] md:w-[80px] md:h-[80px]`}
         onClick={() => handleSeatClick(classType, seat)}
       >

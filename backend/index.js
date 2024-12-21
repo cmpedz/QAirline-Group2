@@ -11,7 +11,6 @@ import airportRoute from "./Routes/airport.js";
 import bookingRoute from "./Routes/booking.js";
 import promotionRoute from "./Routes/promotion.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -46,6 +45,7 @@ app.use("/api/locationsMove", locationRoute);
 app.use("/api/airports", airportRoute);
 app.use("/api/bookings", bookingRoute);
 app.use("/api/promotions", promotionRoute);
+
 
 
 app.listen(5000, () => {
