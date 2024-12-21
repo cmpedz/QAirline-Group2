@@ -4,14 +4,27 @@ import axios from "axios";
 const BookedFlights = () => {
   const [bookings, setBookings] = useState([]);
   const [filteredBookings, setFilteredBookings] = useState([]);
-  const [input, setInput] = useState("")
   const [filterType, setFilterType] = useState("flight");
+  const [input, setInput] = useState("")
+  const [typeInput, setTypeInput] = useState("text")
+  const [placeholder, setPlaceHolder] = useState("Enter value")
+
+  const getInputProps = () => {
+    console.log(filterType)
+    if (filterType === "departure_date") {
+      setTypeInput("date");
+      setPlaceHolder("Enter date");
+    } else {
+      setTypeInput("text");
+      setPlaceHolder("Enter value");
+    }
+  };
+
 
   const fetchBookings = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/bookings/getAllBookings");
       setBookings(response.data); 
-      setFilteredBookings(bookings);
     } catch (error) {
       console.error("Error fetching bookings:", error);
     }
@@ -25,9 +38,26 @@ const filterByUserName = (bookings, userName) => {
   return bookings.filter(booking => booking.user.name.toLowerCase() === userName.toLowerCase());
 };
 
+const filterByDepartureLocation = (bookings, location) => {
+  return bookings.filter(booking => booking.flight.from.nameLocation.toLowerCase() == location.toLowerCase());
+}  
+
+const filterByDepartureDate = (bookings, date) => {
+  return bookings.filter(booking => booking.flight.departDate.date === date);
+}
 useEffect(() => {
      fetchBookings();
    }, []);
+
+useEffect(() => {
+    getInputProps();
+    setInput("");
+}, [filterType]); 
+
+
+useEffect(()=>{
+  setFilteredBookings(bookings);
+}, [bookings])
   
 const handleFilterByFlightNumber = () => {
     const result = filterByFlightNumber(bookings, input);
@@ -39,16 +69,29 @@ const handleFilterByUserName = () => {
   setFilteredBookings(result);
 };
 
+const handleFilterByDepartureLocation = () => {
+  const result = filterByDepartureLocation(bookings, input);
+  setFilteredBookings(result)
+}
+const handleFilterByDepartureDate = () => {
+  const result = filterByDepartureDate(bookings, input);
+  setFilteredBookings(result)
+}
+
 const handleSearch = () => {
   if (input) {
     if (filterType === "flight") {
-      const result = filterByFlightNumber(bookings, input);
-      setFilteredBookings(result);
+      handleFilterByFlightNumber();
       console.log("flight")
     } else if (filterType === "user") {
-      const result = filterByUserName(bookings, input);
-      setFilteredBookings(result);
+      handleFilterByUserName();
       console.log("user")
+    } else if (filterType === "departure_location") {
+      handleFilterByDepartureLocation();
+      console.log("departure location");
+    } else if (filterType === "departure_date") {
+      handleFilterByDepartureDate();
+      console.log("departure date")
     }
   } else {
     alert("Please enter filter data")
@@ -58,9 +101,6 @@ const handleSearch = () => {
 const calculateTotalPrice = () => {
   return filteredBookings.reduce((total, booking) => total + booking.price, 0);
 };
-
-
-  
 
   return (
     <div className="flex bg-gray-100 min-h-screen">
@@ -86,12 +126,14 @@ const calculateTotalPrice = () => {
             >
               <option value="flight">Flight</option>
               <option value="user">User</option>
+              <option value="departure_location">Departure Location</option>      
+              <option value="departure_date">Departure Date</option>        
             </select>
             <input
-              type="text"
+              type={typeInput}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Enter value"
+              placeholder={placeholder}
               className="border rounded px-3 py-2"
             />
             <button
