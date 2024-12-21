@@ -15,7 +15,16 @@ const CurrentBooking = () => {
   const handleCancel = async (ticketId) => {
     try {
       console.log(ticketId);
-      const response = await axios.delete(`http://localhost:5000/api/tickets/delete-ticket/${ticketId}`);
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        `http://localhost:5000/api/tickets/delete-ticket/${ticketId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json"
+          },
+        }
+      );
       if (response.status === 200) {
         setBookedTickets((prevTickets) => prevTickets.filter(ticket => ticket.ticketId !== ticketId));
       }
