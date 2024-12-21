@@ -1,13 +1,12 @@
 import React from "react";
+import axios from "axios";
 
+const BookedTicket = ({ bookedTicketInfors, handleCancel }) =>{
 
-const BookedTicket = (props) =>{
+    const {order, flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, ticketId} = bookedTicketInfors
+   
 
-    const {order, flight, departCity, arrivalCity, departDate, arrivalDate, seatNumber, price, classType, flightNumber, handleEdit} = props.bookedTicketInfors
-
-    return(
-    
-        
+    return(    
         <tr key={order} className="border-t hover:bg-gray-50 transition">
         <td className="py-4 px-6 text-center">{flightNumber}</td>
         <td className="py-4 px-6 text-center">{flight}</td>
@@ -23,12 +22,11 @@ const BookedTicket = (props) =>{
         <td className="py-4 px-6 text-center">{seatNumber}</td>
         <td className="py-4 px-6 text-center">{price}</td>
         <td className="py-4 px-6 text-center">
-          <button  className="text-blue-500 font-semibold hover:underline">
+          <button  className="text-blue-500 font-semibold hover:underline" onClick={() => handleCancel(ticketId)}>
             Cancel
           </button>
         </td>
         </tr>
-      
     )
 }
 

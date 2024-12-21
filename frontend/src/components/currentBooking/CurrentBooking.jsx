@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import BookedTicket from "./BookedTicket";
 import getBookedTicketsRequest from "../../clientRequest/BookedTicketsRequest.jsx";
 import "../currentBooking/CurrentBooking.css";
+import axios from "axios";
+
 const CurrentBooking = () => {
   
   const [bookedTickets, setBookedTickets] = useState([]);
@@ -9,6 +11,19 @@ const CurrentBooking = () => {
   useEffect(() => {
     getBookedTicketsRequest(setBookedTickets)
   }, [])
+
+  const handleCancel = async (ticketId) => {
+    try {
+      console.log(ticketId);
+      const response = await axios.delete(`http://localhost:5000/api/tickets/delete-ticket/${ticketId}`);
+      if (response.status === 200) {
+        setBookedTickets((prevTickets) => prevTickets.filter(ticket => ticket.ticketId !== ticketId));
+      }
+    } catch (error) {
+      console.error("Failed to cancel ticket:", error);
+      alert("Failed to cancel ticket. Please try again.");
+    }
+  };
 
   useEffect(() => {
     console.log("check bookedTickets : " + JSON.stringify(bookedTickets.length));
@@ -38,12 +53,10 @@ const CurrentBooking = () => {
             
                bookedTickets.map((bookedTicket, index) =>{
                   console.log("check index " + index);
-                  return <BookedTicket key={index} bookedTicketInfors={bookedTicket} order={index}
-                />
-                
-                
+                  return <BookedTicket key={index} bookedTicketInfors={bookedTicket} order={index} handleCancel={handleCancel}
+
+                />  
               })
-       
       ) : (      
         null
       )
