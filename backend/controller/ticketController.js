@@ -55,8 +55,7 @@ async function updateSeats(flight, currentSeatNumber, classType){
 
 
 
-      if (ticket.bookingId) {
-        
+      if (ticket.bookingId) {        
         await bookings.findByIdAndDelete(ticket.bookingId);
       }
       await tickets.findByIdAndDelete(ticketId);
