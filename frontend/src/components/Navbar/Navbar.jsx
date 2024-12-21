@@ -33,7 +33,7 @@ function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 bg-[#00008B] w-full px-6 py-4 shadow-md z-50">
+    <header className="sticky top-0 left-0 bg-[#00008B] w-full px-6 py-4 shadow-md z-50">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto">
         {/* Logo */}
         <Link to={"/"} className="flex-shrink-0">
