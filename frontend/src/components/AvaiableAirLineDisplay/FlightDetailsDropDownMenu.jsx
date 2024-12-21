@@ -17,9 +17,20 @@ const FlightDetailsDropDownMenu = (props) =>{
 
     const calcDuration = (departDate, arriveDate) => {
 
-        const [departHour, departMinute] = departDate.time.split(":").map(Number);
+        let departTimeUnit = departDate.time.substring(departDate.time.length-2, departDate.time.length);
+        let [departHour, departMinute] = departDate.time.substring(0, departDate.time.length-2).split(":").map(Number);
+        if(departTimeUnit == "PM"){
+            departHour += 12;
+        }
+        console.log("check depart hour : " + departHour + "check depart minute : " + departMinute + " " + departTimeUnit);
     
-        const [arriveHour, arriveMinute] = arriveDate.time.split(":").map(Number);
+        let arriveTimeUnit = arriveDate.time.substring(departDate.time.length-2, departDate.time.length);
+        let [arriveHour, arriveMinute] = arriveDate.time.substring(0, departDate.time.length-2).split(":").map(Number);
+        if(arriveTimeUnit == "PM"){
+            arriveHour += 12;
+        }
+
+        console.log("check arrive hour : " + arriveHour + "check arrive minute : " + arriveMinute + " " + arriveTimeUnit);
     
         let _departDate = new Date(departDate.date);
     
@@ -57,10 +68,10 @@ const FlightDetailsDropDownMenu = (props) =>{
                 overflow: 'hidden',
             }}
             >
-            <div className="text-[0.9rem] md:text-[1rem] ">Số hiệu chuyến bay : <b>{aircraftInfors.airline.airlineCode}</b></div>
+            <div className="text-[0.9rem] md:text-[1rem] ">Flight code : <b>{aircraftInfors.airline.airlineCode}</b></div>
             <br></br>
             <div className="flex flex-row gap-5">
-                <div className="w-[10%] text-[0.9rem] md:text-[1rem]">Khởi hành : </div>
+                <div className="w-[10%] text-[0.9rem] md:text-[1rem]">Depart : </div>
                 <div className="w-[80%]">
                     <p className="font-bold text-[0.9rem] md:text-[1rem]">{formatedDate(departDate.date, departDate.time)}</p>
                     <p className="font-bold text-[0.9rem] md:text-[1rem]">{formartedLocation(from.nameLocation, from.airport)}</p>
@@ -68,7 +79,7 @@ const FlightDetailsDropDownMenu = (props) =>{
             </div>
             <br></br>
             <div className="flex flex-row gap-5">
-                <div className="w-[10%] text-[0.9rem] md:text-[1rem]">Đến : </div>
+                <div className="w-[10%] text-[0.9rem] md:text-[1rem]">Arrive : </div>
                 <div className="w-[80%]">
                 <p className="font-bold text-[0.9rem] md:text-[1rem]">{formatedDate(arriveDate.date, arriveDate.time)}</p>
                 <p className="font-bold text-[0.9rem] md:text-[1rem]">{formartedLocation(to.nameLocation, to.airport)}</p>
@@ -79,8 +90,8 @@ const FlightDetailsDropDownMenu = (props) =>{
             <div className="flex flex-row gap-5">
                 <div className="w-[10%] text-[0.9rem] md:text-[1rem]"></div>
                 <div className="w-[80%] flex flex-row gap-5">
-                    <p>Thời gian: <span className="text-red-500 inline-block pl-2">{calcDuration(departDate, arriveDate)}</span></p>
-                    <p>Airbus: <span className="text-red-500 inline-block pl-2">{aircraftInfors.airline.airlineManifacturing}</span></p>
+                    <p>Duration : <span className="text-red-500 inline-block pl-2">{calcDuration(departDate, arriveDate)}</span></p>
+                    <p>Airbus : <span className="text-red-500 inline-block pl-2">{aircraftInfors.airline.airlineManifacturing}</span></p>
                 </div>
             </div>
         </div>
