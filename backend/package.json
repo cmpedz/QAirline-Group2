@@ -17,7 +17,7 @@
     "canvas": "^2.11.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "fastify": "^4.26.2",
     "jsonwebtoken": "^9.0.2",
     "jsqr": "^1.4.0",

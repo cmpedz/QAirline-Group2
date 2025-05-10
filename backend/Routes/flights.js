@@ -2,7 +2,8 @@ import express from "express";
 
 import {
   addFlight,
-  getAllFlights
+  getAllFlights, 
+  updateFlight
 } from "../controller/searchFlightController.js";
 
 import { getFlights } from "../controller/SearchFlightController/getSuitableFligths.js";
@@ -18,5 +19,7 @@ router.post("/addFlight", addFlight);
 router.post("/search", getFlights);
 router.get("/getAllFlights", getAllFlights);
 router.get("/getSingleFlight/:id", authenticate, getSingleFlight);
+router.put("/updateFlight/:id", updateFlight);
+
 
 export default router;

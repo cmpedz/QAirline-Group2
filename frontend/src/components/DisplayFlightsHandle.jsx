@@ -1,34 +1,32 @@
-import { getClassTypeInfors } from "../../../backend/controller/classTypeInforsController.js";
+
 import AirLineDisplayForm from "./AvaiableAirLineDisplay/AirlineDisplayForm";
 import { useEffect } from "react";
+import getClassTypesRequest from "../clientRequest/ClassTypesRequest";
 const SuitableFlights = (props) => {
 
   const {searchedFlights, searchStatus} = props;
-  const flightDetails = {
-       
-  }
+
 
   useEffect(()=>{
-    getClassTypeInfors();
+    getClassTypesRequest();
   }, []);
 
-    console.log("check flights length : " + searchedFlights.length);
+    
     return(
-      <>
-      <p className="py-5">
-      <p>{searchStatus}</p>
+      <div>
+      <p className="py-5 w-[100%] flex justify-center">
+      <p className="mx-auto">{searchStatus}</p>
     </p>
-    <AirLineDisplayForm></AirLineDisplayForm>
+    
     {searchedFlights.length > 0 ? (
       <div className="flex justify-center items-center gap-5 flex-wrap w-full">
         {searchedFlights.map((flight, index) => {
-          console.log(flight);
+          return <AirLineDisplayForm flightInfors = {flight}></AirLineDisplayForm>;
         }
-          
         )}
       </div>
     ) : null}
-      </>
+      </div>
       
     )
 }

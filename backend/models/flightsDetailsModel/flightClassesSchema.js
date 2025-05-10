@@ -23,7 +23,6 @@ const flightClassesSchema = new Schema({
         type: Int32,
         required: true,
     }
-
 });
 
 export default mongoose.model("flightClasses", flightClassesSchema);

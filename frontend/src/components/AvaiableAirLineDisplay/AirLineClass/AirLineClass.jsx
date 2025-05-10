@@ -1,17 +1,29 @@
 
 import AirLineClassDisplayForm from "./AirLineClassForm";
 
+console.log("check class")
+
+
 const AirLineClass = (props) =>{
+
+    console.log("check class type fee : " + JSON.stringify(props.pricesEachClass))
+
+
     return (
-        <div className="flex flex-row w-[40%]">
+        <div className="flex flex-row w-[40%] md:w-[50%] h-[80%] md:h-[100%] justify-center md:gap-10">
+            <AirLineClassDisplayForm _class= "Economy" color="blue"
+                    price={props.pricesEachClass["Economy"]}
+                    changeClassTypeInfors={props.changeClassTypeInfors}
+                    
+                    ></AirLineClassDisplayForm>
 
-            <AirLineClassDisplayForm _class="Economy" color="gray" price="10"
-            changeClassTypeInfors={props.changeClassTypeInfors}
-            ></AirLineClassDisplayForm>
+            <AirLineClassDisplayForm _class= "Business" color="yellow"
+                    price={props.pricesEachClass["Business"]}
+                    changeClassTypeInfors={props.changeClassTypeInfors}
+                    
+             ></AirLineClassDisplayForm>
 
-            <AirLineClassDisplayForm _class="Business" color="yellow" price="1000"
-            changeClassTypeInfors={props.changeClassTypeInfors}
-            ></AirLineClassDisplayForm>
+
 
         </div>
         

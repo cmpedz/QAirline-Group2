@@ -1,16 +1,58 @@
 import flights from "../../models/flightsDetailsModel/flightSchema.js";
 import locationMove from "../../models/flightsDetailsModel/locationMoveSchema.js";
 
+const filterFlights = (matchedflights, quantitesPassangers, flightType) => {
 
+    // filter flights has satitisfied class type
+    if(matchedflights.length == 0) return matchedflights;
+
+    let matchedflightsHasSpecifiedClassType = matchedflights.filter((flight) => {
+       return flight.seatDetails.find( (eachSeatDetail) => 
+        eachSeatDetail.classType == flightType) != null
+        
+    })
+
+
+
+    // filter flights has enough avaiable seats
+    let matchedflightHasEnoughSeat = matchedflightsHasSpecifiedClassType.filter(
+      (flight) => {
+          let specifiedClassTypeSeat = flight.seatDetails.find(seatDetailsObject => seatDetailsObject.classType == flightType);
+          let emptySeats = specifiedClassTypeSeat.seats.filter(seat => seat.status == "available").length;
+          console.log("check empty seat : " + emptySeats);
+          return emptySeats >= quantitesPassangers;
+      } 
+    )
+
+
+
+    return matchedflightHasEnoughSeat;
+}
 
 export const getFlights = async (req, res) => {
 
-  const { from, to, departureDate, arriveDate} = req.body;
-  
+  const { from, to, departureDate, returnDate, quantitesPassangers, flightType} = req.body;
+
+  if (!from || !to) {
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter flight details to search flights" });
+  }
+
+  if(!departureDate){
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter departure date to search flights" });
+  }
+
+  if(quantitesPassangers == 0){
+    return res
+    .status(400)
+    .json({ status: false, message: "Enter quantities passangers to search flights" });
+  }
 
   try {
 
-    console.log("from req : " + from + ", to req : " + to);
 
     const fromLocation = await locationMove.findOne({ nameLocation: from });
 
@@ -23,17 +65,13 @@ export const getFlights = async (req, res) => {
         .json({ status: false, message: "No locations found" });
     }
     
-    console.log("check fromlocation id : " + fromLocation);
-
-    console.log("check tolocation id : " + toLocation);
-
-    console.log("check date arrive" + departureDate);
-    
-    const matchedFlights = await flights.find({
+    let matchedFlights = await flights.find({
       from: fromLocation._id,
       to: toLocation._id,
-      //"departInfors.date" : departureDate,
+      "departDate.date" : departureDate,
     });
+
+    matchedFlights = filterFlights(matchedFlights, quantitesPassangers, flightType);
 
     if (matchedFlights.length === 0) {
       console.log("no flights matched");

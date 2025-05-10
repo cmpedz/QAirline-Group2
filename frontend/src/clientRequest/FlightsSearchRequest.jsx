@@ -2,17 +2,10 @@
 import { BACKENDURL } from "../Config/Config.js";
 import { toast } from "react-toastify";
 
-async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFlights) {
+async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFlights, 
+  setIsWattingProcessVisible
+) {
 
-    if (!formData.from || !formData.to) {
-      setSearchStatus("Enter flight details to search flights");
-      return;
-    }
-
-    if(!formData.departureDate){
-      setSearchStatus("Enter departure date to search flights");
-      return;
-    }
 
     try {
       const response = await fetch(BACKENDURL + "/api/flights/search", {
@@ -26,6 +19,13 @@ async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFligh
       console.log("check data get : " + JSON.stringify(formData));
 
       const data = await response.json();
+
+      setIsWattingProcessVisible(false);
+
+      if(response.status == 400){
+        setSearchStatus(<p className="text-red-500">{data.message}</p>);
+        return;
+      }
 
       if (data.status === false) {
         toast.error(data.message);

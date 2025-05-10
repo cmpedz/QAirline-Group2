@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { authContext } from "../context/authContext";
+import WattingProcess from "../components/Loading/WattingProcess";
 
 const Login = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(authContext);
+  const [isWattingProcessVisiable, setIsWattingProcessVisiable] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -43,6 +45,8 @@ const Login = () => {
     try {
       const loginURL = BACKENDURL + "/api/auth/login";
 
+      setIsWattingProcessVisiable(true);
+
       const response = await fetch(loginURL, {
         method: "POST",
         headers: {
@@ -55,10 +59,11 @@ const Login = () => {
 
       if (!response.ok) {
         toast.error(data.error);
+        setIsWattingProcessVisiable(false);
         return;
       }
 
-      console.log(data);
+      console.log("user data : " + JSON.stringify(data));
       console.log(response.ok);
 
       if (response.ok) {
@@ -72,15 +77,23 @@ const Login = () => {
             token: data.token,
           },
         });
-        navigate("/");
+
+        setTimeout(() => {
+          setIsWattingProcessVisiable(false);
+          navigate("/admin");
+        }, 200);
+        
       }
     } catch (error) {
       console.log(error);
+      setIsWattingProcessVisiable(false);
       toast.error("An error occurred. Please try again later.");
     }
   };
 
   return (
+    <>
+    <WattingProcess isVisible = {isWattingProcessVisiable}></WattingProcess>
     <div className="px-[30px] md:px-[30px] my-10">
       <div className="flex flex-col items-center justify-center p-0 md:px-6 md:py-8 mx-auto md:min-h-[60vh] lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
@@ -152,6 +165,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

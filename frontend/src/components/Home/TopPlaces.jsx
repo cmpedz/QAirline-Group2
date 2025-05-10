@@ -27,7 +27,7 @@ const TopPlaces = () => {
   return (
     <div className="mt-5 max-w-[1400px] w-full mx-auto">
       <div className="mb-5">
-        <h1 className="text-[35px] md:text-[50px] font-bold">
+        <h1 className="text-[35px] md:text-[50px] font-bold text-[#00008B]">
           Choose your tour!
         </h1>
       </div>
@@ -46,19 +46,23 @@ const TopPlaces = () => {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
+          840: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1260: {
             slidesPerView: 3,
-            spaceBetween: 60,
+            spaceBetween: 30,
           },
-          1024: {
+          1440: {
             slidesPerView: 4,
-            spaceBetween: 70,
-          },
+            spaceBetween: 30,
+          }
         }}
       >
         {flightLocationData.map((data, index) => (
           <SwiperSlide
-            className="w-full flex justify-center items-center"
+            className="w-full flex justify-center items-center text-[#00008B]"
             key={index}
           >
             <HotelCards data={data} />
