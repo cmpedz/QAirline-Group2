@@ -1,6 +1,6 @@
 import users from "../models/userSchema.js";
 import tickets from "../models/ticketSchema.js"
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
