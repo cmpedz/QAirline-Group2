@@ -55,7 +55,8 @@ const PlanItinerary = () => {
             <img src={card.imageUrl} alt={card.title} className={styles.cardImage} />
             <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>{card.title}</h3>
-              <p className={styles.cardDescription}>{card.description}</p>
+              {/* Thêm thuộc tính dangerouslySetInnerHTML để bị lỗi inject HTML */}
+              <p className={styles.cardDescription} dangerouslySetInnerHTML={{ __html: card.description }}></p>
             </div>
           </div>
         ))}

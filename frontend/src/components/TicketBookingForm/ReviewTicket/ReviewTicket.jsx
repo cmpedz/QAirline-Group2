@@ -84,7 +84,8 @@ const ReviewTicket = ({
             !aggreed || !terms ? "cursor-not-allowed" : ""
           }`}
           onClick={handleFlightBooking}
-          disabled={!aggreed || !terms}
+          // disabled={!aggreed || !terms}
+          disabled={!terms} // Tạo ra bug chỉ cần đồng ý với terms là được phép đặt vé, ko cần phần assurance
         >
           Next
         </button>

@@ -19,7 +19,8 @@ const Aircrafts = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/aircrafts/deleteAircraft/${id}`);
-      fetchAircrafts(); 
+      // fetchAircrafts();  // Cmt code này đi để ko fetch lại danh sách máy bay sau khi xóa=> giữ nguyên trạng thái hiện tại
+      alert("Delete aircraft successfully!");
     } catch (error) {
       console.error("Error deleting aircraft:", error);
     }

@@ -65,7 +65,8 @@ const Admin = () => {
 
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <StatCard value={flights.length} label="Total Flights" />
+          {/* Thêm bug: đổi thành chỉ tính số booking có trạng thái "Scheduled" */}
+          <StatCard value={flights.filter(b => b.status === "Scheduled").length} label="Total Flights" />
           <StatCard value={bookings.length} label="Total Bookings" />
           <StatCard value={aircrafts.length} label="Total Aircrafts" />
           <StatCard value={promotions.length} label="Promotions" />

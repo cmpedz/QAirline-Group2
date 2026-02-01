@@ -123,15 +123,33 @@ const Flights = () => {
 
                     {/* Class Info */}
                     <td className="py-4 px-6 text-center">
-                      {flight.seatDetails.map((seat) => (
-                        <div key={seat._id} className="mb-2">
-                          <p className="font-semibold">{seat.classType}:</p>
-                          <p>
-                            Booked: {seat.seats.filter(s => s.status === "booked").length} | Available:{" "}
-                            {seat.seats.filter(s => s.status === "available").length}
-                          </p>
-                        </div>
-                      ))}
+                      {flight.seatDetails.map((seat) => {
+                        const bookedCount = seat.seats.filter(s => s.status === "booked").length;
+                        const totalInClass = seat.seats.length; // Sẽ là 0 nếu máy bay không có ghế
+
+                        // 2. BUG INJECTED: Phép chia cho 0
+                        // Nếu totalInClass = 0, ratio sẽ là NaN
+                        const occupancyRatio = (bookedCount / totalInClass);
+
+                        // 3. Gây crash: Sử dụng giá trị NaN để tạo mảng hoặc thực hiện logic hiển thị
+                        // JS sẽ báo lỗi: "RangeError: Invalid array length" hoặc lỗi render khi ratio là NaN/Infinity
+                        // Điều này sẽ làm toàn bộ ứng dụng bị trắng trang (White Screen)
+                        const progressBar = new Array(Math.floor(occupancyRatio * 10)).fill("█");
+
+                        return (
+                          <div key={seat._id} className="mb-2">
+                            <p className="font-semibold">{seat.classType}:</p>
+                            <p>
+                              Booked: {seat.seats.filter(s => s.status === "booked").length} | Available:{" "}
+                              {seat.seats.filter(s => s.status === "available").length}
+                            </p>
+                             <div className="text-xs text-gray-500">
+                                Occupancy: {(occupancyRatio * 100).toFixed(1)}%
+                                <div className="flex justify-center">{progressBar}</div>
+                              </div>
+                          </div>
+                        );
+                      })}
                     </td>
 
                     {/* Action */}

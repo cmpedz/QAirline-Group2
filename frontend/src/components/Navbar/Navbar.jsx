@@ -1,18 +1,21 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext";
 import logo from "../../assets/images/imagelogo.png";
 
 function Navbar() {
-  const { user, token } = useContext(authContext);
+  const { isUserLoggedIn, dispatch} = useContext(authContext);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("isAdmin");
-    window.location.reload();
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("user");
+    // localStorage.removeItem("isAdmin");
+    // window.location.reload();
+    dispatch({ type: "LOGOUT" });
+    localStorage.clear(); 
+    window.location.href = "/"; 
   };
 
   const handleMouseEnter = () => setDropdownVisible(true);
@@ -24,7 +27,7 @@ function Navbar() {
 
   const toggleMobileMenu = () => setMobileMenuVisible(!isMobileMenuVisible);
 
-  const isUserLoggedIn = Boolean(localStorage.getItem("token"));
+  console.log("Navbar - isUserLoggedIn: " + isUserLoggedIn);
   const profilePic =
     "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png";
 

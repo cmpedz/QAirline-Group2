@@ -1,11 +1,8 @@
-import React from "react";
 import HeroSection from "../components/Home/HeroSection";
 import TopPlaces from "../components/Home/TopPlaces";
 import ValuesWeProvide from "../components/Home/ValuesWeProvide";
 import PlanItinerary from "../components/Home/PlanItinerary";
-import Testimonials from "../components/Home/Testimonials";
 import LetGetToKnow from "../components/Home/LetGetToKnow";
-import TicketSearchPage from "./TicketSearchPage";
 import BookTicketBox2 from "../components/BookTicketBox2";
 
 const Home = () => {

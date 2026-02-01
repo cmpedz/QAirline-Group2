@@ -34,7 +34,8 @@ const filterByFlightNumber = (bookings, flightNumber) => {
 };
 
 const filterByUserName = (bookings, userName) => {
-  return bookings.filter(booking => booking.user.name.toLowerCase() === userName.toLowerCase());
+  // return bookings.filter(booking => booking.user.name.toLowerCase() === userName.toLowerCase());
+  return bookings.filter(booking => booking.user.name === userName); // Tạo bug bằng cách so sánh chính xác thay vì không phân biệt hoa thường
 };
 
 const filterByDepartureLocation = (bookings, location) => {
@@ -145,7 +146,9 @@ const calculateTotalPrice = () => {
 
           {/* Results Summary */}
           <div>
-            <p className="font-bold">Results: {filteredBookings.length}</p>
+            {/* Tạo bug bằng cách dùng bookings.length để tính tổng số booking ban đầu thay cho filteredBookings.length để tính số booking sau khi lọc */}
+            <p className="font-bold">Results: {bookings.length}</p> 
+
           </div>
           <div> 
             <p className="font-bold">Total Price: {calculateTotalPrice()}</p>

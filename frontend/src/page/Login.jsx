@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { BACKENDURL } from "../Config/Config";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -152,7 +152,7 @@ const Login = () => {
                 Login
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don't have an account yet?{" "}
+                Dont have an account yet?{" "}
                 <Link
                   to={"/signup"}
                   className="font-medium text-blue-600 hover:underline dark:text-blue-500"

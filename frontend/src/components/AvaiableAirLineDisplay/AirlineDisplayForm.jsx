@@ -33,8 +33,8 @@ const AirLineDisplayForm = (props) => {
             (classTypeInfors) => {
                 let classTypeName = classTypeInfors.classType;
     
-                let classTypeExtraFee = JSON.parse(localStorage.getItem("ClassTypes"))[classTypeName].extra_fee;
-
+                // let classTypeExtraFee = JSON.parse(localStorage.getItem("ClassTypes"))[classTypeName].extra_fee;
+                let classTypeExtraFee = 0; //Đặt = 0 để 2 hạng vé Economy và Business có giá gốc như nhau
                 let price = props.flightInfors.price* (1 + classTypeExtraFee);
 
                 _pricesEachClass[classTypeName] = price;
