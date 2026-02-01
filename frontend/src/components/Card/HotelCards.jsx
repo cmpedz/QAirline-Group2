@@ -1,6 +1,4 @@
-import React from "react";
 import { FaStar } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { HiLocationMarker } from "react-icons/hi";
 
 const HotelCards = (props) => {

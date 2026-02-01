@@ -1,5 +1,4 @@
 // BookingGuide.jsx
-import React from "react";
 import styles from "./BookingGuide.module.css"; // CSS Module
 
 const BookingGuide = () => {

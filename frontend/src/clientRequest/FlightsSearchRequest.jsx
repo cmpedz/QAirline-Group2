@@ -43,6 +43,6 @@ async function  flightsSearchRequest(formData, setSearchStatus, setSearchedFligh
     } catch (error) {
       console.error("Error fetching flights:", error);
     }
-  };
+  }
 
   export default flightsSearchRequest;

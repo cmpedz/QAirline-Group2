@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import StatCard from "./components/StatCard";
 import Sidebar from "./components/Sidebar";
 import axios from "axios";

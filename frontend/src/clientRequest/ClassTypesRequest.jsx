@@ -1,6 +1,5 @@
 
 import { BACKENDURL } from "../Config/Config.js";
-import { toast } from "react-toastify";
 
 async function getClassTypesRequest(){
   fetch(BACKENDURL + "/api/classType/getClassTypeInfors", {

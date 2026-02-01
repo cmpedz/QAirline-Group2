@@ -20,7 +20,7 @@ async function getBookedTicketsRequest(setBookedTickets){
 
         console.log("check booked tickets : " + JSON.stringify(data));
 
-        data.map((bookedTicket, index) => {
+        data.map((bookedTicket) => {
             let ticketInfors = {
                 flight : bookedTicket.flight, 
                 departCity: bookedTicket.departCity, 
