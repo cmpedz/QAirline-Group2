@@ -1,10 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
-const SidebarItem = ({ href, imageSrc, text }) => {
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.setItem("isAdmin", false);
+  window.location.reload();
+};
+
+
+const SidebarItem = ({ href, Icon, text }) => {
   return (
-    <Link to={href} className="hover:bg-blue-300 p-2 rounded flex items-center">
-      {imageSrc && <img src={imageSrc} alt={text} className="w-5 h-5 mr-2" />}
+    <Link to={href} className="hover:bg-blue-300 p-2 rounded flex items-center space-x-2" 
+    onClick={(e) => {
+      if(text == "Logout"){
+        e.preventDefault()
+        handleLogout();
+        setTimeout(() => {
+          navigate("/");
+        }, 200);
+      }
+    }}>
+      {Icon && <Icon className="text-xl" />} {/* Hiển thị Icon nếu tồn tại */}
       <span>{text}</span>
     </Link>
   );

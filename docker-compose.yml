@@ -1,0 +1,24 @@
+
+services:
+  # Dịch vụ Backend
+  backend:
+    build: ./backend
+    container_name: qairline-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+ 
+
+  # Dịch vụ Frontend
+  frontend:
+    build: ./frontend
+    container_name: qairline-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+networks:
+  default:
+    name: qairline-network

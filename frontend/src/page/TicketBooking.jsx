@@ -3,14 +3,16 @@ import Header from "../components/TicketBookingForm/Header";
 import FormHeader from "../components/TicketBookingForm/FormHeader";
 import TravellerDetail from "../components/TicketBookingForm/TravellerDetail";
 import SeatReservation from "../components/TicketBookingForm/SeatReservation";
-import ReviewTicket from "../components/TicketBookingForm/ReviewTicket";
+import ReviewTicket from "../components/TicketBookingForm/ReviewTicket/ReviewTicket.jsx";
 import FareSummary from "../components/TicketBookingForm/FareSummary";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BACKENDURL } from "../Config/Config";
 import { authContext } from "../context/authContext";
-import uploadImageToCloudinary from "../utils/uploadImageToCloudinary"; // Import the image upload function
+import uploadImageToCloudinary from "../utils/uploadImageToCloudinary"; 
 import airplaneLoader from "../assets/images/airplaneLoader.gif";
+import getSpecifiedFlight from "../clientRequest/GetSpecifiedFlightRequest";
+import WattingProcess from "../components/Loading/WattingProcess.jsx";
 
 const TicketBooking = () => {
 
@@ -18,36 +20,39 @@ const TicketBooking = () => {
 
   const history = useNavigate();
 
-  let { id } = useParams();
+  let { id, classType } = useParams();
   const [currentActiveForm, setCurrentActiveForm] = useState(0);
   const [numberOfPassengers, setNumberOfPassengers] = useState(0);
-  const [selectedSeats, setSelectedSeats] = useState({});
+  const [selectedSeats, setSelectedSeats] = useState(
+    {
+      "Business": [],
+      "Economy" : []
+    }
+  );
   const [formData, setFormData] = useState({});
   const [currentFlight, setCurrentFlight] = useState({});
   const [loading, setLoading] = useState(true);
-  const [bookedSeats, setBookedSeats] = useState([]);
+  const [ticketPrice, setTicketPrice] = useState({
+      classType : classType,
+      price: 0
+  });
 
+  const [isWattingProcessVisible, setIsWattingProcessVisible] = useState(false);
+
+  const classTypeExtraFee = JSON.parse(localStorage.getItem("ClassTypes"))[classType].extra_fee;
   
   const handleFlightBooking = async (e) => {
     e.preventDefault();
 
+    setIsWattingProcessVisible(true);
+    
     const token = localStorage.getItem("token");
-
-    const selectedSeatsArray = Object.entries(selectedSeats).reduce(
-      (acc, [row, seats]) => {
-        seats.forEach((seat) => {
-          acc.push(`${row}${seat}`);
-        });
-        return acc;
-      },
-      []
-    );
 
     try {
       for (const passengerId in formData) {
         const passenger = formData[passengerId];
         if (passenger.passportSizePhoto) {
-          // Upload image to Cloudinary
+          
           const cloudinaryResponse = await uploadImageToCloudinary(
             passenger.passportSizePhoto
           );
@@ -55,18 +60,12 @@ const TicketBooking = () => {
             "Image uploaded successfully:",
             cloudinaryResponse.secure_url
           );
-          // Update formData with Cloudinary URL
+          
           formData[passengerId].passportSizePhoto =
             cloudinaryResponse.secure_url;
         }
       }
 
-      console.log({
-        bookingUsersData: formData,
-        selectedSeats: selectedSeatsArray,
-      });
-
-      // Send booking data to the backend
       const response = await fetch(
         BACKENDURL + "/api/bookings/checkout-session/" + id,
         {
@@ -77,58 +76,43 @@ const TicketBooking = () => {
           },
           body: JSON.stringify({
             bookingUsersData: formData,
-            selectedSeats: selectedSeatsArray,
+            selectedSeats: selectedSeats,
+            price: ticketPrice.price,
+            classType: ticketPrice.classType
           }),
         }
       );
 
-      const data = await response.json();
-      console.log(data);
 
-      window.location.href = data.session.url;
+      const data = await response.json();
+      console.log("check payment response : " + JSON.stringify(data));
+      setIsWattingProcessVisible(false);
+      if(data.url != null){
+        window.location.href = data.url;
+      } 
+      
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setTimeout(() => {
-      fetch(BACKENDURL + "/api/flights/getSingleFlight/" + id, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("check user token : " + token);
-          console.log("check data : " + JSON.stringify(data));
-          if (data.success === false) {
-            console.log("need log in !");
-            window.scrollTo(0, 0);
-            toast.error("Please log in to book tickets");
-            history("/");
-            return;
-          }
-          console.log(data);
-          setCurrentFlight(data);
+    getSpecifiedFlight(id, history, setCurrentFlight,
+       setLoading, setTicketPrice, classTypeExtraFee);
 
-          setBookedSeats(data.seatDetails.map(
-            (classType) => {
-              console.log("check class type in seatDetails : " + JSON.stringify(classType));
-              classType.seats.filter(seat => seat.status === "booked").map(
-                seat => seat
-              )
-            }
-        ))
-
-        console.log("seats booked : " + JSON.stringify(bookedSeats));
-          setLoading(false);
-        });
-    }, 1000);
   }, []);
+
+  useEffect(() => {
+    if(!isWattingProcessVisible){
+      document.body.style.overflow = "auto";
+    } else{
+      document.body.style.overflow = "hidden";
+    }
+  }, [isWattingProcessVisible])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentActiveForm])
 
   if (!isUserLoggedIn) {
     window.scrollTo(0, 0);
@@ -138,7 +122,10 @@ const TicketBooking = () => {
   }
 
   return (
+    <>
+    <WattingProcess isVisible = {isWattingProcessVisible}></WattingProcess>
     <div className="px-[30px] md:px-[30px]">
+
       <div>
         {loading ? (
           <div className="w-full min-h-[60vh] flex justify-center items-center">
@@ -159,7 +146,8 @@ const TicketBooking = () => {
                     setNumberOfPassengers={setNumberOfPassengers}
                     selectedSeats={selectedSeats}
                     setSelectedSeats={setSelectedSeats}
-                    reservedSeats={bookedSeats}
+                    avaiableSeats={currentFlight.seatDetails}
+                    selectedClassType = {classType}
                   />
                 ) : currentActiveForm === 1 ? (
                   <TravellerDetail
@@ -173,7 +161,7 @@ const TicketBooking = () => {
                     setCurrentActiveForm={setCurrentActiveForm}
                     selectedSeats={selectedSeats}
                     formData={formData}
-                    price={currentFlight.price}
+                    price={ticketPrice.price}
                     numberOfPassengers={numberOfPassengers}
                     handleFlightBooking={handleFlightBooking}
                   />
@@ -182,7 +170,7 @@ const TicketBooking = () => {
             </div>
             <div className="w-full lg:w-[30%] h-fit">
               <FareSummary
-                price={currentFlight.price}
+                price={ticketPrice.price}
                 numberOfPassengers={numberOfPassengers}
               />
             </div>
@@ -190,6 +178,7 @@ const TicketBooking = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

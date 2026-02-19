@@ -6,7 +6,7 @@ class DepartureAndReturnDate extends React.Component{
         const {formData, handleFormDataChange, isOneWayChosen} = this.props;
         return (
             
-            <div className="md:w-[30%] border-b-[2px] md:border-b-[0px] md:border-r-[2px] border-gray-300 px-5 py-5">
+            <div className="md:w-[30%] border-b-[2px] md:border-b-[0px] md:border-r-[2px] text-[20px] text-[#00008B] border-gray-300 px-5 py-5">
 
             <ChooseDateBox title="Departure Date" name="departureDate" value={formData.departureDate} handleFormDataChange={handleFormDataChange}/>
 

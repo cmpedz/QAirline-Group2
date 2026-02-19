@@ -1,11 +1,11 @@
 import users from "../models/userSchema.js";
 import tickets from "../models/ticketSchema.js"
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-const jwtSecretKey = process.env.JWT_SECRET_KEY;
+const jwtSecretKey = process.env.JWT_TOKEN;
 const saltRounds = 10;
 
 const createJWTToken = (payload) => {

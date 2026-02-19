@@ -10,7 +10,7 @@ const HeroSection = () => {
     {
       heading: "Explore the sights of the Andaman and Nicobar Islands",
       subheading: "The place called heaven on earth",
-      src: "https://images.unsplash.com/photo-1620127682229-33388276e540",
+      src: "https://images.ctfassets.net/oz9qk43ly6yk/2ZggTUeVUYYpB5A9RASo3w/11e364dbefd4cfdc6a29c5a79dd11797/denmark-copenhagen-cph-winter-boats-sas.jpg?fm=webp&q=66&f=&w=1100",
     },
     {
       heading: "Discover the beauty of Paris",
@@ -35,7 +35,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="max-w-[1800px] mx-auto w-full h-[90vh] rounded-[25px] overflow-hidden relative">
+    <section className="max-w-[1800px] mx-auto w-full h-[90vh] rounded-[25px] overflow-auto relative">
       <Swiper
         modules={[Autoplay]}
         spaceBetween={0}
@@ -47,7 +47,7 @@ const HeroSection = () => {
         }}
       >
         {homeData.map((data, index) => (
-          <SwiperSlide key={index} className="h-[90vh]">
+          <SwiperSlide key={index} className="h-[90vh] overflow">
             <HeroSectionCard
               heading={data.heading}
               subheading={data.subheading}

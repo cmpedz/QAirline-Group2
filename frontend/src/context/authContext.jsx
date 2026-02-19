@@ -1,13 +1,18 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import  { createContext, useEffect, useReducer } from "react";
+
+const getStorageItem = (key) => {
+  const item = localStorage.getItem(key);
+  if (item === null || item === "null" || item === "undefined") {
+    return null;
+  }
+  return item;
+};
 
 const initialState = {
-  user:
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : null,
-  token: localStorage.getItem("token") || null,
-  isAdmin: localStorage.getItem("isAdmin") || null,
-  isUserLoggedIn: true ? localStorage.getItem("token") !== null : false,
+  user: getStorageItem("user") ? JSON.parse(getStorageItem("user")) : null,
+  token: getStorageItem("token"),
+  isAdmin: getStorageItem("isAdmin") === "true",
+  isUserLoggedIn: !!getStorageItem("token"),
 };
 
 export const authContext = createContext(initialState);
@@ -46,10 +51,26 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(state.user));
-    localStorage.setItem("token", state.token);
-    localStorage.setItem("isAdmin", state.isAdmin);
-    localStorage.setItem("isUserLoggedIn", state.isUserLoggedIn);
+    if (state.user) {
+      localStorage.setItem("user", JSON.stringify(state.user));
+    } else {
+      localStorage.removeItem("user");
+    }
+
+    // Nếu có token thì lưu, không thì xóa (TRÁNH lưu chuỗi "null")
+    if (state.token) {
+      localStorage.setItem("token", state.token);
+    } else {
+      localStorage.removeItem("token");
+    }
+
+    // isAdmin lưu dưới dạng chuỗi "true" / "false"
+    localStorage.setItem("isAdmin", String(state.isAdmin));
+    
+    // isUserLoggedIn cũng tương tự
+    localStorage.setItem("isUserLoggedIn", String(!!state.token));
+
+    console.log("Sync state to localStorage done");
   }, [state]);
 
   return (

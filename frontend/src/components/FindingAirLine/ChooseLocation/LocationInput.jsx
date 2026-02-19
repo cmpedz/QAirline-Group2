@@ -71,14 +71,14 @@ const LocationInput = (props) => {
     
 
     return ( <div className="flex flex-col p-5  w-[40%] relative" ref = {containerRef}>
-        <h1>{title}</h1>
+        <h1 className= "text-[#00008B] text-[20px]">{title}</h1>
         <input
           name={name}
           type="text"
           autocomplete="off"
           placeholder={placeHolder}
           value={formData[name]}
-          className="outline-none text-[20px] md:text-[30px]"
+          className="outline-none text-[20px] md:text-[20px]"
           onFocus={handleFocus}
           onChange={(e) => {
             handleFormDataChange(e);

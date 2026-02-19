@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios, { formToJSON } from "axios";
 
-const AddFlight = ({ onClose }) => {
+const AddFlight = ({onSave,  onCancel }) => {
   const [aircrafts, setAircrafts] = useState([]);
   const [locations, setLocations] = useState([]);
   const [formData, setFormData] = useState({
@@ -14,48 +14,85 @@ const AddFlight = ({ onClose }) => {
     basePrice: "",
   });
 
-  // useEffect(() => {
-  //   const fetchAircrafts = async () => {
-  //     try {
-  //       // Giả lập API lấy danh sách máy bay
-  //       const response = await fetch("/api/aircrafts");
-  //       const data = await response.json();
-  //       setAircrafts(data);
-  //     } catch (error) {
-  //       console.error("Error fetching aircrafts:", error);
-  //     }
-  //   };
+   // Fetch aircrafts and locations when the form is loaded
+   useEffect(() => {
+    const fetchAircrafts = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/aircrafts/getAllAircrafts"
+        );
+        setAircrafts(response.data);
+      } catch (error) {
+        console.error("Error fetching aircrafts:", error);
+      }
+    };
 
-  //   const fetchLocations = async () => {
-  //     try {
-  //       // Giả lập API lấy danh sách địa điểm
-  //       const response = await fetch("/api/locations");
-  //       const data = await response.json();
-  //       setLocations(data);
-  //     } catch (error) {
-  //       console.error("Error fetching locations:", error);
-  //     }
-  //   };
-  //   fetchAircrafts();
-  //   fetchLocations();
-  // }, []);
+    const fetchLocations = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/airports/getAllAirports"
+        );
+        setLocations(response.data);
+      } catch (error) {
+        console.error("Error fetching airports:", error);
+      }
+    };
 
+    fetchAircrafts();
+    fetchLocations();
+  }, []);
 
-  // Handle thay đổi form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  function convertDepartureTimeToJson(datetime) {
+    const [date, time] = datetime.split("T"); 
+    const [hour, minute] = time.split(":");
+
+    const period = hour >= 12 ? "PM" : "AM";
+    const formattedHour = hour % 12 || 12; 
+    const formattedTime = `${formattedHour}:${minute}${period}`;
+
+    return {
+        date: date, 
+        time: formattedTime 
+    };
+  }
   // Handle submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    //   await axios.post("/api/flights", formData); // API để lưu flight mới
-      alert("New flight created successfully!");
-      onClose(); // Đóng form
+      
+      const finalData = {
+        flightNumber: formData.flightNumber,
+        from: formData.departureLocation,
+        to: formData.arrivalLocation,
+        departDate: convertDepartureTimeToJson(formData.departureTime),
+        arriveDate: convertDepartureTimeToJson(formData.arrivalTime),
+        price: formData.basePrice,
+        status: "Scheduled",
+        airline: formData.aircraft,
+      }
+      const response = await axios.post(
+        "http://localhost:5000/api/flights/addFlight",
+        finalData
+      );     
+
+      onSave(formData)
+      setFormData({
+        flightNumber: "",
+        aircraft: "",
+        departureLocation: "",
+        arrivalLocation: "",
+        departureTime: "",
+        arrivalTime: "",
+        basePrice: "",
+      });
     } catch (error) {
       console.error("Error creating flight:", error);
+      alert("Failed to add flight. Please try again.");
     }
   };
 
@@ -101,7 +138,7 @@ const AddFlight = ({ onClose }) => {
                 <option value="">Please select an aircraft</option>
                 {aircrafts.map((ac) => (
                   <option key={ac._id} value={ac._id}>
-                    {ac.airlineManufacturer} - {ac.airlineCode}
+                    {ac.airlineCode}
                   </option>
                 ))}
               </select>
@@ -138,8 +175,8 @@ const AddFlight = ({ onClose }) => {
               >
                 <option value="">Select departure location</option>
                 {locations.map((loc) => (
-                  <option key={loc._id} value={loc.name}>
-                    {loc.name} ({loc.code})
+                  <option key={loc._id} value={loc._id}>
+                    {loc.nameLocation} ({loc.airportCode})
                   </option>
                 ))}
               </select>
@@ -158,8 +195,8 @@ const AddFlight = ({ onClose }) => {
               >
                 <option value="">Select arrival location</option>
                 {locations.map((loc) => (
-                  <option key={loc._id} value={loc.name}>
-                    {loc.name} ({loc.code})
+                  <option key={loc._id} value={loc._id}>
+                    {loc.nameLocation} ({loc.airportCode})
                   </option>
                 ))}
               </select>
@@ -200,7 +237,7 @@ const AddFlight = ({ onClose }) => {
           <div className="flex justify-end space-x-4">
             <button
               type="button"
-              onClick={onClose}
+              onClick={onCancel}
               className="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600 transition"
             >
               Cancel
